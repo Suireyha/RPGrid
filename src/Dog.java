@@ -17,8 +17,10 @@ public class Dog extends Actor {
     face.addPoint(loc.x + 27, loc.y + 25);
     face.addPoint(loc.x + 8, loc.y + 25);
 
+    /*
     shape.add(ear1);
     shape.add(ear2);
     shape.add(face);
+    */
   }
 }

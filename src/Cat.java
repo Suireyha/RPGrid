@@ -16,8 +16,10 @@ public class Cat extends Actor {
     face.addPoint(loc.x + 29, loc.y + 15);
     face.addPoint(loc.x + 17, loc.y + 30);
 
+    /*
     shape.add(ear1);
     shape.add(ear2);
     shape.add(face);
+    */
   }
 }

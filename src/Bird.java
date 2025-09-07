@@ -17,10 +17,11 @@ public class Bird extends Actor {
     body.addPoint(loc.x + 20, loc.y + 10);
     body.addPoint(loc.x + 20, loc.y + 25);
     body.addPoint(loc.x + 15, loc.y + 25);
-
+    /*
     shape.add(wing1);
     shape.add(wing2);
     shape.add(body);
+    */
   }
 
     //g.setColor(color);
