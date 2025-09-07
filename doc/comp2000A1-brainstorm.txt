@@ -1,0 +1,22 @@
+Idea #1:
+Make a little pixel art program. I already know how to do this, I can use inheritence to manage 
+the buttons and their specificities- as well as interfaces since I'll have to make the rounded 
+border class thing for the buttons. I suppose I could potentially implement generics for the 
+colour picker maybe? Maybe I could add in like a line tool that would paint either with 
+coordinates or with IDs or something like that? I don't know, feels like a bit of a reach.
+
+Idea #2:
+A turned based RPG where we have our characters on the grid and so forth. I'm thinking we 
+can use some weird goofy inheritence to manage weapons, like every Sword is a Weapon, but not 
+every Weapon is a Sword (think like Bow class, Spell class, etc). Would be loads of work but 
+would probably actually be fun. We could also use interfaces for the same thing, maybe even 
+for race classes too- like having an abstract class or interface to list a bunch of functions 
+that each race must implement uniquely and what not. We could also use generics to calculate 
+damage- so for example since it'd be easier to just have one attack function, we can have it 
+take ALL kinds of weapons, so like void<T> Attack(T weapon extends Weapon), something like that.
+As we scale this all up we could add all sorts of cool shit, and in general I just think it'd 
+actually be fun =]
+
+Idea #3:
+Chess. I feel like this is what they want us to do, but to be honest if I wanted the easy way 
+out I'd still just do Idea #1 so let's just stick with the first two and be realistic :fire:
