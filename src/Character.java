@@ -14,6 +14,21 @@ public class Character extends Actor{ //Child of Actor since we'll draw these
     public double maxHealth = 0;
     public double health = 0;
 
+    //Keeping these here for now, might make a package later
+    public enum RaceType{ 
+        HUMAN,
+        ELF,
+        ORC,
+        DWARF
+    }
+
+    public enum RoleType{
+        BARBARIAN,
+        FIGHTER,
+        MAGE,
+        RANGER
+    }
+
     
 
 
