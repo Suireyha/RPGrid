@@ -19,9 +19,13 @@ public class Stage {
   public Stage() {
     grid = new Grid();
     actors = new ArrayList<Actor>();
-    actors.add(new Cat(grid.cellAtColRow(0, 0)));
-    actors.add(new Dog(grid.cellAtColRow(0, 15)));
-    actors.add(new Bird(grid.cellAtColRow(12, 9)));
+    //actors.add(new Cat(grid.cellAtColRow(0, 0)));
+    //actors.add(new Dog(grid.cellAtColRow(0, 15)));
+    //actors.add(new Bird(grid.cellAtColRow(12, 9)));
+  }
+
+  public void addCharacter(Character charPreset){ //Adds a character to the board
+
   }
 
   public void paint(Graphics g, Point mouseLoc) {
