@@ -118,70 +118,146 @@ public class Character extends Actor{ //Child of Actor since we'll draw these
     public void draw(){ //Function to draw each Character based on Race/Role/Player
         System.out.println("X = " + loc.x);
         System.out.println("Y = " + loc.y);
+
+        //Polygon declarations, we'll change these depending on the role
+        Polygon part1 = new Polygon();
+        Polygon part2 = new Polygon();
+        Polygon part3 = new Polygon();
+        Polygon part4 = new Polygon();
+        Polygon part5 = new Polygon();
+
         
-        //THIS IS A PLACEHOLDER
-        Polygon ear1 = new Polygon();
-        Polygon ear2 = new Polygon();
-        Polygon face = new Polygon();
-        switch(role){
+        switch(role){ //The contents of each case was written by AI!! I was not interested in spending hours making cool icons for no marks </3
             case BARBARIAN:
-            case FIGHTER:
-                Polygon helmet = new Polygon();
-                Polygon visor = new Polygon();
-                Polygon body = new Polygon();
-                Polygon shield = new Polygon();
-
-                helmet.addPoint(loc.x + 16, loc.y + 8);
-                helmet.addPoint(loc.x + 24, loc.y + 8);
-                helmet.addPoint(loc.x + 26, loc.y + 12);
-                helmet.addPoint(loc.x + 26, loc.y + 18);
-                helmet.addPoint(loc.x + 14, loc.y + 18);
-                helmet.addPoint(loc.x + 14, loc.y + 12);
-
-                // Visor/face guard (smaller)
-                visor.addPoint(loc.x + 16, loc.y + 14);
-                visor.addPoint(loc.x + 24, loc.y + 14);
-                visor.addPoint(loc.x + 24, loc.y + 16);
-                visor.addPoint(loc.x + 16, loc.y + 16);
-
-                // Body/torso (smaller, centered)
-                body.addPoint(loc.x + 12, loc.y + 18);
-                body.addPoint(loc.x + 28, loc.y + 18);
-                body.addPoint(loc.x + 26, loc.y + 32);
-                body.addPoint(loc.x + 14, loc.y + 32);
-
-                // Shield (larger and more visible)
-                shield.addPoint(loc.x + 4, loc.y + 8);
-                shield.addPoint(loc.x + 10, loc.y + 8);
-                shield.addPoint(loc.x + 10, loc.y + 26);
-                shield.addPoint(loc.x + 7, loc.y + 30);
-                shield.addPoint(loc.x + 4, loc.y + 26);
-
-                shape.add(helmet);
-                shape.add(visor);
-                shape.add(body);
-                shape.add(shield);
-                break;
-            case MAGE:
-                ear1.addPoint(loc.x + 5, loc.y + 5);
-                ear1.addPoint(loc.x + 15, loc.y + 5);
-                ear1.addPoint(loc.x + 5, loc.y + 15);
-
-                ear2.addPoint(loc.x + 20, loc.y + 5);
-                ear2.addPoint(loc.x + 30, loc.y + 5);
-                ear2.addPoint(loc.x + 30, loc.y + 15);
-
-                face.addPoint(loc.x + 8, loc.y + 7);
-                face.addPoint(loc.x + 27, loc.y + 7);
-                face.addPoint(loc.x + 27, loc.y + 25);
-                face.addPoint(loc.x + 8, loc.y + 25);
-
                 
-                shape.add(ear1);
-                shape.add(ear2);
-                shape.add(face);
+                // Helmet base
+                part1.addPoint(loc.x + 14, loc.y + 8);
+                part1.addPoint(loc.x + 26, loc.y + 8);
+                part1.addPoint(loc.x + 28, loc.y + 12);
+                part1.addPoint(loc.x + 28, loc.y + 18);
+                part1.addPoint(loc.x + 12, loc.y + 18);
+                part1.addPoint(loc.x + 12, loc.y + 12);
+                
+                // Left horn
+                part2.addPoint(loc.x + 10, loc.y + 4);
+                part2.addPoint(loc.x + 14, loc.y + 6);
+                part2.addPoint(loc.x + 16, loc.y + 10);
+                part2.addPoint(loc.x + 12, loc.y + 12);
+                
+                // Right horn  
+                part3.addPoint(loc.x + 28, loc.y + 12);
+                part3.addPoint(loc.x + 24, loc.y + 10);
+                part3.addPoint(loc.x + 26, loc.y + 6);
+                part3.addPoint(loc.x + 30, loc.y + 4);
+                
+                // Face
+                part4.addPoint(loc.x + 16, loc.y + 14);
+                part4.addPoint(loc.x + 24, loc.y + 14);
+                part4.addPoint(loc.x + 22, loc.y + 18);
+                part4.addPoint(loc.x + 18, loc.y + 18);
+                
+                // Body 
+                part5.addPoint(loc.x + 10, loc.y + 18);
+                part5.addPoint(loc.x + 30, loc.y + 18);
+                part5.addPoint(loc.x + 28, loc.y + 34);
+                part5.addPoint(loc.x + 12, loc.y + 34);
+                
+                shape.add(part1);
+                shape.add(part2);
+                shape.add(part3);
+                shape.add(part4);
+                shape.add(part5);
                 break;
+
+                case FIGHTER:
+
+                //Helm
+                part1.addPoint(loc.x + 14, loc.y + 6);
+                part1.addPoint(loc.x + 26, loc.y + 6);
+                part1.addPoint(loc.x + 28, loc.y + 10);
+                part1.addPoint(loc.x + 28, loc.y + 19);
+                part1.addPoint(loc.x + 12, loc.y + 19);
+                part1.addPoint(loc.x + 12, loc.y + 10);
+                
+                // Visor
+                part2.addPoint(loc.x + 15, loc.y + 13);
+                part2.addPoint(loc.x + 25, loc.y + 13);
+                part2.addPoint(loc.x + 25, loc.y + 17);
+                part2.addPoint(loc.x + 15, loc.y + 17);
+                
+                // Body
+                part3.addPoint(loc.x + 10, loc.y + 19);
+                part3.addPoint(loc.x + 30, loc.y + 19);
+                part3.addPoint(loc.x + 28, loc.y + 34);
+                part3.addPoint(loc.x + 12, loc.y + 34);
+                
+                shape.add(part1);
+                shape.add(part2);
+                shape.add(part3);
+                break;
+                
+            case MAGE:
+                
+                // Pointed hat
+                part1.addPoint(loc.x + 20, loc.y + 4);
+                part1.addPoint(loc.x + 22, loc.y + 4);
+                part1.addPoint(loc.x + 28, loc.y + 16);
+                part1.addPoint(loc.x + 12, loc.y + 16);
+                
+                // Face
+                part2.addPoint(loc.x + 14, loc.y + 16);
+                part2.addPoint(loc.x + 26, loc.y + 16);
+                part2.addPoint(loc.x + 24, loc.y + 24);
+                part2.addPoint(loc.x + 16, loc.y + 24);
+                
+                // Body
+                part3.addPoint(loc.x + 16, loc.y + 24);
+                part3.addPoint(loc.x + 24, loc.y + 24);
+                part3.addPoint(loc.x + 28, loc.y + 36);
+                part3.addPoint(loc.x + 12, loc.y + 36);
+                
+                shape.add(part1);
+                shape.add(part2);
+                shape.add(part3);
+                break;
+                
             case RANGER:
+                part1.addPoint(loc.x + 18, loc.y + 4);
+                part1.addPoint(loc.x + 22, loc.y + 4);
+                part1.addPoint(loc.x + 26, loc.y + 12);
+                part1.addPoint(loc.x + 14, loc.y + 12);
+                
+                // Hat
+                part2.addPoint(loc.x + 10, loc.y + 12);
+                part2.addPoint(loc.x + 30, loc.y + 12);
+                part2.addPoint(loc.x + 28, loc.y + 16);
+                part2.addPoint(loc.x + 12, loc.y + 16);
+                
+                // Feather
+                part3.addPoint(loc.x + 24, loc.y + 2);
+                part3.addPoint(loc.x + 26, loc.y + 2);
+                part3.addPoint(loc.x + 28, loc.y + 8);
+                part3.addPoint(loc.x + 22, loc.y + 8);
+                
+                // Face
+                part4.addPoint(loc.x + 16, loc.y + 16);
+                part4.addPoint(loc.x + 24, loc.y + 16);
+                part4.addPoint(loc.x + 22, loc.y + 24);
+                part4.addPoint(loc.x + 18, loc.y + 24);
+                
+                // Body
+                part5.addPoint(loc.x + 14, loc.y + 24);
+                part5.addPoint(loc.x + 26, loc.y + 24);
+                part5.addPoint(loc.x + 24, loc.y + 34);
+                part5.addPoint(loc.x + 16, loc.y + 34);
+                
+                shape.add(part1);
+                shape.add(part2);
+                shape.add(part3);
+                shape.add(part4);
+                shape.add(part5);
+                break;
+                
             default:
                 break;
         }

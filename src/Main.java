@@ -38,17 +38,19 @@ public class Main extends JFrame {
 
       //Create characters
       Character p1 = new Character("John Snow", Character.RoleType.FIGHTER, Character.RaceType.HUMAN, true);
+      Character p2 = new Character("Glimbo", Character.RoleType.BARBARIAN, Character.RaceType.ORC, true);
       stage.addCharacter(p1);
+      stage.addCharacter(p2);
 
       /*
-      Character p2 = new Character();
       Character p3 = new Character();
        */
       Character en1 = new Character("Wabbajack", Character.RoleType.MAGE, Character.RaceType.ELF, false);
+      Character en2 = new Character("Aloy", Character.RoleType.RANGER, Character.RaceType.HUMAN, false);
       stage.addCharacter(en1);
+      stage.addCharacter(en2);
 
       /*
-      Character en2 = new Character();
       Character en3 = new Character();
       */
 
