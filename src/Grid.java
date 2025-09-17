@@ -13,7 +13,7 @@ import java.awt.Font;
 */
 public class Grid {
   Cell[][] cells = new Cell[20][20];
-  double gridOffset = (900/2) - (35*20)/2; //Currently the window is Window = 900px, Cells = 35px, #OfCells = 20;
+  double gridOffset = (1000/2) - (40*20)/2; //Currently the window is Window = 900px, Cells = 35px, #OfCells = 20;
   Color lime = new Color(0, 255, 50);
 
   public Grid() {
@@ -39,7 +39,7 @@ public class Grid {
     Optional<Cell> cellFound = cellAtPoint(mousePos);
     String message = "Not in a cell";
     if(cellFound.isPresent()){
-      message = "Column: " + ((cellFound.get().x-10)/35) + " Row: " + ((cellFound.get().y-10)/35);
+      message = "Column: " + ((cellFound.get().x-10)/40) + " Row: " + ((cellFound.get().y-10)/40);
     }
 
     g.setColor(lime);
@@ -57,10 +57,10 @@ public class Grid {
     offsetP.y -= gridOffset;
     Optional<Cell> location = Optional.empty();
     if(offsetP != null){
-      if(offsetP.getX() >= 10 && offsetP.getX() <= 710){
-        if(offsetP.getY() >= 10 && offsetP.getY() <= 710){
-          int cellX = (int)((offsetP.getX()-10) / 35);
-          int cellY = (int)((offsetP.getY()-10) / 35);
+      if(offsetP.getX() >= 10 && offsetP.getX() <= 808){
+        if(offsetP.getY() >= 10 && offsetP.getY() <= 808){
+          int cellX = (int)((offsetP.getX()-10) / 40);
+          int cellY = (int)((offsetP.getY()-10) / 40);
           location = Optional.of(cellAtColRow(cellX, cellY));
         }
       }

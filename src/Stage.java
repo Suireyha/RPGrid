@@ -13,7 +13,7 @@ import java.awt.Point;
 public class Stage {
   Grid grid;
   ArrayList<Actor> actors;
-  double gridOffsetX = (900/2) - (35*20)/2; //Currently the window is Window = 900px, Cells = 35px, #OfCells = 20; 
+  double gridOffsetX = (1000/2) - (40*20)/2; //Currently the window is Window = 900px, Cells = 35px, #OfCells = 20; 
   double gridOffsetY = gridOffsetX; //We'll use these two variables for drawing the grid at the correct offset to center it. Just make sure to update this if we ever change the number of cells, cell size or window size!!!
   
   public Stage() {

@@ -7,12 +7,12 @@ import java.awt.Color;
 
 
 public class Main extends JFrame {
-    int winWidth = 900;
-    int winHeight = 900;
+    int winWidth = 1000;
+    int winHeight = 1000;
     Stage stage = new Stage();
     public static void main(String[] args) throws Exception {
       Main window = new Main();
-      window.setBounds(350, 100, 900, 900); //Window is being drawn at x=350 y=100, dimensions are 900^2
+      window.setBounds(350, 100, 1000, 1000); //Window is being drawn at x=350 y=100, dimensions are 900^2
       window.setBackground(new Color(47, 48, 49));
       window.run();
     }

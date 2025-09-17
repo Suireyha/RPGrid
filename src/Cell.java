@@ -15,8 +15,8 @@ import java.awt.Graphics2D; //Imported by Marvin to edit stroke value of cell bo
 public class Cell extends Rectangle {
   Color gridColor = new Color(57, 58, 59);
   Color highlighted = new Color(127, 128, 129);
-  double gridOffset = (900/2) - (35*20)/2; //Currently the window is Window = 900px, Cells = 35px, #OfCells = 20;
-  static int size = 35;
+  double gridOffset = (1000/2) - (40*20)/2; //Currently the window is Window = 900px, Cells = 35px, #OfCells = 20;
+  static int size = 40;
 
   public Cell(int x, int y) {
     super(x, y, size, size);
