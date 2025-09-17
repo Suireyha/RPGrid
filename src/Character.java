@@ -115,6 +115,22 @@ public class Character extends Actor{ //Child of Actor since we'll draw these
         }
     }
 
+
+
+    Character(String name, RoleType role, RaceType race, boolean isPlayer){ //Character constructor from preset (made by programmer in Main, not user made)
+        //Set up the attributes based on the constructor arguments
+        this.name = name;
+        this.role = role;
+        this.race = race;
+        this.player = isPlayer;
+
+        setStats();
+
+    }
+    Character(){
+        //**IMPLEMENT LATER** This should be a character creator that lets users make their own characters. Low priority though
+    }
+    
     public void draw(){ //Function to draw each Character based on Race/Role/Player
         System.out.println("X = " + loc.x);
         System.out.println("Y = " + loc.y);
@@ -264,17 +280,4 @@ public class Character extends Actor{ //Child of Actor since we'll draw these
 
     }
 
-    Character(String name, RoleType role, RaceType race, boolean isPlayer){ //Character constructor from preset (made by programmer in Main, not user made)
-        //Set up the attributes based on the constructor arguments
-        this.name = name;
-        this.role = role;
-        this.race = race;
-        this.player = isPlayer;
-
-        setStats();
-
-    }
-    Character(){
-        //**IMPLEMENT LATER** This should be a character creator that lets users make their own characters. Low priority though
-    }
 }
