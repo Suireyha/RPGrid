@@ -40,8 +40,8 @@ You can see each of our contributions and development of the original repository
 ### Specific project requirements:
 *Note: This project is obviously very ambitious for two weeks- it's likely that not all features will be added in time, or that it won't play like a typical 'game'!! Some features may not be listed here, and others may be added later.*
 
-- Add players (Should have a class, race, name and attributes)
-- Add classes (Warrior, barbarian, ranger, mage, etc[?])
+- ~~Add players (Should have a class, race, name and attributes)~~
+- ~~Add classes (Warrior, barbarian, ranger, mage, etc[?])~~
 - Add Items (Potions)
 - Add Weapons (Child of items)
 - Add player inventories
