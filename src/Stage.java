@@ -25,7 +25,7 @@ public class Stage {
   }
 
   public void addCharacter(Character charPreset){ //Adds a character to the board
-
+    actors.add(charPreset);
   }
 
   public void paint(Graphics g, Point mouseLoc) {

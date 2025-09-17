@@ -14,5 +14,7 @@ public abstract class Actor {
     for(Polygon feature: shape){
       g.drawPolygon(feature);
     }
+    
   }
+
 }

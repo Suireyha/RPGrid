@@ -35,6 +35,17 @@ public class Main extends JFrame {
       this.setContentPane(canvas);
       this.pack();
       this.setVisible(true);
+
+      //Create characters
+      Character p1 = new Character();
+      Character p2 = new Character();
+      Character p3 = new Character();
+
+      Character en1 = new Character();
+      Character en2 = new Character();
+      Character en3 = new Character();
+
+
     }
 
     public void run() {
