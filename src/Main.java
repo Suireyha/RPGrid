@@ -37,13 +37,21 @@ public class Main extends JFrame {
       this.setVisible(true);
 
       //Create characters
-      Character p1 = new Character();
+      Character p1 = new Character("John Snow", Character.RoleType.FIGHTER, Character.RaceType.HUMAN, true);
+
+
+
+      /*
       Character p2 = new Character();
       Character p3 = new Character();
+       */
+      Character en1 = new Character("Wabbajack", Character.RoleType.MAGE, Character.RaceType.ELF, false);
 
-      Character en1 = new Character();
+
+      /*
       Character en2 = new Character();
       Character en3 = new Character();
+      */
 
 
     }
