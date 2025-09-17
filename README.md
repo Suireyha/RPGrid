@@ -26,6 +26,7 @@ You can see each of our contributions and development of the original repository
 - Add start button
 - Add win/loss screen
 - Add ability to move around(low priority)
+- Fix bug where hovering below bottom right corner of the grid gets index out of bounds error (non-fatal, just annoying)
 
 
 ### General project requirements:
