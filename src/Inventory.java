@@ -7,6 +7,18 @@ public class Inventory{
         contents.add(item); 
     }
 
+    public void display(){
+        //Open new pop frame
+        //Display items + stats
+        //Click event listeners
+    }
+
+    private void use(){
+        //Call from click event listeners in display()
+        //Apply item effect
+        //Remove item from contents
+    }
+
     Inventory(){
         //Inventory constructor
     }
