@@ -15,6 +15,18 @@ You can see each of our contributions and development of the original repository
 *Coming soon!*
 
 ## To Do:
+- Flesh out items.java
+- Create items (potions, weapons, armour)
+- Add inventory functionality
+- Draw characters and indicate some things about them (role, and if they're a player or not)
+- Randomise player and enemy spawn locations
+- Add combat functionality
+- Add movement functinality
+- Create an interface for weapons, armour and potions respectively to support propper code design
+- Add start button
+- Add win/loss screen
+- Add ability to move around(low priority)
+
 
 ### General project requirements:
 - Create substantial modifications to the repository to include unique functionality for the basics of a grid based RPG game
