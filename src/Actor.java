@@ -8,13 +8,13 @@ public abstract class Actor {
   public Actor(){}
   List<Polygon> shape = new ArrayList<>();
   Cell loc;
+  Color drawCol = Color.BLACK; //Actors are drawn in black by default
 
   public void paint(Graphics g) {
-    g.setColor(Color.BLACK);
+    g.setColor(drawCol);
     for(Polygon feature: shape){
       g.drawPolygon(feature);
     }
-    
   }
 
 }

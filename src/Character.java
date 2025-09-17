@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Polygon;
 
 public class Character extends Actor{ //Child of Actor since we'll draw these
@@ -105,6 +106,13 @@ public class Character extends Actor{ //Child of Actor since we'll draw these
         //Set HP
         maxHealth = constitution*10; //maxHealth is the maximum threshold for a character's health. They can't heal above it, but this shouldn't be modified in combat
         health = maxHealth; //Health is the characters active health
+
+        if(player){
+            drawCol = new Color(5, 8, 90);
+        }
+        else{
+            drawCol = new Color(90, 0, 0);
+        }
     }
 
     public void draw(){ //Function to draw each Character based on Race/Role/Player
@@ -116,6 +124,7 @@ public class Character extends Actor{ //Child of Actor since we'll draw these
         Polygon ear2 = new Polygon();
         Polygon face = new Polygon();
         switch(role){
+            case BARBARIAN:
             case FIGHTER:
                 ear1.addPoint(loc.x + 11, loc.y + 5);
                 ear1.addPoint(loc.x + 15, loc.y + 15);
@@ -152,6 +161,9 @@ public class Character extends Actor{ //Child of Actor since we'll draw these
                 shape.add(ear1);
                 shape.add(ear2);
                 shape.add(face);
+                break;
+            case RANGER:
+            default:
                 break;
         }
 
