@@ -2,6 +2,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.awt.Point;
+import java.math.*;
 
 /*!!IMPORTANT NOTE FROM MARVIN:
 * Wherever we handle mouse position to meet some end, we need to remove the offset I've made
@@ -19,13 +20,56 @@ public class Stage {
   public Stage() {
     grid = new Grid();
     actors = new ArrayList<Actor>();
+    
     //actors.add(new Cat(grid.cellAtColRow(0, 0)));
-    //actors.add(new Dog(grid.cellAtColRow(0, 15)));
+    //actors.add(new Dog(grid.cellAtColRow(13, 15)));
     //actors.add(new Bird(grid.cellAtColRow(12, 9)));
   }
 
+  private Cell setRandomSpawn(boolean isPlayer){
+    boolean badCell = true;
+    if(isPlayer){ //If it's a player, spawn them on the bottom half of the screen
+      while(badCell){
+        //(Math.random() * (max - min + 1)) + min;
+        int x = (int)(Math.random() * (19 - 0 + 1)); //We don't care where players spawn along the X axis, only Y is dependant on isPlayer
+        int y = (int)(Math.random() * (19 - 12 + 1)) + 12; //Players spawn between y= 20 and 12 
+        Cell spawn = grid.cellAtColRow(x, y); //Random within bottom of map
+        if(checkCellEmpty(spawn)){ //If the cell is empty, we can spawn our guy there
+          System.out.println("X = " + x);
+          System.out.println("Y = " + y);
+          return spawn;
+        }
+      }
+    }
+    else{//If it's an enemy, spawn them at the top
+      while(badCell){
+        int x = (int)(Math.random() * (19 - 0 + 1));
+        int y = (int)(Math.random() * (8 - 0 + 1)) + 0; //Enemies spawn between y=0 and y=8
+        Cell spawn = grid.cellAtColRow(x, y); //Random within top of map
+        if(checkCellEmpty(spawn)){
+          System.out.println("X = " + x);
+          System.out.println("Y = " + y);
+          return spawn;
+        }
+      }
+    }
+    return new Cell(10,10); //Just so compiler shuts the fuck up. If something is here, the above code is bad
+  }
+
+  public boolean checkCellEmpty(Cell cell){
+    //Checks to see if cell is empty;
+    for(int i = 0; i < actors.size(); i++){
+      if(cell == actors.get(i).loc){
+        return false; //Cell is NOT empty!!
+      }
+    }
+    return true; //Cell is empty!! :D
+  }
+
   public void addCharacter(Character charPreset){ //Adds a character to the board
+    charPreset.loc = setRandomSpawn(charPreset.player);
     actors.add(charPreset);
+    charPreset.draw();
   }
 
   public void paint(Graphics g, Point mouseLoc) {

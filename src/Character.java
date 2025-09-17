@@ -1,10 +1,12 @@
+import java.awt.Polygon;
+
 public class Character extends Actor{ //Child of Actor since we'll draw these
     String name; //Characters name
     RoleType role; //Characters role/class
     RaceType race; //Characters race
     Inventory inventory = new Inventory(); //Characters inventory
     boolean player = false; //If this character is a user controlled player, make this true
-
+    Cell loc;
     //Attributes
     public int strength = 0; //Used for non-magical combat rolls
     public int wisdom = 0; //Used for magical combat rolls
@@ -103,6 +105,56 @@ public class Character extends Actor{ //Child of Actor since we'll draw these
         //Set HP
         maxHealth = constitution*10; //maxHealth is the maximum threshold for a character's health. They can't heal above it, but this shouldn't be modified in combat
         health = maxHealth; //Health is the characters active health
+    }
+
+    public void draw(){ //Function to draw each Character based on Race/Role/Player
+        System.out.println("X = " + loc.x);
+        System.out.println("Y = " + loc.y);
+        
+        //THIS IS A PLACEHOLDER
+        Polygon ear1 = new Polygon();
+        Polygon ear2 = new Polygon();
+        Polygon face = new Polygon();
+        switch(role){
+            case FIGHTER:
+                ear1.addPoint(loc.x + 11, loc.y + 5);
+                ear1.addPoint(loc.x + 15, loc.y + 15);
+                ear1.addPoint(loc.x + 7, loc.y + 15);
+                
+                ear2.addPoint(loc.x + 22, loc.y + 5);
+                ear2.addPoint(loc.x + 26, loc.y + 15);
+                ear2.addPoint(loc.x + 18, loc.y + 15);
+                
+                face.addPoint(loc.x + 5, loc.y + 15);
+                face.addPoint(loc.x + 29, loc.y + 15);
+                face.addPoint(loc.x + 17, loc.y + 30);
+
+                
+                shape.add(ear1);
+                shape.add(ear2);
+                shape.add(face);
+                break;
+            case MAGE:
+                ear1.addPoint(loc.x + 5, loc.y + 5);
+                ear1.addPoint(loc.x + 15, loc.y + 5);
+                ear1.addPoint(loc.x + 5, loc.y + 15);
+
+                ear2.addPoint(loc.x + 20, loc.y + 5);
+                ear2.addPoint(loc.x + 30, loc.y + 5);
+                ear2.addPoint(loc.x + 30, loc.y + 15);
+
+                face.addPoint(loc.x + 8, loc.y + 7);
+                face.addPoint(loc.x + 27, loc.y + 7);
+                face.addPoint(loc.x + 27, loc.y + 25);
+                face.addPoint(loc.x + 8, loc.y + 25);
+
+                
+                shape.add(ear1);
+                shape.add(ear2);
+                shape.add(face);
+                break;
+        }
+
     }
 
     Character(String name, RoleType role, RaceType race, boolean isPlayer){ //Character constructor from preset (made by programmer in Main, not user made)

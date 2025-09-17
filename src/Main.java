@@ -7,8 +7,9 @@ import java.awt.Color;
 
 
 public class Main extends JFrame {
-  int winWidth = 900;
-  int winHeight = 900;
+    int winWidth = 900;
+    int winHeight = 900;
+    Stage stage = new Stage();
     public static void main(String[] args) throws Exception {
       Main window = new Main();
       window.setBounds(350, 100, 900, 900); //Window is being drawn at x=350 y=100, dimensions are 900^2
@@ -17,7 +18,6 @@ public class Main extends JFrame {
     }
 
     class Canvas extends JPanel {
-      Stage stage = new Stage();
       
       public Canvas() {
         setPreferredSize(new Dimension(winWidth, winHeight));
@@ -38,15 +38,14 @@ public class Main extends JFrame {
 
       //Create characters
       Character p1 = new Character("John Snow", Character.RoleType.FIGHTER, Character.RaceType.HUMAN, true);
-
-
+      stage.addCharacter(p1);
 
       /*
       Character p2 = new Character();
       Character p3 = new Character();
        */
       Character en1 = new Character("Wabbajack", Character.RoleType.MAGE, Character.RaceType.ELF, false);
-
+      stage.addCharacter(en1);
 
       /*
       Character en2 = new Character();
