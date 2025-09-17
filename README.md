@@ -27,6 +27,7 @@ You can see each of our contributions and development of the original repository
 - Add win/loss screen
 - Add ability to move around(low priority)
 - ~~Fix bug where hovering below bottom right corner of the grid gets index out of bounds error (non-fatal, just annoying)~~
+- Add a turn queue (ordered list of characters or make characters recursive so that it points to next character in turn)
 
 
 ### General project requirements:
