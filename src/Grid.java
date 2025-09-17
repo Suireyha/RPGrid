@@ -1,4 +1,6 @@
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.Point;
 import java.util.Optional;
 import java.awt.Color;
@@ -42,9 +44,11 @@ public class Grid {
       message = "Column: " + ((cellFound.get().x-10)/40) + " Row: " + ((cellFound.get().y-10)/40);
     }
 
-    g.setColor(lime);
-    g.setFont(new Font("Arial", Font.BOLD, 17)); //Changes the font to Arial, bold, 15px
-    g.drawString(message, 310, 1);
+    Graphics2D g2d = (Graphics2D) g;
+    g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+    g2d.setColor(lime);
+    g2d.setFont(new Font("Arial", Font.BOLD, 17)); //Changes the font to Arial, bold, 15px
+    g2d.drawString(message, 310, 1);
   }
 
   public Cell cellAtColRow(int c, int r) {

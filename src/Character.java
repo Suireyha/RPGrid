@@ -126,22 +126,41 @@ public class Character extends Actor{ //Child of Actor since we'll draw these
         switch(role){
             case BARBARIAN:
             case FIGHTER:
-                ear1.addPoint(loc.x + 11, loc.y + 5);
-                ear1.addPoint(loc.x + 15, loc.y + 15);
-                ear1.addPoint(loc.x + 7, loc.y + 15);
-                
-                ear2.addPoint(loc.x + 22, loc.y + 5);
-                ear2.addPoint(loc.x + 26, loc.y + 15);
-                ear2.addPoint(loc.x + 18, loc.y + 15);
-                
-                face.addPoint(loc.x + 5, loc.y + 15);
-                face.addPoint(loc.x + 29, loc.y + 15);
-                face.addPoint(loc.x + 17, loc.y + 30);
+                Polygon helmet = new Polygon();
+                Polygon visor = new Polygon();
+                Polygon body = new Polygon();
+                Polygon shield = new Polygon();
 
-                
-                shape.add(ear1);
-                shape.add(ear2);
-                shape.add(face);
+                helmet.addPoint(loc.x + 16, loc.y + 8);
+                helmet.addPoint(loc.x + 24, loc.y + 8);
+                helmet.addPoint(loc.x + 26, loc.y + 12);
+                helmet.addPoint(loc.x + 26, loc.y + 18);
+                helmet.addPoint(loc.x + 14, loc.y + 18);
+                helmet.addPoint(loc.x + 14, loc.y + 12);
+
+                // Visor/face guard (smaller)
+                visor.addPoint(loc.x + 16, loc.y + 14);
+                visor.addPoint(loc.x + 24, loc.y + 14);
+                visor.addPoint(loc.x + 24, loc.y + 16);
+                visor.addPoint(loc.x + 16, loc.y + 16);
+
+                // Body/torso (smaller, centered)
+                body.addPoint(loc.x + 12, loc.y + 18);
+                body.addPoint(loc.x + 28, loc.y + 18);
+                body.addPoint(loc.x + 26, loc.y + 32);
+                body.addPoint(loc.x + 14, loc.y + 32);
+
+                // Shield (larger and more visible)
+                shield.addPoint(loc.x + 4, loc.y + 8);
+                shield.addPoint(loc.x + 10, loc.y + 8);
+                shield.addPoint(loc.x + 10, loc.y + 26);
+                shield.addPoint(loc.x + 7, loc.y + 30);
+                shield.addPoint(loc.x + 4, loc.y + 26);
+
+                shape.add(helmet);
+                shape.add(visor);
+                shape.add(body);
+                shape.add(shield);
                 break;
             case MAGE:
                 ear1.addPoint(loc.x + 5, loc.y + 5);

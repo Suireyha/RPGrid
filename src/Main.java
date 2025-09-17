@@ -12,7 +12,7 @@ public class Main extends JFrame {
     Stage stage = new Stage();
     public static void main(String[] args) throws Exception {
       Main window = new Main();
-      window.setBounds(350, 100, 1000, 1000); //Window is being drawn at x=350 y=100, dimensions are 900^2
+      window.setBounds(350, 50, 1000, 1000); //Window is being drawn at x=350 y=100, dimensions are 900^2
       window.setBackground(new Color(47, 48, 49));
       window.run();
     }
