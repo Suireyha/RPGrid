@@ -5,6 +5,9 @@ import java.awt.Point;
 import java.util.Optional;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseAdapter;
 
 /*!!IMPORTANT NOTE FROM MARVIN:
 * Wherever we handle mouse position to meet some end, we need to remove the offset I've made
@@ -19,12 +22,20 @@ public class Grid {
   Color lime = new Color(0, 255, 50);
 
   public Grid() {
+    int idCounter = 0;
     for(int i=0; i<cells.length; i++) {
-      for(int j=0; j<cells[i].length; j++) {
+      for(int j=0; j<cells[i].length; j++) { 
+        //I have no idea why, but the MouseAdapter stuff throws an error if i and j aren't final so this is the work around
+        final int row = i;
+        final int col = j;
         cells[i][j] = new Cell(10+Cell.size*i, 10+Cell.size*j);
+        cells[i][j].id = idCounter;
+        idCounter++;
       }
     }
   }
+
+  
 
   public void paint(Graphics g, Point mousePos) {
     // If mousepos is null, make it = -1000, 1000 so we don't get null pointer exceptions. FOR WEEK 6 WE CAN TOTALLY MAKE THIS A TRY{}CATCH{} INSTEAD!!!

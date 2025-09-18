@@ -4,7 +4,7 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.Graphics2D; //Imported by Marvin to edit stroke value of cell borders
-
+import java.awt.event.*; //Need this for the mouseClicked event listener
 /*!!IMPORTANT NOTE FROM MARVIN:
 * Wherever we handle mouse position to meet some end, we need to remove the offset I've made
 * Take a look at the third variable in the class gridOffset- that's how the offset is calculated.
@@ -12,11 +12,12 @@ import java.awt.Graphics2D; //Imported by Marvin to edit stroke value of cell bo
 * in Stage.java.
 * To remove the offset so we can get the actual mousePos, take a look at what's happening in the first line of paint();
 */
-public class Cell extends Rectangle {
+public class Cell extends Rectangle{
   Color gridColor = new Color(57, 58, 59);
-  Color highlighted = new Color(127, 128, 129);
+  Color highlighted = new Color(167, 168, 169);
   double gridOffset = (1000/2) - (40*20)/2; //Currently the window is Window = 900px, Cells = 35px, #OfCells = 20;
   static int size = 40;
+  int id; //Tracking the grids with id, assigned in the grid creation
 
   public Cell(int x, int y) {
     super(x, y, size, size);
@@ -49,3 +50,5 @@ public class Cell extends Rectangle {
     }
   }
 }
+
+
