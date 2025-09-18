@@ -1,6 +1,6 @@
 # RPGrid
 RPGrid is a simple grid based RPG game developed by [Marvin Kelly](https://github.com/Suireyha) in Java for the COMP2000 unit at Macquarie University.
-To view additional doccumentation for this project, including the rational, some planning, and other various documents check out the doc folder (particularly justifications.md!!)- the source code for the project can be found in the creatively named src folder.
+To view additional doccumentation for this project, including the rational, some planning, and other various documents check out the doc folder- the source code for the project can be found in the creatively named src folder.
 
 This repository is built off of the [foundation repo](https://github.com/Suireyha/DMTWMC/tree/week05) *(specifically branch week05!)* that was made collectively by the Macquarie University staff, along with my team for the unit including:
 - [Caleb Chew](https://github.com/ChewOnThis)
