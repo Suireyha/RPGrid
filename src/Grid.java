@@ -2,9 +2,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.Point;
-import java.util.Optional;
 
-import MapEntity.mapEntityType;
+import java.util.Optional;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -35,12 +34,24 @@ public class Grid {
     //Cell clicked logic (for now jsut print the ID)
     Optional<Cell> activeCell = cellAtPoint(mousePos);
     if (activeCell.isPresent()){
-      if(activeCell.get().contents != null){
-        if(activeCell.get().contents.player){
-          System.out.println("A player is here!");
+      if(activeCell.get().contentsChar != null){
+        if(activeCell.get().contentsChar.player){
+          System.out.println(activeCell.get().contentsChar.name + " the player is here!");
+          System.out.println("Strength:\t" + activeCell.get().contentsChar.strength);
+          System.out.println("Wisdom:\t\t" + activeCell.get().contentsChar.wisdom);
+          System.out.println("Constitution:\t" + activeCell.get().contentsChar.constitution);
+          System.out.println("Initiative:\t" + activeCell.get().contentsChar.initiative);
+          System.out.println("Health:\t\t" + activeCell.get().contentsChar.maxHealth);
+          System.out.println("");
         }
         else{
-          System.out.println("An enemy is here!");
+          System.out.println(activeCell.get().contentsChar.name + " the villain is here!");
+          System.out.println("Strength:\t" + activeCell.get().contentsChar.strength);
+          System.out.println("Wisdom:\t\t" + activeCell.get().contentsChar.wisdom);
+          System.out.println("Constitution:\t" + activeCell.get().contentsChar.constitution);
+          System.out.println("Initiative:\t" + activeCell.get().contentsChar.initiative);
+          System.out.println("Health:\t\t" + activeCell.get().contentsChar.maxHealth);
+          System.out.println("");
         }
       }
       else{

@@ -17,8 +17,9 @@ public class Cell extends Rectangle{
   double gridOffset = (1000/2) - (40*20)/2; //Currently the window is Window = 900px, Cells = 35px, #OfCells = 20;
   static int size = 40;
   int id; //Tracking the grids with id, assigned in the grid creation
-  Character contents = null; //Null by default, holds whatever is currently in the cell
-
+  Character contentsChar = null; //Null by default, holds whatever is currently in the cell
+  Item contentsItem = null;
+  
   public Cell(int x, int y) {
     super(x, y, size, size);
   }

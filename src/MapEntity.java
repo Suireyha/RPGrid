@@ -10,3 +10,4 @@ interface MapEntity{
     String name = "";
     public void paint(Graphics g); //Children MUST include paint, since otherwise we'd be putting stuff in the game without visualising it to the player
 }
+
