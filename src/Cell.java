@@ -4,7 +4,6 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.Graphics2D; //Imported by Marvin to edit stroke value of cell borders
-import java.awt.event.*; //Need this for the mouseClicked event listener
 /*!!IMPORTANT NOTE FROM MARVIN:
 * Wherever we handle mouse position to meet some end, we need to remove the offset I've made
 * Take a look at the third variable in the class gridOffset- that's how the offset is calculated.

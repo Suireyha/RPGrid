@@ -5,10 +5,6 @@ import java.awt.Point;
 import java.util.Optional;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseAdapter;
-
 /*!!IMPORTANT NOTE FROM MARVIN:
 * Wherever we handle mouse position to meet some end, we need to remove the offset I've made
 * Take a look at the second variable in the class gridOffset- that's how the offset is calculated.
@@ -25,9 +21,6 @@ public class Grid {
     int idCounter = 0;
     for(int i=0; i<cells.length; i++) {
       for(int j=0; j<cells[i].length; j++) { 
-        //I have no idea why, but the MouseAdapter stuff throws an error if i and j aren't final so this is the work around
-        final int row = i;
-        final int col = j;
         cells[i][j] = new Cell(10+Cell.size*i, 10+Cell.size*j);
         cells[i][j].id = idCounter;
         idCounter++;
@@ -35,6 +28,13 @@ public class Grid {
     }
   }
 
+  public <T>void cellClicked(Point mousePos){ //I'm thinking this is somewhere I can implement generics- because cellClicked be called with different contexts
+    //Cell clicked logic (for now jsut print the ID)
+    Optional<Cell> activeCell = cellAtPoint(mousePos);
+    if (activeCell.isPresent()){
+      System.out.println("Cell #" + activeCell.get().id + " clicked");
+    }
+  }
   
 
   public void paint(Graphics g, Point mousePos) {

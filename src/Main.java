@@ -5,6 +5,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.Color;
 
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseAdapter;
+
 
 public class Main extends JFrame {
     int winWidth = 1000;
@@ -17,16 +21,32 @@ public class Main extends JFrame {
       window.run();
     }
 
-    class Canvas extends JPanel {
+    class Canvas extends JPanel implements MouseListener{
       
       public Canvas() {
         setPreferredSize(new Dimension(winWidth, winHeight));
+        addMouseListener(this); //Actually adds the mouse listeners to the canvas instance
+      }
+
+      @Override
+      public void mouseClicked(MouseEvent e){ //Mouse clicked event listener inside the grid(IMPORTANT!!)
+        stage.grid.cellClicked(e.getPoint());
       }
 
       @Override
       public void paint(Graphics g) {
         stage.paint(g, getMousePosition());
       }
+
+      //I have to implement these, event as empty methods, as per the interface or it'll give me a syntax error :(
+      @Override
+      public void mousePressed(MouseEvent e) {}
+      @Override
+      public void mouseReleased(MouseEvent e) {}
+      @Override
+      public void mouseEntered(MouseEvent e) {}
+      @Override
+      public void mouseExited(MouseEvent e) {}
     }
 
     private Main() {
