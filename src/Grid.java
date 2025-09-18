@@ -3,6 +3,9 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.Point;
 import java.util.Optional;
+
+import MapEntity.mapEntityType;
+
 import java.awt.Color;
 import java.awt.Font;
 /*!!IMPORTANT NOTE FROM MARVIN:
@@ -32,7 +35,17 @@ public class Grid {
     //Cell clicked logic (for now jsut print the ID)
     Optional<Cell> activeCell = cellAtPoint(mousePos);
     if (activeCell.isPresent()){
-      System.out.println("Cell #" + activeCell.get().id + " clicked");
+      if(activeCell.get().contents != null){
+        if(activeCell.get().contents.player){
+          System.out.println("A player is here!");
+        }
+        else{
+          System.out.println("An enemy is here!");
+        }
+      }
+      else{
+        System.out.println("Cell #" + activeCell.get().id + " clicked");
+      }
     }
   }
   

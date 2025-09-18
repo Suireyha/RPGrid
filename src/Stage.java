@@ -69,6 +69,7 @@ public class Stage {
   public void addCharacter(Character charPreset){ //Adds a character to the board
     charPreset.loc = setRandomSpawn(charPreset.player);
     actors.add(charPreset);
+    charPreset.setCellContentsToThisInstance();
     charPreset.draw();
   }
 

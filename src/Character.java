@@ -1,13 +1,15 @@
 import java.awt.Color;
 import java.awt.Polygon;
 
-public class Character extends Actor{ //Child of Actor since we'll draw these
+public class Character extends Actor implements MapEntity{ //Child of Actor since we'll draw these
     String name; //Characters name
     RoleType role; //Characters role/class
     RaceType race; //Characters race
     Inventory inventory = new Inventory(); //Characters inventory
     boolean player = false; //If this character is a user controlled player, make this true
     Cell loc;
+    mapEntityType entity;
+
     //Attributes
     public int strength = 0; //Used for non-magical combat rolls
     public int wisdom = 0; //Used for magical combat rolls
@@ -124,11 +126,21 @@ public class Character extends Actor{ //Child of Actor since we'll draw these
         this.race = race;
         this.player = isPlayer;
 
+        if(isPlayer){
+            this.entity = mapEntityType.PLAYER;
+        }
+        else{
+            this.entity = mapEntityType.ENEMIE;
+        }
         setStats();
-
     }
     Character(){
         //**IMPLEMENT LATER** This should be a character creator that lets users make their own characters. Low priority though
+    }
+
+    public void setCellContentsToThisInstance(){ //The best variable name of all time
+        loc.contents = this;
+        System.out.println(name + " is in cell #" + loc.id);
     }
     
     public void draw(){ //Function to draw each Character based on Race/Role/Player
