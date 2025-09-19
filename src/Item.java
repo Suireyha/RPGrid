@@ -54,6 +54,10 @@ public abstract class Item implements MapEntity{ //Making an Item that isn't som
         }
     }
 
+    public mapEntityType getEntityType(){
+        return MapEntity.mapEntityType.ITEM;
+    }
+
     public void draw(Graphics g){ //All items should have draw function for when they're on the map
         Polygon part1 = new Polygon();
 

@@ -25,7 +25,7 @@ public class Stage {
   private <T extends MapEntity> Cell setRandomSpawn(T entity){
     boolean badCell = true; 
     if(entity instanceof Character){ 
-      if(entity.entityType == MapEntity.mapEntityType.ENEMIE){ //If it's an enemy, spawn them at the top
+      if(entity.getEntityType() == MapEntity.mapEntityType.ENEMIE){ //If it's an enemy, spawn them at the top
         while(badCell){
           int x = (int)(Math.random() * (19 - 0 + 1));
           int y = (int)(Math.random() * (8 - 0 + 1)) + 0; //Enemies spawn between y=0 and y=8

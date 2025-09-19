@@ -142,6 +142,13 @@ public class Character extends Actor implements MapEntity{ //Child of Actor sinc
         loc.contentsChar = this;
         System.out.println(name + " is in cell #" + loc.id);
     }
+
+    public mapEntityType getEntityType(){
+        if(player){
+            return MapEntity.mapEntityType.PLAYER;
+        }
+        return MapEntity.mapEntityType.ENEMIE;
+    }
     
     public void draw(){ //Function to draw each Character based on Race/Role/Player
         System.out.println("X = " + loc.x);

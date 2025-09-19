@@ -55,6 +55,9 @@ public class Main extends JFrame {
       this.pack();
       this.setVisible(true);
 
+      //Create items
+      
+
       //Create characters
       Character p1 = new Character("John Snow", Character.RoleType.FIGHTER, Character.RaceType.HUMAN, true);
       Character p2 = new Character("Glimbo", Character.RoleType.BARBARIAN, Character.RaceType.ORC, true);
