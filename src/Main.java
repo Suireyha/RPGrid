@@ -15,7 +15,7 @@ public class Main extends JFrame {
     Stage stage = new Stage();
     public static void main(String[] args) throws Exception {
       Main window = new Main();
-      window.setBounds(350, 50, 1000, 1000); //Window is being drawn at x=350 y=100, dimensions are 900^2
+      window.setBounds(350, 50, 1000, 1000); //Window is being drawn at x=350 y=50, dimensions are 1000^2
       window.setBackground(new Color(47, 48, 49));
       window.run();
     }
@@ -71,20 +71,12 @@ public class Main extends JFrame {
       stage.addCharacter(p2);
       stage.addCharacter(p3);
 
-      /*
-      Character p3 = new Character();
-       */
       Character en1 = new Character("Wabbajack", Character.RoleType.MAGE, Character.RaceType.ELF, false);
       Character en2 = new Character("Aloy", Character.RoleType.RANGER, Character.RaceType.HUMAN, false);
       Character en3 = new Character("The Hound", Character.RoleType.FIGHTER, Character.RaceType.HUMAN, false);
       stage.addCharacter(en1);
       stage.addCharacter(en2);
       stage.addCharacter(en3);
-
-      /*
-      Character en3 = new Character();
-      */
-
 
     }
 
