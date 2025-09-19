@@ -58,6 +58,15 @@ public abstract class Item implements MapEntity{ //Making an Item that isn't som
         }
     }
 
+    public void display(){
+        System.out.println();
+        System.out.println("~~~~~~~~ITEM~~~~~~~~");
+        System.out.println("Name:\t" + name);
+        System.out.println("Description:\t" + description);
+        System.out.println("~~~~~~~~~~~~~~~~~~~~");
+        System.out.println();
+    }
+
     public mapEntityType getEntityType(){
         return MapEntity.mapEntityType.ITEM;
     }

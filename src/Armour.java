@@ -13,7 +13,6 @@ public class Armour extends Item{
         Polygon part1 = new Polygon();
         Polygon part2 = new Polygon();
         Polygon part3 = new Polygon();
-        Polygon part4 = new Polygon();
 
         // Main chestplate
         part1.addPoint(loc.x + 12, loc.y + 10);
@@ -32,15 +31,8 @@ public class Armour extends Item{
         part3.addPoint(loc.x + 30, loc.y + 14);
         part3.addPoint(loc.x + 24, loc.y + 14);
 
-        // Belt/Lower armor
-        part4.addPoint(loc.x + 14, loc.y + 28);
-        part4.addPoint(loc.x + 26, loc.y + 28);
-        part4.addPoint(loc.x + 24, loc.y + 34);
-        part4.addPoint(loc.x + 16, loc.y + 34);
-
         shape.add(part1);
         shape.add(part2);
         shape.add(part3);
-        shape.add(part4);
     }
 }

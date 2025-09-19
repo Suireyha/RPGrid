@@ -54,8 +54,8 @@ public class Grid {
           System.out.println("");
         }
       }
-      else{
-        System.out.println("Cell #" + activeCell.get().id + " clicked");
+      else if(activeCell.get().contentsItem != null){
+        activeCell.get().contentsItem.display();
       }
     }
   }
