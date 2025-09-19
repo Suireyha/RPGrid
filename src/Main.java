@@ -68,8 +68,10 @@ public class Main extends JFrame {
        */
       Character en1 = new Character("Wabbajack", Character.RoleType.MAGE, Character.RaceType.ELF, false);
       Character en2 = new Character("Aloy", Character.RoleType.RANGER, Character.RaceType.HUMAN, false);
+      Character en3 = new Character("The Hound", Character.RoleType.FIGHTER, Character.RaceType.HUMAN, false);
       stage.addCharacter(en1);
       stage.addCharacter(en2);
+      stage.addCharacter(en3);
 
       /*
       Character en3 = new Character();
