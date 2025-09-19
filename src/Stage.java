@@ -80,6 +80,8 @@ public class Stage {
 
   public void addItem(Item itemPreset){ //Adds an item to the grid
     itemPreset.loc = setRandomSpawn(itemPreset);
+    itemPreset.setCellContentsToThisInstance();
+    itemPreset.draw();
   }
 
   public void paint(Graphics g, Point mouseLoc) {

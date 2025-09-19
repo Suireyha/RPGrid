@@ -45,6 +45,10 @@ public abstract class Item implements MapEntity{ //Making an Item that isn't som
         this.healMod = healMod;
     }
 
+    public void setCellContentsToThisInstance(){ //The best variable name of all time
+        loc.contentsItem = this;
+    }
+
     public void paint(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
@@ -58,7 +62,7 @@ public abstract class Item implements MapEntity{ //Making an Item that isn't som
         return MapEntity.mapEntityType.ITEM;
     }
 
-    public void draw(Graphics g){ //All items should have draw function for when they're on the map
+    public void draw(){ //All items should have draw function for when they're on the map
         Polygon part1 = new Polygon();
 
         part1.addPoint(loc.x + 20, loc.y + 8);

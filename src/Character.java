@@ -140,7 +140,6 @@ public class Character extends Actor implements MapEntity{ //Child of Actor sinc
 
     public void setCellContentsToThisInstance(){ //The best variable name of all time
         loc.contentsChar = this;
-        System.out.println(name + " is in cell #" + loc.id);
     }
 
     public mapEntityType getEntityType(){

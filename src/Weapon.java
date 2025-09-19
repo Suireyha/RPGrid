@@ -12,12 +12,13 @@ public class Weapon extends Item{ //Child of item
         AXE,
     }
 
-    Weapon(String name, String description, int strength, int wisdom, int constitution, int initiative){
+    Weapon(String name, String description, int strength, int wisdom, int constitution, int initiative, Type type){
         super(name, description, strength, wisdom, constitution, initiative);
+        this.type = type;
     }
 
     @Override
-    public void draw(Graphics g){ //Weapons draw based on type of weapon!
+    public void draw(){ //Weapons draw based on type of weapon!
         //!!The polygons were written by AI!!
         Polygon part1 = new Polygon();
         Polygon part2 = new Polygon();
@@ -99,7 +100,7 @@ public class Weapon extends Item{ //Child of item
             case STAFF:
             case AXE:
             default:
-                super.draw(g);
+                super.draw();
                 break;
         }
     }
