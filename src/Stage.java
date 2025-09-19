@@ -14,12 +14,14 @@ import java.awt.Point;
 public class Stage {
   Grid grid;
   ArrayList<Actor> actors;
+  ArrayList<Item> items; //Needed for drawing in everything
   double gridOffsetX = (1000/2) - (40*20)/2; //Currently the window is Window = 900px, Cells = 35px, #OfCells = 20; 
   double gridOffsetY = gridOffsetX; //We'll use these two variables for drawing the grid at the correct offset to center it. Just make sure to update this if we ever change the number of cells, cell size or window size!!!
   
   public Stage() {
     grid = new Grid();
     actors = new ArrayList<Actor>();
+    items = new ArrayList<Item>();
   }
 
   private <T extends MapEntity> Cell setRandomSpawn(T entity){
@@ -80,6 +82,7 @@ public class Stage {
 
   public void addItem(Item itemPreset){ //Adds an item to the grid
     itemPreset.loc = setRandomSpawn(itemPreset);
+    items.add(itemPreset);
     itemPreset.setCellContentsToThisInstance();
     itemPreset.draw();
   }
@@ -90,6 +93,9 @@ public class Stage {
     grid.paint(g, mouseLoc);
     for(int i = 0; i < actors.size(); i++){
       actors.get(i).paint(g2d); //I changed this to a g2d
+    }
+    for(int i = 0; i < items.size(); i++){
+      items.get(i).paint(g2d);
     }
   }
 }
