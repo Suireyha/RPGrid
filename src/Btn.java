@@ -86,7 +86,7 @@ public class Btn extends JButton{
 
     public Btn(boolean t){
         super("");
-        setUp(75, 75, t);
+        setUp(25, 25, t);
 
     }
     public Btn(boolean t, String name, int id){
