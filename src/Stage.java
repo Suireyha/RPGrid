@@ -22,10 +22,23 @@ public class Stage {
     actors = new ArrayList<Actor>();
   }
 
-  private Cell setRandomSpawn(boolean isPlayer){
-    boolean badCell = true;
-    if(isPlayer){ //If it's a player, spawn them on the bottom half of the screen
-      while(badCell){
+  private <T extends MapEntity> Cell setRandomSpawn(T entity){
+    boolean badCell = true; 
+    if(entity instanceof Character){ 
+      if(entity.entityType == MapEntity.mapEntityType.ENEMIE){ //If it's an enemy, spawn them at the top
+        while(badCell){
+          int x = (int)(Math.random() * (19 - 0 + 1));
+          int y = (int)(Math.random() * (8 - 0 + 1)) + 0; //Enemies spawn between y=0 and y=8
+          Cell spawn = grid.cellAtColRow(x, y); //Random within top of map
+          if(checkCellEmpty(spawn)){
+            System.out.println("X = " + x);
+            System.out.println("Y = " + y);
+            return spawn;
+          }
+        }
+      }
+      else{
+      while(badCell){//If it's a player, spawn them on the bottom half of the screen
         //(Math.random() * (max - min + 1)) + min;
         int x = (int)(Math.random() * (19 - 0 + 1)); //We don't care where players spawn along the X axis, only Y is dependant on isPlayer
         int y = (int)(Math.random() * (19 - 12 + 1)) + 12; //Players spawn between y= 20 and 12 
@@ -36,12 +49,13 @@ public class Stage {
           return spawn;
         }
       }
+      }
     }
-    else{//If it's an enemy, spawn them at the top
+    else{ //Anything other than players spawn randomly. Anywhere.
       while(badCell){
         int x = (int)(Math.random() * (19 - 0 + 1));
-        int y = (int)(Math.random() * (8 - 0 + 1)) + 0; //Enemies spawn between y=0 and y=8
-        Cell spawn = grid.cellAtColRow(x, y); //Random within top of map
+        int y = (int)(Math.random() * (19 - 0 + 1));
+        Cell spawn = grid.cellAtColRow(x, y);
         if(checkCellEmpty(spawn)){
           System.out.println("X = " + x);
           System.out.println("Y = " + y);
@@ -57,11 +71,15 @@ public class Stage {
     return (cell.contentsChar == null && cell.contentsItem == null);
   }
 
-  public void addCharacter(Character charPreset){ //Adds a character to the board
-    charPreset.loc = setRandomSpawn(charPreset.player);
+  public void addCharacter(Character charPreset){ //Adds a character to the grid
+    charPreset.loc = setRandomSpawn(charPreset);
     actors.add(charPreset);
     charPreset.setCellContentsToThisInstance();
     charPreset.draw();
+  }
+
+  public void addItem(Item itemPreset){ //Adds an item to the grid
+    itemPreset.loc = setRandomSpawn(itemPreset);
   }
 
   public void paint(Graphics g, Point mouseLoc) {
