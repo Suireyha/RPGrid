@@ -20,7 +20,7 @@ public class Main extends JFrame {
       window.run();
     }
 
-    class Canvas extends JPanel implements MouseListener{
+    class Canvas extends JPanel implements MouseListener{ //!! NOte to self, put this in justifications.md
       
       public Canvas() {
         setPreferredSize(new Dimension(winWidth, winHeight));

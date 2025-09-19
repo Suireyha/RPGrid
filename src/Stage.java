@@ -20,10 +20,6 @@ public class Stage {
   public Stage() {
     grid = new Grid();
     actors = new ArrayList<Actor>();
-    
-    //actors.add(new Cat(grid.cellAtColRow(0, 0)));
-    //actors.add(new Dog(grid.cellAtColRow(13, 15)));
-    //actors.add(new Bird(grid.cellAtColRow(12, 9)));
   }
 
   private Cell setRandomSpawn(boolean isPlayer){
@@ -57,13 +53,8 @@ public class Stage {
   }
 
   public boolean checkCellEmpty(Cell cell){
-    //Checks to see if cell is empty;
-    for(int i = 0; i < actors.size(); i++){
-      if(cell == actors.get(i).loc){
-        return false; //Cell is NOT empty!!
-      }
-    }
-    return true; //Cell is empty!! :D
+    //Checks to see if cell is empty- if it has something in it return false
+    return (cell.contentsChar == null && cell.contentsItem == null);
   }
 
   public void addCharacter(Character charPreset){ //Adds a character to the board
