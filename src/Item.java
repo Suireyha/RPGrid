@@ -37,6 +37,7 @@ public abstract class Item implements MapEntity{ //Making an Item that isn't som
         this.wisdom = wisdom;
         this.constitution = constitution;
         this.initiative = initiative;
+        nameTextCol = new Color(255, 249, 121); //A nice gold colour for items
     }
     Item(String name, String description, int strength, int wisdom, int constitution, int initiative, float healMod){ //Constructor to be used by advanced Weapons & Armours
         this.name = name;
@@ -46,6 +47,7 @@ public abstract class Item implements MapEntity{ //Making an Item that isn't som
         this.constitution = constitution;
         this.initiative = initiative;
         this.healMod = healMod;
+        nameTextCol = new Color(255, 249, 121); //A nice gold colour for items
     }
 
     public void setCellContentsToThisInstance(){ //The best variable name of all time
@@ -63,16 +65,6 @@ public abstract class Item implements MapEntity{ //Making an Item that isn't som
 
     public void displayWin(){ //Temporary, this should be moved to inventory later
         popup = new PopUp<Item>(this);
-        popup.titleCol = new Color(255, 249, 121); //A nice gold colour for items
-        
-        /*
-        System.out.println();
-        System.out.println("~~~~~~~~ITEM~~~~~~~~");
-        System.out.println("Name:\t" + name);
-        System.out.println("Description:\t" + description);
-        System.out.println("~~~~~~~~~~~~~~~~~~~~");
-        System.out.println();
-         */
     }
 
     public mapEntityType getEntityType(){
@@ -81,6 +73,10 @@ public abstract class Item implements MapEntity{ //Making an Item that isn't som
 
     public Color getNameTextCol(){
         return(nameTextCol);
+    }
+
+    public String getName(){
+        return name;
     }
 
     public void draw(){ //All items should have draw function for when they're on the map

@@ -10,7 +10,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class TextHeaders extends JLabel{ //I don't want to clutter my code with creating new labels for everything so yeah
-    Color mainTextCol;
+    Color mainTextCol = new Color(255, 255, 255);
     Color glowTextCol = new Color(255, 255, 255, 0); //By default it's invisible so that H2 and Text can draw without a glow
 
     enum Header{
@@ -22,8 +22,8 @@ public class TextHeaders extends JLabel{ //I don't want to clutter my code with 
     public void setUp(Header type){
         switch(type){
             case HEADER1:
+                glowTextCol = new Color(mainTextCol.getRed(), mainTextCol.getGreen(), mainTextCol.getBlue(), 30); //The same colour, just with a MUCH lower opacity for the glow
                 this.setFont(new Font("Serif", Font.BOLD, 18));
-                glowTextCol = new Color(mainTextCol.getRed(), mainTextCol.getGreen(), mainTextCol.getBlue(), 15); //The same colour, just with a MUCH lower opacity for the glow
                 break;
             case HEADER2:
                 this.setFont(new Font("Serif", Font.PLAIN, 14));
@@ -37,8 +37,9 @@ public class TextHeaders extends JLabel{ //I don't want to clutter my code with 
 
     }
 
-    TextHeaders(String text, TextHeaders.Header type){
+    TextHeaders(String text, TextHeaders.Header type, Color colour){
         super(text);
+        mainTextCol = colour;
         setUp(type);
     }
 

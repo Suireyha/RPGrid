@@ -159,6 +159,10 @@ public class Character extends Actor implements MapEntity{ //Child of Actor sinc
         popup = new PopUp<Character>(this);
     }
 
+    public String getName(){
+        return name;
+    }
+
     public Color getNameTextCol(){
         return(nameTextCol);
     }
