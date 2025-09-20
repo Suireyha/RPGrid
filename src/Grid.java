@@ -30,7 +30,7 @@ public class Grid {
     }
   }
 
-  public <T>void cellClicked(Point mousePos){ //I'm thinking this is somewhere I can implement generics- because cellClicked be called with different contexts
+  public void cellClicked(Point mousePos){ //I'm thinking this is somewhere I can implement generics- because cellClicked be called with different contexts
     //Cell clicked logic (for now jsut print the ID)
     Optional<Cell> activeCell = cellAtPoint(mousePos);
     if (activeCell.isPresent()){
