@@ -59,11 +59,11 @@ public class PopUp <T extends MapEntity> extends JFrame{
         
         switch(entity.getEntityType()){
             case PLAYER:
-                JPanel statsDiv = new JPanel();
+                ContentRow statsDiv = new ContentRow();
                 TextHeaders statHeader = new TextHeaders("Stats:", TextHeaders.Header.HEADER1, uiHeader);
                 statHeader.setAlignmentX(Component.LEFT_ALIGNMENT);
 
-                statsDiv.add(statHeader);
+                statsDiv.add(statHeader, BorderLayout.WEST);
                 infoPanel.add(statsDiv);
                 break;
             case ENEMIE:
