@@ -55,7 +55,7 @@ public class Grid {
         }
       }
       else if(activeCell.get().contentsItem != null){
-        activeCell.get().contentsItem.display();
+        activeCell.get().contentsItem.displayWin();
       }
     }
   }

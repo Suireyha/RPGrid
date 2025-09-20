@@ -23,17 +23,19 @@ public class PopUp <T extends MapEntity> extends JFrame{
         container.setBackground(new Color(47, 48, 49));
     }
     
-    PopUp(Item item){
+    PopUp(T evoker){
         SetUp();
+
+        if(evoker instanceof Character){
+            //Character specific functionality
+        }
+        if(evoker instanceof Item){
+            //Item specific functionality
+        }
+                                                                                            
         Btn btn1 = new Btn(true, "EX", 0);
         container.add(btn1);
-
         //Add Labels and stuff here
-    }
-
-    PopUp(Character character){
-        SetUp();
-        
     }
     
 }
