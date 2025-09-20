@@ -10,6 +10,8 @@ public class Character extends Actor implements MapEntity{ //Child of Actor sinc
     Cell loc;
     mapEntityType entity;
 
+    PopUp<Character> popup;
+
     //Attributes
     public int strength = 0; //Used for non-magical combat rolls
     public int wisdom = 0; //Used for magical combat rolls
@@ -147,6 +149,10 @@ public class Character extends Actor implements MapEntity{ //Child of Actor sinc
             return MapEntity.mapEntityType.PLAYER;
         }
         return MapEntity.mapEntityType.ENEMIE;
+    }
+
+    public void displayWin(){ //Click display stuff
+        popup = new PopUp<Character>(this);
     }
     
     public void draw(){ //Function to draw each Character based on Race/Role/Player

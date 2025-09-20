@@ -13,7 +13,7 @@ public abstract class Item implements MapEntity{ //Making an Item that isn't som
     String name;
     String description;
 
-    PopUp popup; //Temporary, this should be moved to inventory later
+    PopUp<Item> popup; //Temporary, this should be moved to inventory later
 
     boolean onMap; //Variable that tracks if the item is on the map or nor (if not, will exist in a players inventory ig)
     Cell loc; //It's location, if any
@@ -60,14 +60,16 @@ public abstract class Item implements MapEntity{ //Making an Item that isn't som
         }
     }
 
-    public void display(){ //Temporary, this should be moved to inventory later
-        popup = new PopUp(this);
+    public void displayWin(){ //Temporary, this should be moved to inventory later
+        popup = new PopUp<Item>(this);
+        /*
         System.out.println();
         System.out.println("~~~~~~~~ITEM~~~~~~~~");
         System.out.println("Name:\t" + name);
         System.out.println("Description:\t" + description);
         System.out.println("~~~~~~~~~~~~~~~~~~~~");
         System.out.println();
+         */
     }
 
     public mapEntityType getEntityType(){

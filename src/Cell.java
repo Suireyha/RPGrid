@@ -18,7 +18,7 @@ public class Cell extends Rectangle{
   static int size = 40;
   int id; //Tracking the grids with id, assigned in the grid creation
   Character contentsChar = null; //Null by default, holds whatever is currently in the cell
-  Item contentsItem = null;
+  Item contentsItem = null; //I would have loved to have made these two just one generic variable ;~;
   
   public Cell(int x, int y) {
     super(x, y, size, size);
