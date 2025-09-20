@@ -6,7 +6,7 @@ public class ContentRow extends JPanel{
     ContentRow(){
         super();
         this.setBackground(new Color(47, 48, 49));
-        this.setBorder(new EmptyBorder(0,10,0,0));
+        this.setBorder(new EmptyBorder(0,15,0,15));
         this.setLayout(new BorderLayout());
     }
 }
