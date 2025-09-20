@@ -8,6 +8,9 @@ import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.*;
+import javax.swing.SwingUtilities;
+
 
 public class Main extends JFrame {
     int winWidth = 1000;
@@ -29,7 +32,15 @@ public class Main extends JFrame {
 
       @Override
       public void mouseClicked(MouseEvent e){ //Mouse clicked event listener inside the grid(IMPORTANT!!)
-        stage.grid.cellClicked(e.getPoint());
+        if(SwingUtilities.isLeftMouseButton(e)){
+          //Left click
+          stage.grid.cellLeftClicked(e.getPoint());
+        }
+        if(SwingUtilities.isRightMouseButton(e)){
+          //Right click
+          stage.grid.cellRightClicked(e.getPoint());
+        }
+        
       }
 
       @Override
@@ -56,9 +67,9 @@ public class Main extends JFrame {
       this.setVisible(true);
 
       //Create items
-      Weapon sword = new Weapon("Iron Sword", "A simple sword. Made from Iron. (+1 Str)", 1, 0, 0, 0, Weapon.Type.SWORD);
-      Armour leatherVest = new Armour("Leather Vest", "A vest crafted from cow hide. (+1 Const)", 0, 0, 1, 1);
-      Potion healthPotion = new Potion("Health Potion", "A jar of red liquid- looks tasty! (+10 hp)", 0, 0, 0, 0, 10f);
+      Weapon sword = new Weapon("Iron Sword", "A simple sword. Made from Iron.", 1, 0, 0, 0, Weapon.Type.SWORD);
+      Armour leatherVest = new Armour("Leather Vest", "A vest crafted from cow hide.", 0, 0, 1, 1);
+      Potion healthPotion = new Potion("Health Potion", "A jar of red liquid- looks tasty!", 0, 0, 0, 0, 10f);
 
       stage.addItem(sword);
       stage.addItem(leatherVest);

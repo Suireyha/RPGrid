@@ -30,7 +30,21 @@ public class Grid {
     }
   }
 
-  public void cellClicked(Point mousePos){ //Maybe change this to right click functionality later
+    public void cellLeftClicked(Point mousePos){ //Maybe change this to right click functionality later
+    //Cell clicked logic (for now jsut print the ID)
+    Optional<Cell> activeCell = cellAtPoint(mousePos);
+    if (activeCell.isPresent()){
+      if(activeCell.get().contentsChar != null){
+        activeCell.get().contentsChar.displayWin();
+      }
+      else if(activeCell.get().contentsItem != null){
+        activeCell.get().contentsItem.displayWin();
+      }
+      //Otherwise, do nothing
+    }
+  }
+
+  public void cellRightClicked(Point mousePos){ //Maybe change this to right click functionality later
     //Cell clicked logic (for now jsut print the ID)
     Optional<Cell> activeCell = cellAtPoint(mousePos);
     if (activeCell.isPresent()){
