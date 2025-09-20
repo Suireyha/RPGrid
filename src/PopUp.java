@@ -53,8 +53,9 @@ public class PopUp <T extends MapEntity> extends JFrame{
             //Item specific functionality
         }   
         
-        TextHeaders lbl = new TextHeaders("Example text :fire:", TextHeaders.Header.HEADER1);
-        lbl.setForeground(new Color(255, 249, 121));
+        TextHeaders lbl = new TextHeaders("~~~~ITEM~~~~", TextHeaders.Header.HEADER1);
+        lbl.mainTextCol = new Color(255, 249, 121);
+        lbl.glowTextCol = new Color(255, 249, 121, 15);
         lbl.setAlignmentX(Component.CENTER_ALIGNMENT);
         //lbl.getGraphics().RenderingHints = RenderingHints.KEY_ANTIALIASING;
         infoPanel.add(lbl);
