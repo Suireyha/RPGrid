@@ -10,6 +10,7 @@ interface MapEntity{
     }
 
     public int[] getStats();
+    public String getDescription();
     public String getName();
     public Color getNameTextCol();
     public void displayWin(); //Children must implement a display window for right clicks

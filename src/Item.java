@@ -71,9 +71,6 @@ public abstract class Item implements MapEntity{ //Making an Item that isn't som
         return MapEntity.mapEntityType.ITEM;
     }
 
-    public Color getNameTextCol(){
-        return(nameTextCol);
-    }
 
     public String getName(){
         return name;
@@ -82,6 +79,14 @@ public abstract class Item implements MapEntity{ //Making an Item that isn't som
     public int[] getStats(){
         int[] stats = {strength, wisdom, constitution, initiative, (int)healMod};
         return stats;
+    }
+
+    public String getDescription(){
+        return description;
+    }
+
+    public Color getNameTextCol(){
+        return(nameTextCol);
     }
 
     public void draw(){ //All items should have draw function for when they're on the map

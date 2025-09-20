@@ -3,6 +3,9 @@ import java.awt.Polygon;
 
 public class Character extends Actor implements MapEntity{ //Child of Actor since we'll draw these
     String name; //Characters name
+    String description;
+    String raceAsText;
+    String roleAsText;
     RoleType role; //Characters role/class
     RaceType race; //Characters race
     Inventory inventory = new Inventory(); //Characters inventory
@@ -46,6 +49,7 @@ public class Character extends Actor implements MapEntity{ //Child of Actor sinc
                 wisdom += 1;
                 constitution += 6;
                 initiative += 2;
+                roleAsText = "Barbarian";
                 //Inventory.add();
                 break;
             case FIGHTER: //Well rounded, and hard to take out
@@ -53,6 +57,7 @@ public class Character extends Actor implements MapEntity{ //Child of Actor sinc
                 wisdom += 2;
                 constitution += 6;
                 initiative += 4;
+                roleAsText = "Fighter";
                 //Inventory.add();
                 break;
             case MAGE: //High DMG and quick, but glass cannon types
@@ -60,6 +65,7 @@ public class Character extends Actor implements MapEntity{ //Child of Actor sinc
                 wisdom += 7;
                 constitution += 2;
                 initiative += 5;
+                roleAsText = "Mage";
                 //Inventory.add();
                 break;
             case RANGER: //Super quick ranged attacks but can't take many hits
@@ -67,6 +73,7 @@ public class Character extends Actor implements MapEntity{ //Child of Actor sinc
                 wisdom += 2;
                 constitution += 4;
                 initiative += 7;
+                roleAsText = "Ranger";
                 //Inventory.add();
                 break;
             default:
@@ -81,6 +88,7 @@ public class Character extends Actor implements MapEntity{ //Child of Actor sinc
                 wisdom += 1;
                 constitution += 1;
                 initiative += 2;
+                raceAsText = "Human";
                 //Inventory.add();
                 break;
             case ELF: //Weak and light but better spell casters and slightly quicker
@@ -88,6 +96,7 @@ public class Character extends Actor implements MapEntity{ //Child of Actor sinc
                 wisdom += 3;
                 constitution += 0;
                 initiative += 2;
+                raceAsText = "Elf";
                 //Inventory.add();
                 break;
             case ORC: //Super strong, but dumb and slow. Best suited to fighters or barbarians
@@ -95,6 +104,7 @@ public class Character extends Actor implements MapEntity{ //Child of Actor sinc
                 wisdom += 0;
                 constitution += 2;
                 initiative += 0;
+                raceAsText = "Orc";
                 //Inventory.add();
                 break;
             case DWARF: //Meant to be a decent pick for either rangers or mages who want more health
@@ -102,6 +112,7 @@ public class Character extends Actor implements MapEntity{ //Child of Actor sinc
                 wisdom += 2;
                 constitution += 2;
                 initiative += 1;
+                raceAsText = "Dwarf";
                 //Inventory.add();
                 break;
             default:
@@ -116,10 +127,12 @@ public class Character extends Actor implements MapEntity{ //Child of Actor sinc
         if(player){
             drawCol = new Color(5, 8, 90); //Players are drawn in blue on the grid
             nameTextCol = new Color(137, 207, 240); //Baby blue for name display if player (90, 185, 230)
+            description = name + " the " + raceAsText + " is a " + roleAsText + " on a quest to eviscerate evil doers!";
         }
         else{
             drawCol = new Color(90, 0, 0); //Enemies are drawn in red on the grid
             nameTextCol = new Color(230, 62, 62); //Red text when displaying enemie names
+            description = name + " the " + raceAsText + " has sworn to use their abilities as a " + roleAsText + " to DESTROY you!";
         }
     }
 
@@ -148,15 +161,15 @@ public class Character extends Actor implements MapEntity{ //Child of Actor sinc
         loc.contentsChar = this;
     }
 
+    public void displayWin(){ //Click display stuff
+        popup = new PopUp<Character>(this);
+    }
+
     public mapEntityType getEntityType(){
         if(player){
             return MapEntity.mapEntityType.PLAYER;
         }
         return MapEntity.mapEntityType.ENEMIE;
-    }
-
-    public void displayWin(){ //Click display stuff
-        popup = new PopUp<Character>(this);
     }
 
     public String getName(){
@@ -166,6 +179,10 @@ public class Character extends Actor implements MapEntity{ //Child of Actor sinc
     public int[] getStats(){
         int[] stats = {strength, wisdom, constitution, initiative, (int)health, (int)maxHealth};
         return stats;
+    }
+
+    public String getDescription(){
+        return description;
     }
 
     public Color getNameTextCol(){
