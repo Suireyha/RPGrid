@@ -17,6 +17,7 @@ public class PopUp <T extends MapEntity> extends JFrame{
     JPanel infoPanel;
     JPanel btnPanel;
     Color uiHeader = new Color(255, 255, 201);
+    Color white = new Color(170, 170, 170);
     T evoker;
 
     private void SetUp(){
@@ -62,6 +63,8 @@ public class PopUp <T extends MapEntity> extends JFrame{
         
         switch(entity.getEntityType()){
             case PLAYER:
+                makeNewContentRow("ABOUT");
+                makeNewContentRow("", entity.getDescription());
                 makeNewContentRow("STATS");
                 makeNewContentRow("Strength:", "" + entityStats[0]);
                 makeNewContentRow("Wisdom:", "" + entityStats[1]);
@@ -94,14 +97,30 @@ public class PopUp <T extends MapEntity> extends JFrame{
     }
     public void makeNewContentRow(String left, String right){
         ContentRow row = new ContentRow();
-
         TextHeaders textLeft = new TextHeaders(left, TextHeaders.Header.TEXTB, Color.WHITE);
-        TextHeaders textRight = new TextHeaders(right, TextHeaders.Header.TEXT, Color.WHITE);
-
-        row.add(textLeft, BorderLayout.WEST);
-        row.add(textRight, BorderLayout.EAST);
-        infoPanel.add(row);
         
+        if (left.equals("")) { //Can add other lhs that have large text blobs here later if I need
+            row.setLayout(new BorderLayout());
+            
+            JTextArea textRight = new JTextArea(right);
+            textRight.setWrapStyleWord(true);
+            textRight.setLineWrap(true);
+            textRight.setEditable(false);
+            textRight.setOpaque(false);
+            textRight.setForeground(Color.WHITE);
+            //textRight.setBorder(new EmptyBorder(0, 10, 0, 0));
+            
+            row.add(textLeft, BorderLayout.NORTH);
+            row.add(textRight, BorderLayout.CENTER);
+        } 
+        else {
+            //Normal stats
+            TextHeaders textRight = new TextHeaders(right, TextHeaders.Header.TEXTB, Color.WHITE);
+            row.add(textLeft, BorderLayout.WEST);
+            row.add(textRight, BorderLayout.EAST);
+        }
+        
+        infoPanel.add(row);
     }
     
 }
