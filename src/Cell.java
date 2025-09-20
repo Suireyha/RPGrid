@@ -19,7 +19,8 @@ public class Cell extends Rectangle{
   int id; //Tracking the grids with id, assigned in the grid creation
   Character contentsChar = null; //Null by default, holds whatever is currently in the cell
   Item contentsItem = null; //I would have loved to have made these two just one generic variable ;~;
-  
+  Boolean isSelected = false;
+
   public Cell(int x, int y) {
     super(x, y, size, size);
   }
@@ -28,10 +29,17 @@ public class Cell extends Rectangle{
     Point offsetMousePos = new Point(mousePos); //This is the ACTUAL mouse position obtained by removing the offset.
     offsetMousePos.x -= gridOffset;
     offsetMousePos.y -= gridOffset;
+    
     if(contains(offsetMousePos)) {
       g.setColor(highlighted);
-    } else {
-      g.setColor(Color.WHITE);
+    }
+    else {
+      if(this.isSelected){
+        g.setColor(new Color(119, 237, 160));
+      }
+      else{
+        g.setColor(Color.WHITE);
+      }
     }
 
     g.fillRect(x, y, size, size);

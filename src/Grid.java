@@ -16,6 +16,10 @@ import java.awt.Font;
 */
 public class Grid {
   Cell[][] cells = new Cell[20][20];
+
+  Cell selectedCell = null;
+  MapEntity selectedEntity;
+
   double gridOffset = (1000/2) - (40*20)/2; //Currently the window is Window = 900px, Cells = 35px, #OfCells = 20;
   Color lime = new Color(0, 255, 50);
 
@@ -30,22 +34,30 @@ public class Grid {
     }
   }
 
-    public void cellLeftClicked(Point mousePos){ //Maybe change this to right click functionality later
-    //Cell clicked logic (for now jsut print the ID)
+  public void cellLeftClicked(Point mousePos){ 
+
+    if(selectedCell != null){
+      selectedCell.isSelected = false;
+      selectedCell = null;
+    }
+
     Optional<Cell> activeCell = cellAtPoint(mousePos);
     if (activeCell.isPresent()){
+      selectedCell = activeCell.get();
+      activeCell.get().isSelected = true;
       if(activeCell.get().contentsChar != null){
-        activeCell.get().contentsChar.displayWin();
+        selectedEntity = activeCell.get().contentsChar;
+        //selectedCell = selectedEntity.getCurrentCell();
       }
       else if(activeCell.get().contentsItem != null){
-        activeCell.get().contentsItem.displayWin();
+        selectedEntity = activeCell.get().contentsItem;
+        //selectedCell = selectedEntity.getCurrentCell();
       }
       //Otherwise, do nothing
     }
   }
 
-  public void cellRightClicked(Point mousePos){ //Maybe change this to right click functionality later
-    //Cell clicked logic (for now jsut print the ID)
+  public void cellRightClicked(Point mousePos){
     Optional<Cell> activeCell = cellAtPoint(mousePos);
     if (activeCell.isPresent()){
       if(activeCell.get().contentsChar != null){
@@ -54,7 +66,10 @@ public class Grid {
       else if(activeCell.get().contentsItem != null){
         activeCell.get().contentsItem.displayWin();
       }
-      //Otherwise, do nothing
+      if(selectedCell != null){
+        selectedCell.isSelected = false;
+        selectedCell = null;
+      }
     }
   }
   

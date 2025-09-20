@@ -9,6 +9,7 @@ interface MapEntity{
         EMPTY
     }
 
+    public Cell getCurrentCell();
     public int[] getStats();
     public String getDescription();
     public String getName();
