@@ -15,36 +15,46 @@ You can see each of our contributions and development of the original repository
 *Coming soon!*
 
 ## To Do:
-- Flesh out items.java
-- ~~Create items (potions, weapons, armour)~~
-- Add inventory functionality
-- ~~Draw characters and indicate some things about them (role, and if they're a player or not)~~
-- ~~Randomise player and enemy spawn locations~~
-- Add combat functionality
-- Add movement functinality
-- ~~Create an interface for weapons, armour and potions respectively to support propper code design~~
+- Flesh out items, weapons, armour and potions
+- Add player inventories, accessible from player display popUp
+- Add player movement
+- Add combat
+    - Add a turn queue (ordered list of characters or make characters recursive so that it points to next character in turn)
+    - Add character death
 - Add start button
 - Add win/loss screen
-- Add ability to move around(low priority)
+- Add more items/content
+- ~~Create items (potions, weapons, armour)~~
+- ~~Draw characters and indicate some things about them (role, and if they're a player or not)~~
+- ~~Randomise player and enemy spawn locations~~
+- ~~Create an interface for weapons, armour and potions respectively to support propper code design~~
 - ~~Fix bug where hovering below bottom right corner of the grid gets index out of bounds error (non-fatal, just annoying)~~
-- Add a turn queue (ordered list of characters or make characters recursive so that it points to next character in turn)
-
-
-### General project requirements:
-- Create substantial modifications to the repository to include unique functionality for the basics of a grid based RPG game
-- Include the sensible use of inheritence in the program
-- Include the sensible use of abstract methods and/or abstract classes in the program
-- Include the sensible use of interfaces in your program
-- Include the sensible use of generics in your program
-
-### Specific project requirements:
-*Note: This project is obviously very ambitious for two weeks- it's likely that not all features will be added in time, or that it won't play like a typical 'game'!! Some features may not be listed here, and others may be added later.*
-
 - ~~Add players (Should have a class, race, name and attributes)~~
+- ~~Add enemies~~
 - ~~Add classes (Warrior, barbarian, ranger, mage, etc[?])~~
 - ~~Add Items (Potions)~~
 - ~~Add Weapons (Child of items)~~
-- Add player inventories
-- Add player movement
-- ~~Add enemies~~
-- Add combat
+
+### General project requirements:
+- Create substantial modifications to the repository to include unique functionality for the basics of a grid based RPG game
+- ~~Include the sensible use of inheritence in the program~~
+    - Character.java (Extends Actor)
+    - Weapon.java (Extends Item.java)
+    - Armour.java (Extends Item.java)
+    - Potion.java (Extends Item.java)
+    - TextHeaders.java (Extends JLabel)
+    - Btn.java (Extends JButton)
+    - PopUp.java (Extends JPanel)
+    *The following relationships existed in the project already*
+    - Cell.java (Extends Rectangle)
+    - Main.java (Extends JFrame)
+    - Canvas.java (Extends JPanel)
+
+- ~~Include the sensible use of abstract methods and/or abstract classes in the program~~
+    - Item.java is an abstract method that includes a ton of general functionality for Weapons, Potions and Armour, while those child classes implement some things on their own respecively.
+- ~~Include the sensible use of interfaces in your program~~
+    - MapEntity.java is an interface that ensures anything drawn on the grid is held to a number of standards, like having a draw method
+    - RoundedBorder.java is a custom class that implements Border
+- ~~Include the sensible use of generics in your program~~
+    - PopUp.java is a generic class that can be made with any child of MapEntity.java (Character, Item, Item->Weapon, Item->Potion, Item->Armour), since all entities must have a PopUp to display when clicked **but** they should have unique functionality.
+    - The method setRandomSpawn() in stage.java is an abstract method that takes any child of MapEntity.java as argument, and will place those entities on the grid randomly within different bounds depending on the type. For example, Items can be placed anywhere as long as a cell is empty, but Characters can't be placed between y=8 and y=12, and will be placed in either y=0 - y=8 or y=12 - y=20 depending on whether the character is a player or enemie
