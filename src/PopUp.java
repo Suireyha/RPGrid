@@ -27,8 +27,6 @@ public class PopUp <T extends MapEntity> extends JFrame{
         container.setBackground(new Color(47, 48, 49));
         //popupContainer.setLayout(getLayout()); //Give me like a flex box kinda thing
 
-
-
         infoPanel = new JPanel(); //Div that will hold stats and stuff
         btnPanel = new JPanel(); //Div for the buttons
 
@@ -52,7 +50,7 @@ public class PopUp <T extends MapEntity> extends JFrame{
         if(evoker instanceof Item){
             //Item specific functionality
         }   
-
+        
         JLabel lbl = new JLabel("Example text :fire:");
         lbl.setFont(new Font("Serif", Font.PLAIN, 14));
         lbl.setForeground(Color.RED);
