@@ -30,33 +30,17 @@ public class Grid {
     }
   }
 
-  public void cellClicked(Point mousePos){ //I'm thinking this is somewhere I can implement generics- because cellClicked be called with different contexts
+  public void cellClicked(Point mousePos){ //Maybe change this to right click functionality later
     //Cell clicked logic (for now jsut print the ID)
     Optional<Cell> activeCell = cellAtPoint(mousePos);
     if (activeCell.isPresent()){
       if(activeCell.get().contentsChar != null){
-        if(activeCell.get().contentsChar.player){
-          System.out.println(activeCell.get().contentsChar.name + " the player is here!");
-          System.out.println("Strength:\t" + activeCell.get().contentsChar.strength);
-          System.out.println("Wisdom:\t\t" + activeCell.get().contentsChar.wisdom);
-          System.out.println("Constitution:\t" + activeCell.get().contentsChar.constitution);
-          System.out.println("Initiative:\t" + activeCell.get().contentsChar.initiative);
-          System.out.println("Health:\t\t" + activeCell.get().contentsChar.maxHealth);
-          System.out.println("");
-        }
-        else{
-          System.out.println(activeCell.get().contentsChar.name + " the villain is here!");
-          System.out.println("Strength:\t" + activeCell.get().contentsChar.strength);
-          System.out.println("Wisdom:\t\t" + activeCell.get().contentsChar.wisdom);
-          System.out.println("Constitution:\t" + activeCell.get().contentsChar.constitution);
-          System.out.println("Initiative:\t" + activeCell.get().contentsChar.initiative);
-          System.out.println("Health:\t\t" + activeCell.get().contentsChar.maxHealth);
-          System.out.println("");
-        }
+        activeCell.get().contentsChar.displayWin();
       }
       else if(activeCell.get().contentsItem != null){
         activeCell.get().contentsItem.displayWin();
       }
+      //Otherwise, do nothing
     }
   }
   

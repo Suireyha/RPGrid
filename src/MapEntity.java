@@ -1,4 +1,5 @@
 import java.awt.Graphics;
+import java.awt.Color;
 
 interface MapEntity{
     public enum mapEntityType{
@@ -7,6 +8,7 @@ interface MapEntity{
         ITEM,
         EMPTY
     }
+    public Color getNameTextCol();
     public void displayWin(); //Children must implement a display window for right clicks
     public void setCellContentsToThisInstance();
     public mapEntityType getEntityType(); //Children must implement this. Mainly for setRandomSpawn() so i can make entityType non-static

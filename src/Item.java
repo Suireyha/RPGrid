@@ -25,6 +25,7 @@ public abstract class Item implements MapEntity{ //Making an Item that isn't som
 
     List<Polygon> shape = new ArrayList<>();
     Color drawCol = Color.BLACK; //Items are drawn in black by default
+    Color nameTextCol = Color.WHITE;
 
     //For health potions mainly, but some other items may need this
     float healMod;
@@ -76,6 +77,10 @@ public abstract class Item implements MapEntity{ //Making an Item that isn't som
 
     public mapEntityType getEntityType(){
         return MapEntity.mapEntityType.ITEM;
+    }
+
+    public Color getNameTextCol(){
+        return(nameTextCol);
     }
 
     public void draw(){ //All items should have draw function for when they're on the map

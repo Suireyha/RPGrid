@@ -8,6 +8,8 @@ public class Character extends Actor implements MapEntity{ //Child of Actor sinc
     Inventory inventory = new Inventory(); //Characters inventory
     boolean player = false; //If this character is a user controlled player, make this true
     Cell loc;
+
+    Color nameTextCol = Color.WHITE; //White by default
     mapEntityType entity;
 
     PopUp<Character> popup;
@@ -112,10 +114,12 @@ public class Character extends Actor implements MapEntity{ //Child of Actor sinc
         health = maxHealth; //Health is the characters active health
 
         if(player){
-            drawCol = new Color(5, 8, 90);
+            drawCol = new Color(5, 8, 90); //Players are drawn in blue on the grid
+            nameTextCol = new Color(137, 207, 240); //Baby blue for name display if player (90, 185, 230)
         }
         else{
-            drawCol = new Color(90, 0, 0);
+            drawCol = new Color(90, 0, 0); //Enemies are drawn in red on the grid
+            nameTextCol = new Color(230, 62, 62); //Red text when displaying enemie names
         }
     }
 
@@ -153,12 +157,10 @@ public class Character extends Actor implements MapEntity{ //Child of Actor sinc
 
     public void displayWin(){ //Click display stuff
         popup = new PopUp<Character>(this);
-        if(player){
-            popup.titleCol = new Color(137, 207, 240); //Baby blue for name display if player (90, 185, 230)
-        }
-        else{
-            popup.titleCol = new Color(230, 62, 62); //Red for enemies
-        }
+    }
+
+    public Color getNameTextCol(){
+        return(nameTextCol);
     }
     
     public void draw(){ //Function to draw each Character based on Race/Role/Player

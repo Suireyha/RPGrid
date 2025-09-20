@@ -43,29 +43,32 @@ public class PopUp <T extends MapEntity> extends JFrame{
 
     }
     
-    PopUp(T evoker){
+    PopUp(T entity){
         SetUp();
 
-        if(evoker instanceof Character){
-            //Character specific functionality
+        Btn atkBtn = new Btn(true, "ATK", 0);
+        Btn invBtn = new Btn(true, "INV", 1);
+        TextHeaders title;
+        String titleText;
+
+        switch(entity.getEntityType()){
+            case PLAYER:
+                break;
+            case ENEMIE:
+                break;
+            case ITEM:
+                break;
+            default:
+                System.out.println("ERROR! PopUp called by something that isn't an entity? Check PopUp constructor!");
         }
-        if(evoker instanceof Item){
-            //Item specific functionality
-        }   
         
-        TextHeaders lbl = new TextHeaders("~~~~ITEM~~~~", TextHeaders.Header.HEADER1);
-        lbl.mainTextCol = new Color(255, 249, 121);
-        lbl.glowTextCol = new Color(255, 249, 121, 15);
-        lbl.setAlignmentX(Component.CENTER_ALIGNMENT);
-        //lbl.getGraphics().RenderingHints = RenderingHints.KEY_ANTIALIASING;
-        infoPanel.add(lbl);
+        title = new TextHeaders("~~~~ITEM~~~~", TextHeaders.Header.HEADER1);
+        title.mainTextCol = titleCol;
+        title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        Btn btn1 = new Btn(true, "XX", 0);
-        btnPanel.add(btn1);
-
-        Btn btn2 = new Btn(true, "XO", 0);
-        btnPanel.add(btn2);
-        //Add Labels and stuff here
+        infoPanel.add(title);
+        btnPanel.add(atkBtn);        
+        btnPanel.add(invBtn);
     }
     
 }

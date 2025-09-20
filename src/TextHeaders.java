@@ -23,6 +23,7 @@ public class TextHeaders extends JLabel{ //I don't want to clutter my code with 
         switch(type){
             case HEADER1:
                 this.setFont(new Font("Serif", Font.BOLD, 18));
+                glowTextCol = new Color(mainTextCol.getRed(), mainTextCol.getGreen(), mainTextCol.getBlue(), 15); //The same colour, just with a MUCH lower opacity for the glow
                 break;
             case HEADER2:
                 this.setFont(new Font("Serif", Font.PLAIN, 14));
