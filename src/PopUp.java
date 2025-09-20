@@ -17,7 +17,7 @@ public class PopUp <T extends MapEntity> extends JFrame{
     JPanel infoPanel;
     JPanel btnPanel;
     Color uiHeader = new Color(255, 255, 201);
-    Color white = new Color(170, 170, 170);
+    Color white = new Color(240, 240, 220);
     T evoker;
 
     private void SetUp(){
@@ -63,6 +63,9 @@ public class PopUp <T extends MapEntity> extends JFrame{
         
         switch(entity.getEntityType()){
             case PLAYER:
+            btnPanel.add(atkBtn);        
+            btnPanel.add(invBtn);
+            case ENEMIE:
                 makeNewContentRow("ABOUT");
                 makeNewContentRow("", entity.getDescription());
                 makeNewContentRow("STATS");
@@ -72,20 +75,19 @@ public class PopUp <T extends MapEntity> extends JFrame{
                 makeNewContentRow("Initiative:", "" + entityStats[3]);
                 makeNewContentRow("Health:", "" + entityStats[4] + "/" + entityStats[5]);
                 break;
-            case ENEMIE:
-                break;
-            case ITEM:
+            case ITEM: 
+                makeNewContentRow("ABOUT");
+                makeNewContentRow("", entity.getDescription());
+                makeNewContentRow("STATS");
+                makeNewContentRow("Strength:", "+" + entityStats[0]);
+                makeNewContentRow("Wisdom:", "+" + entityStats[1]);
+                makeNewContentRow("Constitution:", "+" + entityStats[2]);
+                makeNewContentRow("Initiative:", "+" + entityStats[3]);
+                makeNewContentRow("Health:", "+" + entityStats[4]);
                 break;
             default:
                 System.out.println("ERROR! PopUp called by something that isn't an entity? Check PopUp constructor!");
         }
-        
-
-        
-
-
-        btnPanel.add(atkBtn);        
-        btnPanel.add(invBtn);
     }
 
     public void makeNewContentRow(String left){
@@ -97,7 +99,7 @@ public class PopUp <T extends MapEntity> extends JFrame{
     }
     public void makeNewContentRow(String left, String right){
         ContentRow row = new ContentRow();
-        TextHeaders textLeft = new TextHeaders(left, TextHeaders.Header.TEXTB, Color.WHITE);
+        TextHeaders textLeft = new TextHeaders(left, TextHeaders.Header.TEXTB, white);
         
         if (left.equals("")) { //Can add other lhs that have large text blobs here later if I need
             row.setLayout(new BorderLayout());
@@ -107,7 +109,7 @@ public class PopUp <T extends MapEntity> extends JFrame{
             textRight.setLineWrap(true);
             textRight.setEditable(false);
             textRight.setOpaque(false);
-            textRight.setForeground(Color.WHITE);
+            textRight.setForeground(white);
             //textRight.setBorder(new EmptyBorder(0, 10, 0, 0));
             
             row.add(textLeft, BorderLayout.NORTH);
@@ -115,7 +117,7 @@ public class PopUp <T extends MapEntity> extends JFrame{
         } 
         else {
             //Normal stats
-            TextHeaders textRight = new TextHeaders(right, TextHeaders.Header.TEXTB, Color.WHITE);
+            TextHeaders textRight = new TextHeaders(right, TextHeaders.Header.TEXTB, white);
             row.add(textLeft, BorderLayout.WEST);
             row.add(textRight, BorderLayout.EAST);
         }
