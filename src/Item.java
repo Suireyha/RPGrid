@@ -79,6 +79,11 @@ public abstract class Item implements MapEntity{ //Making an Item that isn't som
         return name;
     }
 
+    public int[] getStats(){
+        int[] stats = {strength, wisdom, constitution, initiative, (int)healMod};
+        return stats;
+    }
+
     public void draw(){ //All items should have draw function for when they're on the map
         Polygon part1 = new Polygon();
 

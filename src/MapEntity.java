@@ -8,6 +8,8 @@ interface MapEntity{
         ITEM,
         EMPTY
     }
+
+    public int[] getStats();
     public String getName();
     public Color getNameTextCol();
     public void displayWin(); //Children must implement a display window for right clicks

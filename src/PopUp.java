@@ -48,6 +48,7 @@ public class PopUp <T extends MapEntity> extends JFrame{
     
     PopUp(T entity){
         SetUp();
+        int[] entityStats = entity.getStats();
         
         Btn atkBtn = new Btn(true, "ATK", 0);
         Btn invBtn = new Btn(true, "INV", 1);
@@ -61,21 +62,12 @@ public class PopUp <T extends MapEntity> extends JFrame{
         
         switch(entity.getEntityType()){
             case PLAYER:
-                //ContentRow first = new ContentRow();
-                //TextHeaders statHeader = new TextHeaders("STATS", TextHeaders.Header.HEADER2, uiHeader);
-                //first.add(statHeader);
-                //infoPanel.add(first);
                 makeNewContentRow("STATS");
-
-                //ContentRow second = new ContentRow();
-                //TextHeaders strengthHeader = new TextHeaders("Srength:", TextHeaders.Header.TEXTB, Color.WHITE);
-                //TextHeaders strengthStat = new TextHeaders("13", TextHeaders.Header.TEXT, Color.WHITE);
-                //second.add(strengthHeader, BorderLayout.WEST);
-                //second.add(strengthStat, BorderLayout.EAST);
-                makeNewContentRow("Strength", "13");
-                
-                
-                //infoPanel.add(second);
+                makeNewContentRow("Strength:", "" + entityStats[0]);
+                makeNewContentRow("Wisdom:", "" + entityStats[1]);
+                makeNewContentRow("Constitution:", "" + entityStats[2]);
+                makeNewContentRow("Initiative:", "" + entityStats[3]);
+                makeNewContentRow("Health:", "" + entityStats[4] + "/" + entityStats[5]);
                 break;
             case ENEMIE:
                 break;

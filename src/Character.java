@@ -163,6 +163,11 @@ public class Character extends Actor implements MapEntity{ //Child of Actor sinc
         return name;
     }
 
+    public int[] getStats(){
+        int[] stats = {strength, wisdom, constitution, initiative, (int)health, (int)maxHealth};
+        return stats;
+    }
+
     public Color getNameTextCol(){
         return(nameTextCol);
     }
