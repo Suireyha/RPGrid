@@ -16,6 +16,7 @@ public class TextHeaders extends JLabel{ //I don't want to clutter my code with 
     enum Header{
         HEADER1,
         HEADER2,
+        TEXTB,
         TEXT
     }
 
@@ -26,10 +27,13 @@ public class TextHeaders extends JLabel{ //I don't want to clutter my code with 
                 this.setFont(new Font("Serif", Font.BOLD, 18));
                 break;
             case HEADER2:
-                this.setFont(new Font("Serif", Font.PLAIN, 14));
+                this.setFont(new Font("Serif", Font.BOLD, 17));
+                break;
+            case TEXTB:
+                this.setFont(new Font("Serif", Font.BOLD, 15));
                 break;
             case TEXT:
-                this.setFont(new Font("Serif", Font.PLAIN, 12));
+                this.setFont(new Font("Serif", Font.PLAIN, 15));
                 break;
             default:
 

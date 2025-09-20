@@ -16,7 +16,7 @@ public class PopUp <T extends MapEntity> extends JFrame{
     JPanel container;
     JPanel infoPanel;
     JPanel btnPanel;
-    Color uiHeader = new Color(255, 255, 191);
+    Color uiHeader = new Color(255, 255, 201);
     T evoker;
 
     private void SetUp(){
@@ -52,19 +52,30 @@ public class PopUp <T extends MapEntity> extends JFrame{
         Btn atkBtn = new Btn(true, "ATK", 0);
         Btn invBtn = new Btn(true, "INV", 1);
         String titleText = entity.getName();
-        TextHeaders title = new TextHeaders("~~~~~~ " + titleText + " ~~~~~~", TextHeaders.Header.HEADER1, entity.getNameTextCol());
+        TextHeaders title = new TextHeaders("~~~~~~~ " + titleText + " ~~~~~~~", TextHeaders.Header.HEADER1, entity.getNameTextCol());
         
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
+        title.setBorder(new EmptyBorder(0,0,10,0)); //Spacer for next line
         infoPanel.add(title);
+
         
         switch(entity.getEntityType()){
             case PLAYER:
-                ContentRow statsDiv = new ContentRow();
-                TextHeaders statHeader = new TextHeaders("Stats:", TextHeaders.Header.HEADER1, uiHeader);
-                statHeader.setAlignmentX(Component.LEFT_ALIGNMENT);
+                //ContentRow first = new ContentRow();
+                //TextHeaders statHeader = new TextHeaders("STATS", TextHeaders.Header.HEADER2, uiHeader);
+                //first.add(statHeader);
+                //infoPanel.add(first);
+                makeNewContentRow("STATS");
 
-                statsDiv.add(statHeader, BorderLayout.WEST);
-                infoPanel.add(statsDiv);
+                //ContentRow second = new ContentRow();
+                //TextHeaders strengthHeader = new TextHeaders("Srength:", TextHeaders.Header.TEXTB, Color.WHITE);
+                //TextHeaders strengthStat = new TextHeaders("13", TextHeaders.Header.TEXT, Color.WHITE);
+                //second.add(strengthHeader, BorderLayout.WEST);
+                //second.add(strengthStat, BorderLayout.EAST);
+                makeNewContentRow("Strength", "13");
+                
+                
+                //infoPanel.add(second);
                 break;
             case ENEMIE:
                 break;
@@ -80,6 +91,25 @@ public class PopUp <T extends MapEntity> extends JFrame{
 
         btnPanel.add(atkBtn);        
         btnPanel.add(invBtn);
+    }
+
+    public void makeNewContentRow(String left){
+        ContentRow row = new ContentRow();
+        TextHeaders header = new TextHeaders(left, TextHeaders.Header.HEADER2, uiHeader);
+        row.add(header);
+        infoPanel.add(row);
+
+    }
+    public void makeNewContentRow(String left, String right){
+        ContentRow row = new ContentRow();
+
+        TextHeaders textLeft = new TextHeaders(left, TextHeaders.Header.TEXTB, Color.WHITE);
+        TextHeaders textRight = new TextHeaders(right, TextHeaders.Header.TEXT, Color.WHITE);
+
+        row.add(textLeft, BorderLayout.WEST);
+        row.add(textRight, BorderLayout.EAST);
+        infoPanel.add(row);
+        
     }
     
 }
