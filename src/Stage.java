@@ -33,8 +33,6 @@ public class Stage {
           int y = (int)(Math.random() * (8 - 0 + 1)) + 0; //Enemies spawn between y=0 and y=8
           Cell spawn = grid.cellAtColRow(x, y); //Random within top of map
           if(checkCellEmpty(spawn)){
-            System.out.println("X = " + x);
-            System.out.println("Y = " + y);
             return spawn;
           }
         }
@@ -46,21 +44,17 @@ public class Stage {
         int y = (int)(Math.random() * (19 - 12 + 1)) + 12; //Players spawn between y= 20 and 12 
         Cell spawn = grid.cellAtColRow(x, y); //Random within bottom of map
         if(checkCellEmpty(spawn)){ //If the cell is empty, we can spawn our guy there
-          System.out.println("X = " + x);
-          System.out.println("Y = " + y);
           return spawn;
         }
       }
       }
     }
-    else{ //Anything other than players spawn randomly. Anywhere.
+    else{ //Anything other than slayers spawn randomly. Anywhere.
       while(badCell){
         int x = (int)(Math.random() * (19 - 0 + 1));
         int y = (int)(Math.random() * (19 - 0 + 1));
         Cell spawn = grid.cellAtColRow(x, y);
         if(checkCellEmpty(spawn)){
-          System.out.println("X = " + x);
-          System.out.println("Y = " + y);
           return spawn;
         }
       }

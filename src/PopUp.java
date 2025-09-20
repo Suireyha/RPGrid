@@ -48,11 +48,10 @@ public class PopUp <T extends MapEntity> extends JFrame{
 
         Btn atkBtn = new Btn(true, "ATK", 0);
         Btn invBtn = new Btn(true, "INV", 1);
-        TextHeaders title;
         String titleText = entity.getName();
+        TextHeaders title = new TextHeaders("~~~~~~ " + titleText + " ~~~~~~", TextHeaders.Header.HEADER1, entity.getNameTextCol());
         
-
-        /*
+        
         switch(entity.getEntityType()){
             case PLAYER:
                 break;
@@ -63,14 +62,12 @@ public class PopUp <T extends MapEntity> extends JFrame{
             default:
                 System.out.println("ERROR! PopUp called by something that isn't an entity? Check PopUp constructor!");
         }
-        */
-        
-        title = new TextHeaders("~~~~" + titleText + "~~~~", TextHeaders.Header.HEADER1, entity.getNameTextCol());
-        title.mainTextCol = entity.getNameTextCol();
-        title.setAlignmentX(Component.CENTER_ALIGNMENT);
         
 
+        
+        title.setAlignmentX(Component.CENTER_ALIGNMENT);
         infoPanel.add(title);
+        
         btnPanel.add(atkBtn);        
         btnPanel.add(invBtn);
     }

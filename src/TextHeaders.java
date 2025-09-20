@@ -72,7 +72,6 @@ public class TextHeaders extends JLabel{ //I don't want to clutter my code with 
         // Draw main text
         g2.setColor(mainTextCol);
         g2.drawString(text, x, y);
-    
         g2.dispose();
     }
 
