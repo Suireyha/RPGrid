@@ -13,11 +13,11 @@ public class Inventory{
         //Click event listeners
     }
 
-    private void use(){
+    //private void use(){
         //Call from click event listeners in display()
         //Apply item effect
         //Remove item from contents
-    }
+    //}
 
     Inventory(){
         //Inventory constructor

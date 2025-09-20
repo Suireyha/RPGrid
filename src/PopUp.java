@@ -6,10 +6,9 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import javax.swing.border.*;
 
-import javax.swing.BorderFactory;
-
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+//import javax.swing.BorderFactory;
+//import java.awt.event.MouseEvent;
+//import java.awt.event.MouseListener;
 
 public class PopUp <T extends MapEntity> extends JFrame{
     int winWidth = 350;

@@ -1,4 +1,3 @@
-import java.awt.Graphics;
 import java.awt.Polygon;
 
 public class Armour extends Item{
