@@ -12,15 +12,31 @@ public class PopUp <T extends MapEntity> extends JFrame{
     int winWidth = 350;
     int winHeight = 400;
     JPanel container;
+    JPanel infoPanel;
+    JPanel btnPanel;
     T evoker;
 
     private void SetUp(){
-        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         container = new JPanel();
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); //Close THIS popup, but don't destroy the whole program
         this.setContentPane(container);
         this.setVisible(true);
         this.setBounds(1000, 400, winWidth, winHeight); //Window is being drawn at x=350 y=50, dimensions are 1000^2
         container.setBackground(new Color(47, 48, 49));
+        //popupContainer.setLayout(getLayout()); //Give me like a flex box kinda thing
+
+
+
+        infoPanel = new JPanel(); //Div that will hold stats and stuff
+        btnPanel = new JPanel(); //Div for the buttons
+
+        btnPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+        infoPanel.setBackground(new Color(47, 48, 49));
+        btnPanel.setBackground(new Color(47, 48, 49));
+
+        container.add(infoPanel, BorderLayout.CENTER);
+        container.add(btnPanel, BorderLayout.SOUTH);
+
     }
     
     PopUp(T evoker){
@@ -31,10 +47,16 @@ public class PopUp <T extends MapEntity> extends JFrame{
         }
         if(evoker instanceof Item){
             //Item specific functionality
-        }
-                                                                                            
-        Btn btn1 = new Btn(true, "EX", 0);
-        container.add(btn1);
+        }   
+
+        Label lbl = new Label("Example text :fire:");
+        infoPanel.add(lbl);
+
+        Btn btn1 = new Btn(true, "XX", 0);
+        btnPanel.add(btn1);
+
+        Btn btn2 = new Btn(true, "XO", 0);
+        btnPanel.add(btn2);
         //Add Labels and stuff here
     }
     
