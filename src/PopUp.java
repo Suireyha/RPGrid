@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import javax.swing.border.*;
+
 import javax.swing.BorderFactory;
 
 import java.awt.event.MouseEvent;
@@ -16,6 +17,8 @@ public class PopUp <T extends MapEntity> extends JFrame{
     JPanel container;
     JPanel infoPanel;
     JPanel btnPanel;
+    Color titleCol;
+    Color textCol = new Color(255, 255, 255); //White by default
     T evoker;
 
     private void SetUp(){
@@ -51,9 +54,8 @@ public class PopUp <T extends MapEntity> extends JFrame{
             //Item specific functionality
         }   
         
-        JLabel lbl = new JLabel("Example text :fire:");
-        lbl.setFont(new Font("Serif", Font.PLAIN, 14));
-        lbl.setForeground(Color.RED);
+        TextHeaders lbl = new TextHeaders("Example text :fire:", TextHeaders.Header.HEADER1);
+        lbl.setForeground(new Color(255, 249, 121));
         lbl.setAlignmentX(Component.CENTER_ALIGNMENT);
         //lbl.getGraphics().RenderingHints = RenderingHints.KEY_ANTIALIASING;
         infoPanel.add(lbl);

@@ -153,6 +153,12 @@ public class Character extends Actor implements MapEntity{ //Child of Actor sinc
 
     public void displayWin(){ //Click display stuff
         popup = new PopUp<Character>(this);
+        if(player){
+            popup.titleCol = new Color(137, 207, 240); //Baby blue for name display if player (90, 185, 230)
+        }
+        else{
+            popup.titleCol = new Color(230, 62, 62); //Red for enemies
+        }
     }
     
     public void draw(){ //Function to draw each Character based on Race/Role/Player

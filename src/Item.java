@@ -62,6 +62,8 @@ public abstract class Item implements MapEntity{ //Making an Item that isn't som
 
     public void displayWin(){ //Temporary, this should be moved to inventory later
         popup = new PopUp<Item>(this);
+        popup.titleCol = new Color(255, 249, 121); //A nice gold colour for items
+        
         /*
         System.out.println();
         System.out.println("~~~~~~~~ITEM~~~~~~~~");
