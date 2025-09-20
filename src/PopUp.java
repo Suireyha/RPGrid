@@ -33,7 +33,7 @@ public class PopUp <T extends MapEntity> extends JFrame{
         btnPanel = new JPanel(); //Div for the buttons
 
         infoPanel.setBackground(new Color(47, 48, 49));
-        infoPanel.setBorder(new EmptyBorder(0, 0, 10, 0)); //Padding on the bottom
+        infoPanel.setBorder(new EmptyBorder(0, 0, 80, 0)); //Padding on the bottom
         btnPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
         btnPanel.setBackground(new Color(47, 48, 49));
         
