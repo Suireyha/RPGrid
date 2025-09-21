@@ -50,9 +50,6 @@ public class PopUp <T extends MapEntity> extends JFrame{
     PopUp(T entity){
         SetUp();
         int[] entityStats = entity.getStats();
-        
-        Btn atkBtn = new Btn(true, "ATK", 0);
-        Btn invBtn = new Btn(true, "INV", 1);
         String titleText = entity.getName();
         TextHeaders title = new TextHeaders("~~~~~~~ " + titleText + " ~~~~~~~", TextHeaders.Header.HEADER1, entity.getNameTextCol());
         
