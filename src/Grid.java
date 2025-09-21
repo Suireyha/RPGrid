@@ -20,6 +20,8 @@ public class Grid {
   Cell selectedCell = null;
   MapEntity selectedEntity;
 
+  String message = "RPGrid by Marvin Kelly";
+
   double gridOffset = (1000/2) - (40*20)/2; //Currently the window is Window = 900px, Cells = 35px, #OfCells = 20;
   Color lime = new Color(0, 255, 50);
 
@@ -55,11 +57,18 @@ public class Grid {
 
       //A bit of a verbose if statement, but it makes sure not to move a character if there's an entity inside a cell
       if(selectedEntity != null && selectedEntity.getEntityType() == MapEntity.mapEntityType.PLAYER && clickedCell.contentsChar == null && clickedCell.contentsItem == null){
-        selectedEntity.getCurrentCell().contentsChar = null;
-        clickedCell.contentsChar = (Character)selectedEntity;
-        selectedEntity.setLocation(clickedCell);
-        System.out.println(selectedEntity.getName() + " moved to x=" + clickedCell.x + " y=" + clickedCell.y);
-            
+
+        if(getCellDistance(selectedEntity.getCurrentCell(), clickedCell) < selectedEntity.getStats()[3]){
+          selectedEntity.getCurrentCell().contentsChar = null;
+          clickedCell.contentsChar = (Character)selectedEntity;
+          selectedEntity.setLocation(clickedCell);
+          System.out.println(selectedEntity.getName() + " moved to x=" + getCellColRow(clickedCell)[0] + " y=" + getCellColRow(clickedCell)[1]);
+        }
+        else{
+          //TextHeaders errorMsg = new TextHeaders(selectedEntity.getName() + " can only move " + selectedEntity.getStats()[3] + " spaces per turn!", TextHeaders.Header.HEADER2, Color.RED);
+          message = selectedEntity.getName() + " can only move " + selectedEntity.getStats()[3] + " spaces per turn!";
+        }
+
         //After moving, deselect the entity and the cell
         selectedEntity = null;
         selectedCell = null;
@@ -115,11 +124,11 @@ public class Grid {
       }
     }
     Optional<Cell> cellFound = cellAtPoint(mousePos);
-    String message = "Not in a cell";
-    if(cellFound.isPresent()){
-      message = "Column: " + ((cellFound.get().x-10)/40) + " Row: " + ((cellFound.get().y-10)/40);
-    }
-
+    //String message = "Not in a cell";
+    //if(cellFound.isPresent()){
+      //message = "Column: " + ((cellFound.get().x-10)/40) + " Row: " + ((cellFound.get().y-10)/40);
+    //}
+    
     Graphics2D g2d = (Graphics2D) g;
     g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
     g2d.setColor(lime);
@@ -129,6 +138,33 @@ public class Grid {
 
   public Cell cellAtColRow(int c, int r) {
     return cells[c][r];
+  }
+
+  public int[] getCellColRow(Cell cell){ //Gets the coordinates of a cell
+    for(int x = 0; x < cells.length; x++){
+      for(int y = 0; y < cells[x].length; y++){
+        if(cells[x][y] == cell){
+          int[] rowCol = {x, y};
+          return rowCol;
+        }
+      }
+    }
+    System.out.println("ERROR!! getCellColRow() in Grid.java couldn't find passed cell!");
+    int[] rowCol = {0, 0};
+    return rowCol;
+  }
+
+  public int getCellDistance(Cell a, Cell b){ //Gets the distance between cells
+
+    int absoluteX; //Subtract the lower number from the higher number
+    if(getCellColRow(a)[0] > getCellColRow(b)[0]) absoluteX = getCellColRow(b)[0] - getCellColRow(a)[0];
+    else absoluteX = getCellColRow(a)[0] - getCellColRow(b)[0];
+
+    int absoluteY;
+    if(getCellColRow(a)[1] > getCellColRow(b)[1]) absoluteY = getCellColRow(b)[1] - getCellColRow(a)[1];
+    else absoluteY = getCellColRow(a)[1] - getCellColRow(b)[1];
+
+    return absoluteX + absoluteY;
   }
 
   public Optional<Cell> cellAtPoint(Point p){
