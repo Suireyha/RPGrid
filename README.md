@@ -22,7 +22,7 @@ You can see each of our contributions and development of the original repository
 - ~~Add player movement~~
 - Add combat
     - Add a turn queue (ordered list of characters or make characters recursive so that it points to next character in turn)
-    - Add character death
+    - ~~Add character death~~
 - Add start button
 - Add win/loss screen
 - Add more items/content
