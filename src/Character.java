@@ -10,6 +10,8 @@ public class Character extends Actor implements MapEntity{ //Child of Actor sinc
     RoleType role; //Characters role/class
     RaceType race; //Characters race
     ArrayList<Item> inventory = new ArrayList<>();
+    Weapon equipedWeapon = null;
+    Armour equipedArmour = null;
     boolean player = false; //If this character is a user controlled player, make this true
     Cell loc;
 
@@ -43,7 +45,10 @@ public class Character extends Actor implements MapEntity{ //Child of Actor sinc
     }
 
     private void setStats(){
-        //**RULES** each role'ss attributes must sum to 16 
+        
+        equipedWeapon = new Weapon("Bare Hands", "The fists of " + this.name, 0, 0, 0, 0, Weapon.Type.SWORD);
+        equipedArmour = new Armour("Rags", "The nearly naked form of " + this.name, 0, 0, 0, 0);
+
         switch(role){
             case BARBARIAN: //Slow, but hard to take out and super heavy hitting
                 strength += 7;
@@ -206,14 +211,28 @@ public class Character extends Actor implements MapEntity{ //Child of Actor sinc
     public void attack(Character defender){
         switch(role){
             case BARBARIAN:
+                defender.health -= this.strength*2;
                 break;
             case FIGHTER:
+                defender.health -= this.strength*2;
                 break;
             case RANGER:
+                defender.health -= this.strength*2;
                 break;
             case MAGE:
+                defender.health -= this.wisdom*2;
                 break;
         } 
+
+        defender.checkIsDead();
+    }
+
+    public void checkIsDead(){
+        if(health <= 0){
+            loc.contentsChar = null;
+            this.loc = null;
+            shape.clear();
+        }
     }
     
     public void draw(){ //Function to draw each Character based on Race/Role/Player

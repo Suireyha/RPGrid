@@ -206,4 +206,10 @@ public class Grid {
     }
     return location;
   }
+
+  public void changeMessage(String text, Color col){
+    messageCol = col;
+    message = text;
+  }
+
 }
