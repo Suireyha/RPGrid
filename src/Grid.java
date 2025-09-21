@@ -89,8 +89,13 @@ public class Grid {
         clickedCell.isSelected = true;
         if(clickedCell.contentsChar != null && selectedEntity instanceof Character){
 
-          selectedEntity.attack(clickedCell.contentsChar, this); //Attack!!
-
+          if(getCellDistance(selectedEntity.getCurrentCell(), clickedCell) <= ((Character)selectedEntity).equipedWeapon.range){
+            selectedEntity.attack(clickedCell.contentsChar, this); //Attack!!
+          }
+          else{
+            messageCol = alert;
+            message = selectedEntity.getName() + "'s range is " + ((Character)selectedEntity).equipedWeapon.range + "!";
+          }
           selectedEntity = null;
           selectedCell = null;
           clickedCell.isSelected = false; //Deslect the cell after moving
@@ -213,11 +218,6 @@ public class Grid {
       }
     }
     return location;
-  }
-
-  public void deselectAll(){
-    selectedEntity = null;
-    selectedCell = null;
   }
 
   public void changeMessage(String text, Color col){

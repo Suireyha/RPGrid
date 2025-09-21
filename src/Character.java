@@ -12,8 +12,10 @@ public class Character extends Actor implements MapEntity{ //Child of Actor sinc
     ArrayList<Item> inventory = new ArrayList<>();
     Weapon equipedWeapon = null;
     Armour equipedArmour = null;
+    int range = 2;
     boolean player = false; //If this character is a user controlled player, make this true
     Cell loc;
+
 
     Color nameTextCol = Color.WHITE; //White by default
     mapEntityType entity;
@@ -199,6 +201,10 @@ public class Character extends Actor implements MapEntity{ //Child of Actor sinc
         return loc;
     }
 
+    public int getRange(){
+        return range;
+    }
+
     public void setLocation(Cell location){
         this.loc = location;
     }
@@ -247,6 +253,8 @@ public class Character extends Actor implements MapEntity{ //Child of Actor sinc
         }
         return false;
     }
+
+
     
     public void draw(){ //Function to draw each Character based on Race/Role/Player
         //System.out.println(name + "is at location (" + loc.x + "," + loc.y + ")");

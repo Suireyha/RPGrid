@@ -112,6 +112,11 @@ public abstract class Item implements MapEntity{ //Making an Item that isn't som
         //Do nothing, this ones just for characters
     }
 
+    public int getRange(){
+        //Yet another Character only thing
+        return 0;
+    }
+
     public void draw(){ //All items should have draw function for when they're on the map
         Polygon part1 = new Polygon();
         shape.clear();

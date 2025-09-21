@@ -3,6 +3,7 @@ import java.awt.Polygon;
 public class Weapon extends Item{ //Child of item
 
     Type type;
+    int range;
 
     enum Type{
         SWORD,
@@ -14,6 +15,20 @@ public class Weapon extends Item{ //Child of item
     Weapon(String name, String description, int strength, int wisdom, int constitution, int initiative, Type type){
         super(name, description, strength, wisdom, constitution, initiative);
         this.type = type;
+        switch(type){
+            case SWORD:
+                range = 2;
+                break;
+            case BOW:
+                range = 10;
+                break;
+            case STAFF:
+                range = 6;
+                break;
+            case AXE:
+                range = 3;
+                break;
+        }
     }
 
     @Override

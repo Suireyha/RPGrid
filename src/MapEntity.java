@@ -9,7 +9,7 @@ interface MapEntity{
         EMPTY
     }
 
-    
+    public int getRange();
     public void draw();
     public void setLocation(Cell location);
     public void addItem(Item item); //Actually only needed for Character
