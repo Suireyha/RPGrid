@@ -117,6 +117,27 @@ public abstract class Item implements MapEntity{ //Making an Item that isn't som
         return 0;
     }
 
+    public void use(Character caller){
+        caller.health += healMod;
+    }
+
+    public void equip(Character caller){
+        if(this instanceof Weapon){
+            caller.strength += this.strength - caller.equipedWeapon.strength;
+            caller.wisdom += this.wisdom - caller.equipedWeapon.wisdom;
+            caller.constitution += this.constitution - caller.equipedWeapon.constitution;
+            caller.initiative += this.initiative - caller.equipedWeapon.initiative;
+            caller.equipedWeapon = (Weapon)this;
+        }
+        else{
+            caller.strength += this.strength - caller.equipedArmour.strength;
+            caller.wisdom += this.wisdom - caller.equipedArmour.wisdom;
+            caller.constitution += this.constitution - caller.equipedArmour.constitution;
+            caller.initiative += this.initiative - caller.equipedArmour.initiative;
+            caller.equipedArmour = (Armour)this;
+        }
+    }
+
     public void draw(){ //All items should have draw function for when they're on the map
         Polygon part1 = new Polygon();
         shape.clear();
