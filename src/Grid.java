@@ -90,7 +90,7 @@ public class Grid {
       for(int j=0; j<cells[i].length; j++) {
         cells[i][j].paint(g, mousePos);
         if(cells[i][j].contentsChar != null){
-          //cells[i][j].contentsChar.draw();
+          cells[i][j].contentsChar.draw();
         }
       }
     }

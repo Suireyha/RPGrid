@@ -199,7 +199,7 @@ public class Character extends Actor implements MapEntity{ //Child of Actor sinc
     
     public void draw(){ //Function to draw each Character based on Race/Role/Player
         //System.out.println(name + "is at location (" + loc.x + "," + loc.y + ")");
-
+        shape.clear();
         //Polygon declarations, we'll change these depending on the role
         Polygon part1 = new Polygon();
         Polygon part2 = new Polygon();
