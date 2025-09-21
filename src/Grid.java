@@ -43,6 +43,12 @@ public class Grid {
 
     Optional<Cell> activeCell = cellAtPoint(mousePos);
     if (activeCell.isPresent()){
+      if(selectedEntity != null && selectedEntity.getEntityType() == MapEntity.mapEntityType.PLAYER){
+        selectedEntity.getCurrentCell().contentsChar = null;
+        activeCell.get().contentsChar = (Character)selectedEntity;
+        selectedEntity.setLocation(activeCell.get());
+        System.out.println(selectedEntity.getName() + " is at x=" + selectedEntity.getCurrentCell().x + " y=" + selectedEntity.getCurrentCell().y);
+      }
       selectedCell = activeCell.get();
       activeCell.get().isSelected = true;
       if(activeCell.get().contentsChar != null){
@@ -72,7 +78,6 @@ public class Grid {
       }
     }
   }
-  
 
   public void paint(Graphics g, Point mousePos) {
     // If mousepos is null, make it = -1000, 1000 so we don't get null pointer exceptions. FOR WEEK 6 WE CAN TOTALLY MAKE THIS A TRY{}CATCH{} INSTEAD!!!
@@ -84,6 +89,9 @@ public class Grid {
     for(int i=0; i<cells.length; i++) {
       for(int j=0; j<cells[i].length; j++) {
         cells[i][j].paint(g, mousePos);
+        if(cells[i][j].contentsChar != null){
+          //cells[i][j].contentsChar.draw();
+        }
       }
     }
     Optional<Cell> cellFound = cellAtPoint(mousePos);

@@ -192,6 +192,10 @@ public class Character extends Actor implements MapEntity{ //Child of Actor sinc
     public Cell getCurrentCell(){
         return loc;
     }
+
+    public void setLocation(Cell location){
+        this.loc = location;
+    }
     
     public void draw(){ //Function to draw each Character based on Race/Role/Player
         //System.out.println(name + "is at location (" + loc.x + "," + loc.y + ")");

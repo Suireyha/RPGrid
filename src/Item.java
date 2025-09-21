@@ -93,6 +93,10 @@ public abstract class Item implements MapEntity{ //Making an Item that isn't som
         return loc;
     }
 
+    public void setLocation(Cell location){
+        this.loc = location;
+    }
+
     public void draw(){ //All items should have draw function for when they're on the map
         Polygon part1 = new Polygon();
 

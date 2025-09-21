@@ -9,6 +9,8 @@ interface MapEntity{
         EMPTY
     }
 
+    public void draw();
+    public void setLocation(Cell location);
     public Cell getCurrentCell();
     public int[] getStats();
     public String getDescription();
