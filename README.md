@@ -102,3 +102,9 @@ Right clicking items or characters allows you to display their name, description
 
 ## Storyboard
 ![storyboard](https://github.com/Suireyha/RPGrid/blob/main/doc/storyboards/draft-storyboard.jpg)
+
+## Discolsure of the use of Generative AI
+Generative AI was used to a miniscule extent in this project.
+Weapon.java, Item.java, Armour.java and Character.java **ALL* contain a draw() method. The logic for the switch/case and the shape.clear statements were written by me, but since I did not intend to burn hours of my time writing the Polygon.addPoint() maths to draw a few crude images of weapons, characters and other items- I employed AI to generate those sections. 
+I have left a comment in each of these functions outlining the use of AI too.
+The polygons were drawn by [Anthropic's Claude AI](https://claude.ai)
