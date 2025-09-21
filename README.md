@@ -97,3 +97,6 @@ Right clicking items or characters allows you to display their name, description
     - PopUp.java is a generic class that can be made with any child of MapEntity.java (Character, Item, Item->Weapon, Item->Potion, Item->Armour), since all entities must have a PopUp to display when right clicked **but** they should have unique their own unique display functionality between them.
 - setRandomSpawn()
     - The method setRandomSpawn() in Stage.java is an abstract method that takes any child of MapEntity.java as argument, and will place those entities on the grid randomly within different bounds depending on the type. For example, Items can be placed anywhere as long as a cell is empty, but Characters can't be placed between y=8 and y=12, and will be placed in either y=0 - y=8 or y=12 - y=20 depending on whether the character is a player or enemie 
+
+## Storyboard
+![storyboard](https://github.com/Suireyha/RPGrid/blob/main/doc/storyboards/draft-storyboard.jpg)
