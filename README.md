@@ -17,7 +17,7 @@ You can see each of our contributions and development of the original repository
 ## To Do:
 - Make items improve stats
 - Make inventory viewable from popup
-- Add attacking enemies
+- ~~Add attacking enemies~~
 - Flesh out items, weapons, armour and potions
 - ~~Add player movement~~
 - Add combat
