@@ -12,6 +12,7 @@ public abstract class Item implements MapEntity{ //Making an Item that isn't som
     //All items need a name and description
     String name;
     String description;
+    String statDescription;
 
     PopUp<Item> popup; //Temporary, this should be moved to inventory later
 
@@ -30,7 +31,7 @@ public abstract class Item implements MapEntity{ //Making an Item that isn't som
     //For health potions mainly, but some other items may need this
     float healMod;
 
-    Item(String name, String description, int strength, int wisdom, int constitution, int initiative){ //Constructor to be used by basic Weapons and Armours
+    Item(String name, String description, String statDescription, int strength, int wisdom, int constitution, int initiative){ //Constructor to be used by basic Weapons and Armours
         this.name = name;
         this.description = description;
         this.strength = strength;
@@ -39,7 +40,7 @@ public abstract class Item implements MapEntity{ //Making an Item that isn't som
         this.initiative = initiative;
         nameTextCol = new Color(255, 249, 121); //A nice gold colour for items
     }
-    Item(String name, String description, int strength, int wisdom, int constitution, int initiative, float healMod){ //Constructor to be used by advanced Weapons & Armours
+    Item(String name, String description, String statDescription, int strength, int wisdom, int constitution, int initiative, float healMod){ //Constructor to be used by advanced Weapons & Armours
         this.name = name;
         this.description = description;
         this.strength = strength;
@@ -47,6 +48,7 @@ public abstract class Item implements MapEntity{ //Making an Item that isn't som
         this.constitution = constitution;
         this.initiative = initiative;
         this.healMod = healMod;
+        this.statDescription = statDescription;
         nameTextCol = new Color(255, 249, 121); //A nice gold colour for items
     }
 

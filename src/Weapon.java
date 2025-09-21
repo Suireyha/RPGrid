@@ -12,8 +12,8 @@ public class Weapon extends Item{ //Child of item
         AXE,
     }
 
-    Weapon(String name, String description, int strength, int wisdom, int constitution, int initiative, Type type){
-        super(name, description, strength, wisdom, constitution, initiative);
+    Weapon(String name, String description, String statDescription, int strength, int wisdom, int constitution, int initiative, Type type){
+        super(name, description, statDescription, strength, wisdom, constitution, initiative);
         this.type = type;
         switch(type){
             case SWORD:

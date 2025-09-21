@@ -67,9 +67,9 @@ public class Main extends JFrame {
       this.setVisible(true);
 
       //Create items
-      Weapon sword = new Weapon("Iron Sword", "A simple sword. Made from Iron.", 1, 0, 0, 0, Weapon.Type.SWORD);
-      Armour leatherVest = new Armour("Leather Vest", "A vest crafted from cow hide.", 0, 0, 1, 1);
-      Potion healthPotion = new Potion("Health Potion", "A jar of red liquid- looks tasty!", 0, 0, 0, 0, 10f);
+      Weapon sword = new Weapon("Iron Sword", "A simple sword. Made from Iron.", "+2 STR", 2, 0, 0, 0, Weapon.Type.SWORD);
+      Armour leatherVest = new Armour("Leather Vest", "A vest crafted from cow hide.", "+1 CONS, +1 INIT", 0, 0, 1, 1);
+      Potion healthPotion = new Potion("Health Potion", "A jar of red liquid- looks tasty!", "+10 HP", 0, 0, 0, 0, 10f);
 
       stage.addItem(sword);
       stage.addItem(leatherVest);

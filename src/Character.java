@@ -48,8 +48,8 @@ public class Character extends Actor implements MapEntity{ //Child of Actor sinc
 
     private void setStats(){
 
-        Weapon fists = new Weapon("Bare Hands", "The fists of " + this.name, 0, 0, 0, 0, Weapon.Type.SWORD);
-        Armour rags = new Armour("Rags", "The nearly naked form of " + this.name, 0, 0, 0, 0);
+        Weapon fists = new Weapon("Bare Hands", "The fists of " + this.name, "+0 ALL", 0, 0, 0, 0, Weapon.Type.SWORD);
+        Armour rags = new Armour("Rags", "The nearly naked form of " + this.name, "+0 ALL", 0, 0, 0, 0);
 
         switch(role){
             case BARBARIAN: //Slow, but hard to take out and super heavy hitting
@@ -58,7 +58,7 @@ public class Character extends Actor implements MapEntity{ //Child of Actor sinc
                 constitution += 6;
                 initiative += 2;
                 roleAsText = "Barbarian";
-                Weapon axe = new Weapon("Basic Axe", "A crude axe, made from sticks and scrap.", 1, 0, 0, 0, Weapon.Type.AXE);
+                Weapon axe = new Weapon("Basic Axe", "A crude axe, made from sticks and scrap.", "+1 STR", 1, 0, 0, 0, Weapon.Type.AXE);
                 inventory.add(axe);
                 inventory.add(rags);
                 equipedWeapon = axe; 
@@ -71,7 +71,7 @@ public class Character extends Actor implements MapEntity{ //Child of Actor sinc
                 initiative += 4;
                 roleAsText = "Fighter";
 
-                Weapon sword = new Weapon("Basic Sword", "A sharpened piece of scrap.", 1, 0, 0, 0, Weapon.Type.SWORD);
+                Weapon sword = new Weapon("Basic Sword", "A sharpened piece of scrap.", "+1 STR", 1, 0, 0, 0, Weapon.Type.SWORD);
                 inventory.add(sword);
                 inventory.add(rags);
                 equipedWeapon = sword; 
@@ -86,7 +86,7 @@ public class Character extends Actor implements MapEntity{ //Child of Actor sinc
                 initiative += 5;
                 roleAsText = "Mage";
 
-                Weapon staff = new Weapon("Basic Staff", "A fancy looking stick!", 0, 1, 0, 0, Weapon.Type.STAFF);
+                Weapon staff = new Weapon("Basic Staff", "A fancy looking stick!", "+1 WIS", 0, 1, 0, 0, Weapon.Type.STAFF);
                 inventory.add(staff);
                 inventory.add(rags);
                 equipedWeapon = staff; 
@@ -101,7 +101,7 @@ public class Character extends Actor implements MapEntity{ //Child of Actor sinc
                 initiative += 7;
                 roleAsText = "Ranger";
 
-                Weapon bow = new Weapon("Basic Bow", "It's honestly more of a slingshot...", 0, 0, 0, 0, Weapon.Type.BOW);
+                Weapon bow = new Weapon("Basic Bow", "It's honestly more of a slingshot...", "+0 ALL", 0, 0, 0, 0, Weapon.Type.BOW);
                 inventory.add(bow);
                 inventory.add(rags);
                 equipedWeapon = bow; 

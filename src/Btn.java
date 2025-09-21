@@ -21,7 +21,7 @@ public class Btn extends JButton{
         this.setBorder(circleBorder);
         this.setForeground(lightGrey);
         this.setVerticalTextPosition(AbstractButton.TOP);
-        this.setFont(new Font("Ubuntu Sans", Font.BOLD, 15));
+        this.setFont(new Font("Tahoma", Font.BOLD, 15));
     }
 
     public void setUp(int width, int height, boolean isTransparent){
