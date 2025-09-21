@@ -11,6 +11,7 @@ interface MapEntity{
 
     public void draw();
     public void setLocation(Cell location);
+    public void addItem(Item item); //Actually only needed for Character
     public Cell getCurrentCell();
     public int[] getStats();
     public String getDescription();

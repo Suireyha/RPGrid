@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.Polygon;
+import java.util.ArrayList;
 
 public class Character extends Actor implements MapEntity{ //Child of Actor since we'll draw these
     String name; //Characters name
@@ -8,7 +9,7 @@ public class Character extends Actor implements MapEntity{ //Child of Actor sinc
     String roleAsText;
     RoleType role; //Characters role/class
     RaceType race; //Characters race
-    Inventory inventory = new Inventory(); //Characters inventory
+    ArrayList<Item> inventory = new ArrayList<>();
     boolean player = false; //If this character is a user controlled player, make this true
     Cell loc;
 
@@ -195,6 +196,11 @@ public class Character extends Actor implements MapEntity{ //Child of Actor sinc
 
     public void setLocation(Cell location){
         this.loc = location;
+    }
+
+    public void addItem(Item item){
+        inventory.add(item);
+        item.removeFromMap();
     }
     
     public void draw(){ //Function to draw each Character based on Race/Role/Player

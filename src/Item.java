@@ -15,7 +15,7 @@ public abstract class Item implements MapEntity{ //Making an Item that isn't som
 
     PopUp<Item> popup; //Temporary, this should be moved to inventory later
 
-    boolean onMap; //Variable that tracks if the item is on the map or nor (if not, will exist in a players inventory ig)
+    boolean onMap = true; //Variable that tracks if the item is on the map or nor (if not, will exist in a players inventory ig)
     Cell loc; //It's location, if any
     //Stat effects mostly for weapons/armour
     int strength;
@@ -64,7 +64,7 @@ public abstract class Item implements MapEntity{ //Making an Item that isn't som
     }
 
     public void displayWin(){ //Temporary, this should be moved to inventory later
-        popup = new PopUp<Item>(this);
+        if(onMap) popup = new PopUp<Item>(this);
     }
 
     public mapEntityType getEntityType(){
@@ -95,6 +95,17 @@ public abstract class Item implements MapEntity{ //Making an Item that isn't som
 
     public void setLocation(Cell location){
         this.loc = location;
+    }
+
+    public void addItem(Item item){
+        System.out.println("Does nothing");
+    }
+
+    public void removeFromMap(){
+        this.onMap = false;
+        loc.contentsItem = null;
+        this.loc = null;
+        shape.clear();
     }
 
     public void draw(){ //All items should have draw function for when they're on the map

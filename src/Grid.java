@@ -23,6 +23,7 @@ public class Grid {
   double gridOffset = (1000/2) - (40*20)/2; //Currently the window is Window = 900px, Cells = 35px, #OfCells = 20;
   Color lime = new Color(0, 255, 50);
   Color alert = new Color(232, 23, 72);
+  Color heroBlue = new Color(137, 207, 240);
 
   String message = "Right click characters/items to display, left click to move!";
   Color messageCol = lime; //Green by default
@@ -87,13 +88,22 @@ public class Grid {
         selectedCell = clickedCell;
         clickedCell.isSelected = true;
         if(clickedCell.contentsChar != null){
-            selectedEntity = clickedCell.contentsChar;
+          selectedEntity = clickedCell.contentsChar;
         }
-        else if(clickedCell.contentsItem != null){
+        else if(clickedCell.contentsItem != null && selectedEntity instanceof Character){
+          if(getCellDistance(selectedEntity.getCurrentCell(), clickedCell) <= 2){ //If a character is in range of an item, pick it up and add it to their inventory
+            messageCol = heroBlue;
+            message = selectedEntity.getName() + " picked up " + clickedCell.contentsItem.getName() + "!";
+            selectedEntity.addItem(clickedCell.contentsItem); //Add item to inventory
+            selectedEntity = null; //Deselect
+          }
+          else{
             selectedEntity = clickedCell.contentsItem;
+          }
+          
         }
         else {
-            selectedEntity = null;
+          selectedEntity = null;
         }
       }
     }
