@@ -38,6 +38,7 @@ public abstract class Item implements MapEntity{ //Making an Item that isn't som
         this.wisdom = wisdom;
         this.constitution = constitution;
         this.initiative = initiative;
+        this.statDescription = statDescription;
         nameTextCol = new Color(255, 249, 121); //A nice gold colour for items
     }
     Item(String name, String description, String statDescription, int strength, int wisdom, int constitution, int initiative, float healMod){ //Constructor to be used by advanced Weapons & Armours

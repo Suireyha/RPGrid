@@ -2,8 +2,8 @@ import java.awt.Polygon;
 
 public class Armour extends Item{
 
-    Armour(String name, String description, int strength, int wisdom, int constitution, int initiative){
-        super(name, description, strength, wisdom, constitution, initiative);
+    Armour(String name, String description, String statDescription, int strength, int wisdom, int constitution, int initiative){
+        super(name, description, statDescription, strength, wisdom, constitution, initiative);
     }
 
     @Override
