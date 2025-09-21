@@ -3,7 +3,6 @@ import javax.swing.JPanel;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.Color;
-import java.awt.Graphics2D;
 import javax.swing.border.*;
 
 //import javax.swing.BorderFactory;
