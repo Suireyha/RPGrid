@@ -45,7 +45,7 @@ public class Character extends Actor implements MapEntity{ //Child of Actor sinc
     }
 
     private void setStats(){
-        
+
         equipedWeapon = new Weapon("Bare Hands", "The fists of " + this.name, 0, 0, 0, 0, Weapon.Type.SWORD);
         equipedArmour = new Armour("Rags", "The nearly naked form of " + this.name, 0, 0, 0, 0);
 
@@ -208,31 +208,44 @@ public class Character extends Actor implements MapEntity{ //Child of Actor sinc
         item.removeFromMap();
     }
 
-    public void attack(Character defender){
+    public void attack(Character defender, Grid caller){
+        Color messageCol = new Color(255, 255, 255);
+        double damage;
         switch(role){
             case BARBARIAN:
-                defender.health -= this.strength*2;
+                damage = strength*2;
+                messageCol = new Color(107, 23, 232);
                 break;
             case FIGHTER:
-                defender.health -= this.strength*2;
+                damage = strength*2;
+                messageCol = new Color(107, 23, 232);
                 break;
             case RANGER:
-                defender.health -= this.strength*2;
+                damage = strength + initiative;
+                messageCol = new Color(107, 23, 232);
                 break;
             case MAGE:
-                defender.health -= this.wisdom*2;
+                damage = wisdom*2;
+                messageCol = new Color(107, 23, 232);
                 break;
+            default:
+                damage = 0;
         } 
-
-        defender.checkIsDead();
+        defender.health -= damage;
+        caller.changeMessage(this.name + " the " + this.roleAsText + " hit " + defender.name + " with their " + equipedWeapon.name + " for " + damage + " damage!", messageCol);
+        if(defender.checkIsDead()){
+            caller.changeMessage(this.name + " the " + this.roleAsText + " KILLED " + defender.name + " with their " + equipedWeapon.name + "!!!!", Color.RED);
+        }
     }
 
-    public void checkIsDead(){
+    public boolean checkIsDead(){
         if(health <= 0){
             loc.contentsChar = null;
             this.loc = null;
             shape.clear();
+            return true;
         }
+        return false;
     }
     
     public void draw(){ //Function to draw each Character based on Race/Role/Player
