@@ -21,7 +21,7 @@ public class Character extends Actor implements MapEntity{ //Child of Actor sinc
     public int strength = 0; //Used for non-magical combat rolls
     public int wisdom = 0; //Used for magical combat rolls
     public int constitution = 0; //Used to determine HP
-    public int initiative = 0; //Used to determine turns
+    public int initiative = 3; //Used to determine turns (All have base 3 init)
 
     public double maxHealth = 0;
     public double health = 0;

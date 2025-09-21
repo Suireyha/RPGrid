@@ -20,10 +20,13 @@ public class Grid {
   Cell selectedCell = null;
   MapEntity selectedEntity;
 
-  String message = "RPGrid by Marvin Kelly";
-
   double gridOffset = (1000/2) - (40*20)/2; //Currently the window is Window = 900px, Cells = 35px, #OfCells = 20;
   Color lime = new Color(0, 255, 50);
+  Color alert = new Color(232, 23, 72);
+
+  String message = "Right click characters/items to display, left click to move!";
+  Color messageCol = lime; //Green by default
+
 
   public Grid() {
     int idCounter = 0;
@@ -64,10 +67,12 @@ public class Grid {
           selectedEntity.getCurrentCell().contentsChar = null;
           clickedCell.contentsChar = (Character)selectedEntity;
           selectedEntity.setLocation(clickedCell);
-          System.out.println(selectedEntity.getName() + " moved to x=" + getCellColRow(clickedCell)[0] + " y=" + getCellColRow(clickedCell)[1]);
+          messageCol = lime;
+          message = selectedEntity.getName() + " moved to x=" + getCellColRow(clickedCell)[0] + " y=" + getCellColRow(clickedCell)[1];
         }
         else{
           //TextHeaders errorMsg = new TextHeaders(selectedEntity.getName() + " can only move " + selectedEntity.getStats()[3] + " spaces per turn!", TextHeaders.Header.HEADER2, Color.RED);
+          messageCol = alert;
           message = selectedEntity.getName() + " can only move " + selectedEntity.getStats()[3] + " spaces per turn!";
         }
 
@@ -125,7 +130,7 @@ public class Grid {
         }
       }
     }
-    Optional<Cell> cellFound = cellAtPoint(mousePos);
+    //Optional<Cell> cellFound = cellAtPoint(mousePos);
     //String message = "Not in a cell";
     //if(cellFound.isPresent()){
       //message = "Column: " + ((cellFound.get().x-10)/40) + " Row: " + ((cellFound.get().y-10)/40);
@@ -133,9 +138,10 @@ public class Grid {
     
     Graphics2D g2d = (Graphics2D) g;
     g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-    g2d.setColor(lime);
-    g2d.setFont(new Font("Arial", Font.BOLD, 17)); //Changes the font to Arial, bold, 15px
-    g2d.drawString(message, 310, 1);
+    g2d.setColor(messageCol);
+    g2d.setFont(new Font("Tahoma", Font.BOLD, 18)); //Changes the font to Tahoma, bold, 18px
+    g2d.drawString(message, 400 - (5*message.length()), 1); //Draws the string further to the left the longer it is
+
   }
 
   public Cell cellAtColRow(int c, int r) {
