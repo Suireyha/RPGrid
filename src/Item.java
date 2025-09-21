@@ -84,6 +84,10 @@ public abstract class Item implements MapEntity{ //Making an Item that isn't som
         return stats;
     }
 
+    public String getStatDescription(){
+        return statDescription;
+    }
+
     public String getDescription(){
         return description;
     }
@@ -132,12 +136,15 @@ public abstract class Item implements MapEntity{ //Making an Item that isn't som
             caller.initiative += this.initiative - caller.equipedWeapon.initiative;
             caller.equipedWeapon = (Weapon)this;
         }
-        else{
+        else if(this instanceof Armour){
             caller.strength += this.strength - caller.equipedArmour.strength;
             caller.wisdom += this.wisdom - caller.equipedArmour.wisdom;
             caller.constitution += this.constitution - caller.equipedArmour.constitution;
             caller.initiative += this.initiative - caller.equipedArmour.initiative;
             caller.equipedArmour = (Armour)this;
+        }
+        else{
+            caller.health += this.healMod;
         }
     }
 

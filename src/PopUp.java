@@ -62,8 +62,7 @@ public class PopUp <T extends MapEntity> extends JFrame{
 
         
         switch(entity.getEntityType()){
-            case PLAYER:   
-            btnPanel.add(invBtn);
+            case PLAYER:
             case ENEMIE:
                 makeNewContentRow("ABOUT");
                 makeNewContentRow("", entity.getDescription());
@@ -75,7 +74,7 @@ public class PopUp <T extends MapEntity> extends JFrame{
                 makeNewContentRow("Health:", "" + entityStats[4] + "/" + entityStats[5]);
                 makeNewContentRow("INVENTORY");
                 for(int i = 0; i < ((Character)entity).inventory.size(); i++){
-                    makeNewContentRow(((Character)entity).inventory.get(i).name, ((Character)entity).inventory.get(i).statDescription);
+                    makeNewContentRow(((Character)entity).inventory.get(i).getName(), ((Character)entity).inventory.get(i).getStatDescription());
                 }
                 break;
             case ITEM: 

@@ -61,9 +61,9 @@ public class Grid {
 
       //A bit of a verbose if statement, but it makes sure not to move a character if there's an entity inside a cell
       if(selectedEntity != null && selectedEntity.getEntityType() == MapEntity.mapEntityType.PLAYER && clickedCell.contentsChar == null && clickedCell.contentsItem == null){
-        System.out.println("");
-        System.out.println("Distance between cells: " + getCellDistance(selectedEntity.getCurrentCell(), clickedCell));
-        System.out.println(selectedEntity.getName() + "'s Initaiative:" + selectedEntity.getStats()[3]);
+        //System.out.println("");
+        //System.out.println("Distance between cells: " + getCellDistance(selectedEntity.getCurrentCell(), clickedCell));
+        //System.out.println(selectedEntity.getName() + "'s Initaiative:" + selectedEntity.getStats()[3]);
         if(getCellDistance(selectedEntity.getCurrentCell(), clickedCell) < selectedEntity.getStats()[3]){
           selectedEntity.getCurrentCell().contentsChar = null;
           clickedCell.contentsChar = (Character)selectedEntity;

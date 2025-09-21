@@ -239,6 +239,9 @@ public class Character extends Actor implements MapEntity{ //Child of Actor sinc
 
     public void addItem(Item item){
         inventory.add(item);
+        if(item instanceof Weapon) equipedWeapon = (Weapon)item;
+        if(item instanceof Armour) equipedArmour = (Armour)item;
+        item.equip(this);
         item.removeFromMap();
     }
 
