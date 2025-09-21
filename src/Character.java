@@ -202,6 +202,19 @@ public class Character extends Actor implements MapEntity{ //Child of Actor sinc
         inventory.add(item);
         item.removeFromMap();
     }
+
+    public void attack(Character defender){
+        switch(role){
+            case BARBARIAN:
+                break;
+            case FIGHTER:
+                break;
+            case RANGER:
+                break;
+            case MAGE:
+                break;
+        } 
+    }
     
     public void draw(){ //Function to draw each Character based on Race/Role/Player
         //System.out.println(name + "is at location (" + loc.x + "," + loc.y + ")");

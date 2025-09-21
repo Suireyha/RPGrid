@@ -15,9 +15,11 @@ You can see each of our contributions and development of the original repository
 *Coming soon!*
 
 ## To Do:
+- Make items improve stats
+- Make inventory viewable from popup
+- Add attacking enemies
 - Flesh out items, weapons, armour and potions
-- Add player inventories, accessible from player display popUp
-- Add player movement
+- ~~Add player movement~~
 - Add combat
     - Add a turn queue (ordered list of characters or make characters recursive so that it points to next character in turn)
     - Add character death

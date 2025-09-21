@@ -87,8 +87,12 @@ public class Grid {
       else {
         selectedCell = clickedCell;
         clickedCell.isSelected = true;
-        if(clickedCell.contentsChar != null){
-          selectedEntity = clickedCell.contentsChar;
+        if(clickedCell.contentsChar != null && selectedEntity instanceof Character){
+
+          selectedEntity.attack(clickedCell.contentsChar); //Attack function
+
+
+          selectedEntity = null; //Deselect
         }
         else if(clickedCell.contentsItem != null && selectedEntity instanceof Character){
           if(getCellDistance(selectedEntity.getCurrentCell(), clickedCell) <= 2){ //If a character is in range of an item, pick it up and add it to their inventory
@@ -98,9 +102,10 @@ public class Grid {
             selectedEntity = null; //Deselect
           }
           else{
-            selectedEntity = clickedCell.contentsItem;
+            messageCol = alert;
+            message = selectedEntity.getName() + " is out of range of the " + clickedCell.contentsItem.getName() + "!";
+            selectedEntity = null;
           }
-          
         }
         else {
           selectedEntity = null;
