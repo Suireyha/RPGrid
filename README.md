@@ -85,18 +85,20 @@ Right clicking items or characters allows you to display their name, description
 
 ### Abstract Classes & Methods
 - Item.java
-    -Item.java an abstract class that includes a ton of general functionality for Weapons, Potions and Armour, while those child classes implement some things on their own respecively. Item.java is extended by Weapon, Potion and Armour
+    -Item.java an abstract class that includes a ton of general functionality for Weapons, Potions and Armour, while those child classes implement some things on their own respecively. Item.java is extended by Weapon, Potion and Armour. Item.java itself doesn't make sense to be a stand alone instance, because an Item that doesn't have the additional functionality is ambiguous and useless.
+*The following relationships existed in the project already*
+- Actor.java
 
 ### Interfaces
 - MapEntity.java
-    - MapEntity.java is an interface that ensures anything drawn on the grid is held to a number of standards, like having a draw method. Everything that implements it also must have a displayWin() method to account for the scenario where it's right clicked, a getCurrentCell() method so that other functions/classes can get the cell the entity exists in, etc. MapEntity.java is implemented by Character and Item
+    - MapEntity.java is an interface that ensures anything drawn on the grid is held to a number of standards, like having a draw method. Everything that implements it also must have a displayWin() method to account for the scenario where it's right clicked, a getCurrentCell() method so that other functions/classes can get the cell the entity exists in, etc. MapEntity.java is implemented by Character and Item.
 
 
 ### Generics
 - PopUp.java 
     - PopUp.java is a generic class that can be made with any child of MapEntity.java (Character, Item, Item->Weapon, Item->Potion, Item->Armour), since all entities must have a PopUp to display when right clicked **but** they should have unique their own unique display functionality between them.
 - setRandomSpawn()
-    - The method setRandomSpawn() in Stage.java is an abstract method that takes any child of MapEntity.java as argument, and will place those entities on the grid randomly within different bounds depending on the type. For example, Items can be placed anywhere as long as a cell is empty, but Characters can't be placed between y=8 and y=12, and will be placed in either y=0 - y=8 or y=12 - y=20 depending on whether the character is a player or enemie 
+    - The method setRandomSpawn() in Stage.java is an abstract method that takes any child of MapEntity.java as argument, and will place those entities on the grid randomly within different bounds depending on the type. For example, Items can be placed anywhere as long as a cell is empty, but Characters can't be placed between y=8 and y=12, and will be placed in either y=0 - y=8 or y=12 - y=20 depending on whether the character is a player or enemie.
 
 ## Storyboard
 ![storyboard](https://github.com/Suireyha/RPGrid/blob/main/doc/storyboards/draft-storyboard.jpg)
