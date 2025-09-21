@@ -159,12 +159,12 @@ public class Grid {
   public int getCellDistance(Cell a, Cell b){ //Gets the distance between cells
 
     int absoluteX; //Subtract the lower number from the higher number
-    if(getCellColRow(a)[0] > getCellColRow(b)[0]) absoluteX = getCellColRow(b)[0] - getCellColRow(a)[0];
-    else absoluteX = getCellColRow(a)[0] - getCellColRow(b)[0];
+    if(getCellColRow(a)[0] > getCellColRow(b)[0]) absoluteX = getCellColRow(a)[0] - getCellColRow(b)[0];
+    else absoluteX = getCellColRow(b)[0] - getCellColRow(a)[0];
 
     int absoluteY;
-    if(getCellColRow(a)[1] > getCellColRow(b)[1]) absoluteY = getCellColRow(b)[1] - getCellColRow(a)[1];
-    else absoluteY = getCellColRow(a)[1] - getCellColRow(b)[1];
+    if(getCellColRow(a)[1] > getCellColRow(b)[1]) absoluteY = getCellColRow(a)[1] - getCellColRow(b)[1];
+    else absoluteY = getCellColRow(b)[1] - getCellColRow(a)[1];
 
     return absoluteX + absoluteY;
   }
