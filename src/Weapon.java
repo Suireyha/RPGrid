@@ -19,6 +19,7 @@ public class Weapon extends Item{ //Child of item
     @Override
     public void draw(){ //Weapons draw based on type of weapon!
         //!!The polygons were written by AI!!
+        shape.clear(); //So that it doesn't draw duplicates if moved (not that we're moving this atm)
         Polygon part1 = new Polygon();
         Polygon part2 = new Polygon();
         Polygon part3 = new Polygon();

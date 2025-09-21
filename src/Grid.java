@@ -34,32 +34,52 @@ public class Grid {
     }
   }
 
-  public void cellLeftClicked(Point mousePos){ 
-
-    if(selectedCell != null){
-      selectedCell.isSelected = false;
-      selectedCell = null;
-    }
+  public void cellLeftClicked(Point mousePos){ //This may genuinely be the least readable method I've ever written. Buckle in and rely on the comments :sob:
 
     Optional<Cell> activeCell = cellAtPoint(mousePos);
     if (activeCell.isPresent()){
-      if(selectedEntity != null && selectedEntity.getEntityType() == MapEntity.mapEntityType.PLAYER){
+      Cell clickedCell = activeCell.get();
+
+      //Cclicking the same cell that's already selected deselects it
+      if(selectedCell == clickedCell) {
+        selectedCell.isSelected = false;
+        selectedCell = null;
+        selectedEntity = null;
+        return;
+      }
+            
+      //Clear previous selection
+      if(selectedCell != null){
+        selectedCell.isSelected = false;
+      }
+
+      //A bit of a verbose if statement, but it makes sure not to move a character if there's an entity inside a cell
+      if(selectedEntity != null && selectedEntity.getEntityType() == MapEntity.mapEntityType.PLAYER && clickedCell.contentsChar == null && clickedCell.contentsItem == null){
         selectedEntity.getCurrentCell().contentsChar = null;
-        activeCell.get().contentsChar = (Character)selectedEntity;
-        selectedEntity.setLocation(activeCell.get());
-        System.out.println(selectedEntity.getName() + " is at x=" + selectedEntity.getCurrentCell().x + " y=" + selectedEntity.getCurrentCell().y);
+        clickedCell.contentsChar = (Character)selectedEntity;
+        selectedEntity.setLocation(clickedCell);
+        System.out.println(selectedEntity.getName() + " moved to x=" + clickedCell.x + " y=" + clickedCell.y);
+            
+        //After moving, deselect the entity and the cell
+        selectedEntity = null;
+        selectedCell = null;
+        clickedCell.isSelected = false; //Deslect the cell after moving
       }
-      selectedCell = activeCell.get();
-      activeCell.get().isSelected = true;
-      if(activeCell.get().contentsChar != null){
-        selectedEntity = activeCell.get().contentsChar;
-        //selectedCell = selectedEntity.getCurrentCell();
+            
+      //If the character can't go there, select the contents of the cell instead or deselect
+      else {
+        selectedCell = clickedCell;
+        clickedCell.isSelected = true;
+        if(clickedCell.contentsChar != null){
+            selectedEntity = clickedCell.contentsChar;
+        }
+        else if(clickedCell.contentsItem != null){
+            selectedEntity = clickedCell.contentsItem;
+        }
+        else {
+            selectedEntity = null;
+        }
       }
-      else if(activeCell.get().contentsItem != null){
-        selectedEntity = activeCell.get().contentsItem;
-        //selectedCell = selectedEntity.getCurrentCell();
-      }
-      //Otherwise, do nothing
     }
   }
 
