@@ -89,11 +89,13 @@ public class Grid {
         clickedCell.isSelected = true;
         if(clickedCell.contentsChar != null && selectedEntity instanceof Character){
 
-          selectedEntity.attack(clickedCell.contentsChar); //Attack function
+          selectedEntity.attack(clickedCell.contentsChar, this); //Attack!!
 
-
-          selectedEntity = null; //Deselect
+          selectedEntity = null;
+          selectedCell = null;
+          clickedCell.isSelected = false; //Deslect the cell after moving
         }
+
         else if(clickedCell.contentsItem != null && selectedEntity instanceof Character){
           if(getCellDistance(selectedEntity.getCurrentCell(), clickedCell) <= 2){ //If a character is in range of an item, pick it up and add it to their inventory
             messageCol = heroBlue;
@@ -103,10 +105,16 @@ public class Grid {
           }
           else{
             messageCol = alert;
-            message = selectedEntity.getName() + " is out of range of the " + clickedCell.contentsItem.getName() + "!";
+            message = selectedEntity.getName() + " is out of range of " + clickedCell.contentsItem.getName() + "!";
             selectedEntity = null;
           }
+          
         }
+
+        else if(clickedCell.contentsChar != null){
+          selectedEntity = clickedCell.contentsChar;
+        }
+
         else {
           selectedEntity = null;
         }
@@ -205,6 +213,11 @@ public class Grid {
       }
     }
     return location;
+  }
+
+  public void deselectAll(){
+    selectedEntity = null;
+    selectedCell = null;
   }
 
   public void changeMessage(String text, Color col){

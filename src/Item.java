@@ -108,7 +108,7 @@ public abstract class Item implements MapEntity{ //Making an Item that isn't som
         shape.clear();
     }
 
-    public void attack(Character defender){
+    public void attack(Character defender, Grid caller){
         //Do nothing, this ones just for characters
     }
 
