@@ -9,7 +9,8 @@ This repository is built off of the [foundation repo](https://github.com/Suireyh
 - [Daniel Hardman](https://github.com/stalebiscuit)
 - [Mickel](https://github.com/M1CK3L)
 
-You can see each of our contributions and development of the original repository [here](https://github.com/Suireyha/DMTWMC/tree/week05)
+You can see each of our contributions and development of the original repository [here.](https://github.com/Suireyha/DMTWMC/tree/week05)
+Credit for the Cient.java file also goes to Macquarie University, necessary as per Assignment 2.
 
 ## Description
 RPGrid is a simple GUI based RPG combat game written in Java!
