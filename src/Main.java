@@ -16,16 +16,11 @@ public class Main extends JFrame {
     int winHeight = 1000;
     Stage stage = new Stage();
     public static void main(String[] args) throws Exception {
+      Client downstream = new Client();
       Main window = new Main();
       window.setBounds(350, 50, 1000, 1000); //Window is being drawn at x=350 y=50, dimensions are 1000^2
       window.setBackground(new Color(47, 48, 49));
       window.run();
-
-      Client downstream = new Client();
-
-
-
-
     }
 
     class Canvas extends JPanel implements MouseListener{ //!! NOte to self, put this in justifications.md
