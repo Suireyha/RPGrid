@@ -1,7 +1,7 @@
 import java.awt.Graphics;
 import java.awt.Color;
 
-interface MapEntity{
+public interface MapEntity{
     public enum mapEntityType{
         PLAYER,
         ENEMIE,
