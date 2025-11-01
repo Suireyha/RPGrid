@@ -11,8 +11,12 @@ import java.util.List;
 
 import javax.swing.SwingUtilities;
 
+import java.util.*;
+import java.util.stream.Collectors;
+
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 
@@ -21,7 +25,7 @@ public class Main extends JFrame {
     int winHeight = 1000;
     Stage stage = new Stage();
 
-    ArrayList<Character> turnQueue = new ArrayList<>(); //We'll store all characters (enemies and players) in here to manage turns
+    public ArrayList<Character> turnQueue = new ArrayList<>(); //We'll store all characters (enemies and players) in here to manage turns
 
     public static void main(String[] args) throws Exception {
 
@@ -116,15 +120,20 @@ public class Main extends JFrame {
       stage.addCharacter(en2);
       stage.addCharacter(en3);
 
+      ArrayList<Character> unsortedCharacters = new ArrayList<>();
+
       turnQueue.add(p1);
       turnQueue.add(p2);
       turnQueue.add(p3);
-
       turnQueue.add(en1);
       turnQueue.add(en2);
       turnQueue.add(en3);
 
-      System.out.println(turnQueue);
+      turnQueue = turnQueue.stream()
+        .sorted(Comparator.comparing(Character -> Character.initiative)) //Sorts characters based on their initiative (lowest to highest)
+        .collect(Collectors.toCollection(ArrayList::new)); //All that to make it an Array list.... :sob:
+      
+      turnQueue.forEach(Character -> System.out.println(Character.name + ":\t" + Character.initiative));
 
     }
 
