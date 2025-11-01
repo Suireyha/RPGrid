@@ -18,10 +18,12 @@ public class Main extends JFrame {
     Stage stage = new Stage();
     public static void main(String[] args) throws Exception {
 
-      Loading loadingWindow = new Loading();
-      Client downstream = new Client();
+      PopUp<?> loadingScreen = new PopUp<>("LOADING", Color.CYAN, popup -> {
+        popup.makeNewContentRow("         (This may take a while)"); //Lambda for Consumer.accept (However you want to build the loading screen goes in this function)
+      });
 
-   
+      Client downstream = new Client(); //Open the HTTP client thingy to get the weather :fire:
+
 
       System.out.println("Test 1");
       //Print the weather data to console
@@ -30,7 +32,7 @@ public class Main extends JFrame {
           System.out.println("Weather info: " + line);
       }
 
-      loadingWindow.dispose(); //Delete once the weather data has been retrieved
+      loadingScreen.dispose(); //Delete once the weather data has been retrieved
 
       Main window = new Main();
       window.setBounds(350, 50, 1000, 1000); //Window is being drawn at x=350 y=50, dimensions are 1000^2

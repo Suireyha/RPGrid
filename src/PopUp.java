@@ -1,8 +1,7 @@
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.Color;
+import java.util.function.Consumer;
+
 import javax.swing.border.*;
 
 //import javax.swing.BorderFactory;
@@ -18,6 +17,7 @@ public class PopUp <T extends MapEntity> extends JFrame{
     Color uiHeader = new Color(255, 255, 201);
     Color white = new Color(240, 240, 220);
     T evoker;
+
 
     private void SetUp(){
         container = new JPanel();
@@ -45,7 +45,31 @@ public class PopUp <T extends MapEntity> extends JFrame{
         container.add(btnPanel, BorderLayout.SOUTH); //Justify btnPanel to stick to the bottom
 
     }
+
     
+
+    /* I'm gonna leave an explination for how this actually works here in case I forget when I write the README. Sorry if this is verbose :(
+        Basically, Consumer<T> is an interface that only has the signature for ONE method (void accept(T t)). So, we can give it a lambda
+        to do any operation that takes one argument and returns nothing pretty much, and since we're going to be using this to just make function 
+        calls to MakeNewRow() and what not, it's perfect. To be clear, the line custom.accept(this) is just running the lambdas we gave it.
+
+        This now means that if we want to create a unique popup that will only ever exist once (like the loading screen), we can just call this 
+        constructor instead and give it a lambda that will make the PopUp how we want. Which is handy for really unique use cases like the loading screen
+
+        This should NOT be used for something that you'd want to repeat (like the other popups, they should have their own solutions in this class 
+        since they are called over and over, we want everything to be as dynamic as possible)
+    */
+    //Alternative constructor (for unique popups, uses lambdas!!)
+    PopUp(String title, Color titleColor, Consumer<PopUp> custom) {
+        SetUp(); //Regular setup doesn't have any mapentity functions
+        TextHeaders titleHeader = new TextHeaders(title, 
+            TextHeaders.Header.HEADER2, titleColor);
+        titleHeader.setAlignmentX(Component.CENTER_ALIGNMENT);
+        titleHeader.setBorder(new EmptyBorder(0,0,10,0));
+        infoPanel.add(titleHeader);
+        custom.accept(this);
+    }
+
     PopUp(T entity){
         SetUp();
         int[] entityStats = entity.getStats();
@@ -95,6 +119,7 @@ public class PopUp <T extends MapEntity> extends JFrame{
         infoPanel.add(row);
 
     }
+
     public void makeNewContentRow(String left, String right){
         ContentRow row = new ContentRow();
         TextHeaders textLeft = new TextHeaders(left, TextHeaders.Header.TEXTB, white);
@@ -118,9 +143,9 @@ public class PopUp <T extends MapEntity> extends JFrame{
             TextHeaders textRight = new TextHeaders(right, TextHeaders.Header.TEXTB, white);
             row.add(textLeft, BorderLayout.WEST);
             row.add(textRight, BorderLayout.EAST);
-        }
-        
+        }   
         infoPanel.add(row);
     }
+
     
 }
