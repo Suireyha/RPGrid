@@ -76,6 +76,7 @@ Right clicking items or characters allows you to display their name, description
 ### Use of Weather Data
 - Character.java
     - *(Not actually implemented yet, leaving this in the readme for my own formatting)*
+    - Will PROBABLY use the weather data to seed random or dictate enemy behaviours. Not very interested in using the data in a meaningful fashion really.
 
 ## Storyboard
 ![Project Storyboard](doc/storyboards/draft-storyboard.jpg)
