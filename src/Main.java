@@ -7,6 +7,7 @@ import java.awt.Color;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.List;
 
 import javax.swing.SwingUtilities;
 
@@ -16,10 +17,24 @@ public class Main extends JFrame {
     int winHeight = 1000;
     Stage stage = new Stage();
     public static void main(String[] args) throws Exception {
+
+      Loading loadingWindow = new Loading();
       Client downstream = new Client();
+
+   
+
+      System.out.println("Test 1");
+      //Print the weather data to console
+      List<String> data = Client.getWeatherData();
+      for (String line : data) {
+          System.out.println("Weather info: " + line);
+      }
+
       Main window = new Main();
       window.setBounds(350, 50, 1000, 1000); //Window is being drawn at x=350 y=50, dimensions are 1000^2
       window.setBackground(new Color(47, 48, 49));
+
+
       window.run();
     }
 
