@@ -19,6 +19,8 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
+import java.lang.Thread;
+
 
 public class Main extends JFrame {
   int winWidth = 1000;
@@ -162,5 +164,23 @@ public class Main extends JFrame {
     turnQueue.forEach(Character -> System.out.println(Character.name + ":\t" + Character.initiative)); //Print the queue
     System.out.println("~~~~~~~");
   }
+
+  public void processTurn() {
+    Character current = getInTurn();
+    
+    // If it's an enemy, automatically cycle after a delay
+    if (!current.player) {
+      //ENEMY AI WILL GO HERE!!!
+      //current.attack();
+
+      try {Thread.sleep(1000);} //Wait a second so that the user can actually see what happened
+      catch (Exception e) { System.out.println(e); }
+
+      cycleQueue();
+    }
+  
+    //If it's a player's turn, do nothing. The cycleQueue() call will eventually come from Grid.java
+  }
+
 
 }
