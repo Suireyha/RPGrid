@@ -36,17 +36,17 @@ Left clicking allows you to select characters, items or empty cells. By clicking
 Right clicking items or characters allows you to display their name, description, stats and inventory (where applicable)! Items, players and enemies each display their own information, so feel free to check things out yourself.
 
 ## To Do:
-- Add start button
-- Add win/loss screen
-- Add more items/content
-- Add randomly generated levels
-- Add boss fight
-- Add character creation
-- Add ability to view, use and change items from inventory GUI 
 - Add combat
     - Add a turn queue (ordered list of characters or make characters recursive so that it points to next character in turn)
     - Add enemy logic
     - ~~Add character death~~
+- Add win/loss screen
+- Add more items/content
+- Add character creation
+- Add randomly generated levels
+- Add boss fight
+- Add ability to view, use and change items from inventory GUI 
+- Add start button
 - ~~Make inventory viewable from popup~~
 - ~~Make items improve stats~~
 - ~~Add attacking enemies~~
