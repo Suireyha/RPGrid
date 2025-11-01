@@ -17,6 +17,10 @@ import java.awt.Font;
 public class Grid {
   Cell[][] cells = new Cell[20][20];
 
+  Graphics lastGraphics;
+
+  Main mainInstance;
+
   Cell selectedCell = null;
   MapEntity selectedEntity;
 
@@ -42,88 +46,110 @@ public class Grid {
 
   public void cellLeftClicked(Point mousePos){ //This may genuinely be the least readable method I've ever written. Buckle in and rely on the comments :sob:
 
-    Optional<Cell> activeCell = cellAtPoint(mousePos);
-    if (activeCell.isPresent()){
-      Cell clickedCell = activeCell.get();
+    if(!mainInstance.getInTurn().player){ //If it's not a player then:
+      messageCol = alert;
+      message = "It is " + mainInstance.getInTurn().getName() + "'s turn!!";
+      mainInstance.processTurn();
+    }
 
-      //Cclicking the same cell that's already selected deselects it
-      if(selectedCell == clickedCell) {
-        selectedCell.isSelected = false;
-        selectedCell = null;
-        selectedEntity = null;
-        return;
-      }
-            
-      //Clear previous selection
-      if(selectedCell != null){
-        selectedCell.isSelected = false;
-      }
+    else{
+      Optional<Cell> activeCell = cellAtPoint(mousePos);
+      boolean turnSuccess = false;
+      if (activeCell.isPresent()){
+        Cell clickedCell = activeCell.get();
 
-      //A bit of a verbose if statement, but it makes sure not to move a character if there's an entity inside a cell
-      if(selectedEntity != null && selectedEntity.getEntityType() == MapEntity.mapEntityType.PLAYER && clickedCell.contentsChar == null && clickedCell.contentsItem == null){
-        //System.out.println("");
-        //System.out.println("Distance between cells: " + getCellDistance(selectedEntity.getCurrentCell(), clickedCell));
-        //System.out.println(selectedEntity.getName() + "'s Initaiative:" + selectedEntity.getStats()[3]);
-        if(getCellDistance(selectedEntity.getCurrentCell(), clickedCell) < selectedEntity.getStats()[3]){
-          selectedEntity.getCurrentCell().contentsChar = null;
-          clickedCell.contentsChar = (Character)selectedEntity;
-          selectedEntity.setLocation(clickedCell);
-          messageCol = lime;
-          message = selectedEntity.getName() + " moved to x=" + getCellColRow(clickedCell)[0] + " y=" + getCellColRow(clickedCell)[1];
+        //Cclicking the same cell that's already selected deselects it
+        if(selectedCell == clickedCell) {
+          selectedCell.isSelected = false;
+          selectedCell = null;
+          selectedEntity = null;
+          return;
         }
-        else{
-          //TextHeaders errorMsg = new TextHeaders(selectedEntity.getName() + " can only move " + selectedEntity.getStats()[3] + " spaces per turn!", TextHeaders.Header.HEADER2, Color.RED);
-          messageCol = alert;
-          message = selectedEntity.getName() + " can only move " + selectedEntity.getStats()[3] + " spaces per turn!";
+              
+        //Clear previous selection
+        if(selectedCell != null){
+          selectedCell.isSelected = false;
         }
 
-        //After moving, deselect the entity and the cell
-        selectedEntity = null;
-        selectedCell = null;
-        clickedCell.isSelected = false; //Deslect the cell after moving
-      }
-            
-      //If the character can't go there, select the contents of the cell instead or deselect
-      else {
-        selectedCell = clickedCell;
-        clickedCell.isSelected = true;
-        if(clickedCell.contentsChar != null && selectedEntity instanceof Character){
+        //A bit of a verbose if statement, but it makes sure not to move a character if there's an entity inside a cell
+        if(selectedEntity != null && selectedEntity.getEntityType() == MapEntity.mapEntityType.PLAYER && clickedCell.contentsChar == null && clickedCell.contentsItem == null){
+          //System.out.println("");
+          //System.out.println("Distance between cells: " + getCellDistance(selectedEntity.getCurrentCell(), clickedCell));
+          //System.out.println(selectedEntity.getName() + "'s Initaiative:" + selectedEntity.getStats()[3]);
+          if(getCellDistance(selectedEntity.getCurrentCell(), clickedCell) < selectedEntity.getStats()[3]){
+            selectedEntity.getCurrentCell().contentsChar = null;
+            clickedCell.contentsChar = (Character)selectedEntity;
+            selectedEntity.setLocation(clickedCell);
+            messageCol = lime;
+            message = selectedEntity.getName() + " moved to x=" + getCellColRow(clickedCell)[0] + " y=" + getCellColRow(clickedCell)[1];
 
-          if(getCellDistance(selectedEntity.getCurrentCell(), clickedCell) <= ((Character)selectedEntity).equipedWeapon.range){
-            selectedEntity.attack(clickedCell.contentsChar, this); //Attack!!
+            turnSuccess = true;
           }
           else{
+            //TextHeaders errorMsg = new TextHeaders(selectedEntity.getName() + " can only move " + selectedEntity.getStats()[3] + " spaces per turn!", TextHeaders.Header.HEADER2, Color.RED);
             messageCol = alert;
-            message = selectedEntity.getName() + "'s range is " + ((Character)selectedEntity).equipedWeapon.range + "!";
+            message = selectedEntity.getName() + " can only move " + selectedEntity.getStats()[3] + " spaces per turn!";
           }
+
+          //After moving, deselect the entity and the cell
           selectedEntity = null;
           selectedCell = null;
           clickedCell.isSelected = false; //Deslect the cell after moving
         }
+              
+        //If the character can't go there, select the contents of the cell instead or deselect
+        else {
+          selectedCell = clickedCell;
+          clickedCell.isSelected = true;
+          if(clickedCell.contentsChar != null && selectedEntity instanceof Character){
 
-        else if(clickedCell.contentsItem != null && selectedEntity instanceof Character){
-          if(getCellDistance(selectedEntity.getCurrentCell(), clickedCell) <= 2){ //If a character is in range of an item, pick it up and add it to their inventory
-            messageCol = heroBlue;
-            message = selectedEntity.getName() + " picked up " + clickedCell.contentsItem.getName() + "!";
-            selectedEntity.addItem(clickedCell.contentsItem); //Add item to inventory
-            selectedEntity = null; //Deselect
+            if(getCellDistance(selectedEntity.getCurrentCell(), clickedCell) <= ((Character)selectedEntity).equipedWeapon.range){
+              selectedEntity.attack(clickedCell.contentsChar, this); //Attack!!
+
+              turnSuccess = true;
+            }
+            else{
+              messageCol = alert;
+              message = selectedEntity.getName() + "'s range is " + ((Character)selectedEntity).equipedWeapon.range + "!";
+            }
+            selectedEntity = null;
+            selectedCell = null;
+            clickedCell.isSelected = false; //Deslect the cell after moving
           }
-          else{
-            messageCol = alert;
-            message = selectedEntity.getName() + " is out of range of " + clickedCell.contentsItem.getName() + "!";
+
+          else if(clickedCell.contentsItem != null && selectedEntity instanceof Character){
+            if(getCellDistance(selectedEntity.getCurrentCell(), clickedCell) <= 2){ //If a character is in range of an item, pick it up and add it to their inventory
+              messageCol = heroBlue;
+              message = selectedEntity.getName() + " picked up " + clickedCell.contentsItem.getName() + "!";
+              selectedEntity.addItem(clickedCell.contentsItem); //Add item to inventory
+              selectedEntity = null; //Deselect
+
+              turnSuccess = true;
+            }
+            else{
+              messageCol = alert;
+              message = selectedEntity.getName() + " is out of range of " + clickedCell.contentsItem.getName() + "!";
+              selectedEntity = null;
+            }
+            
+          }
+
+          else if(clickedCell.contentsChar != null){
+            selectedEntity = clickedCell.contentsChar;
+          }
+
+          else {
             selectedEntity = null;
           }
-          
-        }
-
-        else if(clickedCell.contentsChar != null){
-          selectedEntity = clickedCell.contentsChar;
-        }
-
-        else {
-          selectedEntity = null;
         }
       }
+
+      if(turnSuccess){
+        paint(lastGraphics, null);
+        mainInstance.cycleQueue(); //THIS NEEDS TO GO AT THE END OF A VALID PLAYER TURN!!!
+        mainInstance.processTurn();  
+      }
+
     }
   }
 
@@ -158,18 +184,13 @@ public class Grid {
         }
       }
     }
-    //Optional<Cell> cellFound = cellAtPoint(mousePos);
-    //String message = "Not in a cell";
-    //if(cellFound.isPresent()){
-      //message = "Column: " + ((cellFound.get().x-10)/40) + " Row: " + ((cellFound.get().y-10)/40);
-    //}
-    
+
+    lastGraphics = g;
     Graphics2D g2d = (Graphics2D) g;
     g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
     g2d.setColor(messageCol);
     g2d.setFont(new Font("Tahoma", Font.BOLD, 18)); //Changes the font to Tahoma, bold, 18px
     g2d.drawString(message, 400 - (5*message.length()), 1); //Draws the string further to the left the longer it is
-
   }
 
   public Cell cellAtColRow(int c, int r) {

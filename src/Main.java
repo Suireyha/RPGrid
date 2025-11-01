@@ -26,6 +26,7 @@ public class Main extends JFrame {
   int winWidth = 1000;
   int winHeight = 1000;
   Stage stage = new Stage();
+  
 
   public ArrayList<Character> turnQueue = new ArrayList<>(); //We'll store all characters (enemies and players) in here to manage turns
 
@@ -46,7 +47,6 @@ public class Main extends JFrame {
     }
 
     loadingScreen.dispose(); //Delete once the weather data has been retrieved
-
     Main window = new Main();
     window.setBounds(350, 50, 1000, 1000); //Window is being drawn at x=350 y=50, dimensions are 1000^2
     window.setBackground(new Color(47, 48, 49));
@@ -98,6 +98,8 @@ public class Main extends JFrame {
     this.pack();
     this.setVisible(true);
 
+    stage.grid.mainInstance = this;
+
     //Create items
     Weapon sword = new Weapon("Iron Sword", "A simple sword. Made from Iron.", "+2 STR", 2, 0, 0, 0, Weapon.Type.SWORD);
     Armour leatherVest = new Armour("Leather Vest", "A vest crafted from cow hide.", "+1 CONS, +1 INIT", 0, 0, 1, 1);
@@ -112,8 +114,8 @@ public class Main extends JFrame {
     Character p2 = new Character("Glimbo", Character.RoleType.BARBARIAN, Character.RaceType.ORC, true);
     Character p3 = new Character("Emily", Character.RoleType.RANGER, Character.RaceType.DWARF, true);
     stage.addCharacter(p1);
-    stage.addCharacter(p2);
-    stage.addCharacter(p3);
+    //stage.addCharacter(p2);
+    //stage.addCharacter(p3);
 
     Character en1 = new Character("Wabbajack", Character.RoleType.MAGE, Character.RaceType.ELF, false);
     Character en2 = new Character("Aloy", Character.RoleType.RANGER, Character.RaceType.HUMAN, false);
@@ -123,8 +125,8 @@ public class Main extends JFrame {
     stage.addCharacter(en3);
 
     turnQueue.add(p1);
-    turnQueue.add(p2);
-    turnQueue.add(p3);
+    //turnQueue.add(p2);
+    //turnQueue.add(p3);
     turnQueue.add(en1);
     turnQueue.add(en2);
     turnQueue.add(en3);
@@ -142,6 +144,9 @@ public class Main extends JFrame {
   }
 
   public void run() {
+    if(!getInTurn().player){
+      processTurn();
+    }
     while(true) {
       repaint();
     }
@@ -172,15 +177,29 @@ public class Main extends JFrame {
     if (!current.player) {
       //ENEMY AI WILL GO HERE!!!
       //current.attack();
-
-      try {Thread.sleep(1000);} //Wait a second so that the user can actually see what happened
+      stage.grid.messageCol = stage.grid.alert;
+      stage.grid.message = current.getName() + " makes a move...";
+      System.out.println(current.getName() + " makes a move...");
+      try {Thread.sleep(300);} //Wait a second so that the user can actually see what happened
       catch (Exception e) { System.out.println(e); }
 
       cycleQueue();
+      if(getInTurn().player){
+        stage.grid.messageCol = stage.grid.heroBlue;
+        stage.grid.message = "It's " + current.getName() + " turn!";
+      }
+      else{
+        processTurn(); //Will do nothing if it's the players turn, but will keep making enemy moves otherwise
+      }
     }
   
     //If it's a player's turn, do nothing. The cycleQueue() call will eventually come from Grid.java
   }
 
+  public void startGame(){
+      if(!getInTurn().player){
+      processTurn();
+    }
+  }
 
 }
