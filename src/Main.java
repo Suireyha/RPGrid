@@ -133,9 +133,9 @@ public class Main extends JFrame {
       .collect(Collectors.toCollection(ArrayList::new)); //All that to make it an Array list.... :sob:
     printQueue();
 
-    cycleQueue();
-    cycleQueue();
-    printQueue();
+    //cycleQueue(); //These lines are for testing
+    //cycleQueue();
+    //printQueue();
 
   }
 

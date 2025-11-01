@@ -64,42 +64,18 @@ Right clicking items or characters allows you to display their name, description
 
 ## Project Requirements:
 *If you're marking this submission, this area is for you!*
-### Inheritence in the Program
-- Character.java (Extends Actor)
-    - During the initial stages of development, it was most convenient for Character to extend Actor in order to handle drawing Characters on the grid. However, this relationship is largely irellavent now since MapEntity.java (Character's interface) requires a paint(Graphics g) method to be implemented by children, much the way Item.java (Also implements MapEntity.java) simply has its own paint() method.
-- Weapon.java (Extends Item.java)
-    - Weapons rely on the common functionality provided by Items.java, while also needing to write more specific functinality for itself (Weapons have range, a TYPE, and their own special way of drawing things), and as such extends Items to inherit that functionality as well as the common variables like Item.name, Item.strength, Item.wisdom and so on. 
-- Armour.java (Extends Item.java)
-    - The same with Weapons.java, Armour is an item that is drawn on the map and can be picked up and equiped and so on. It gets that common functionality from Item. Armour doesn't do much specific at the moment, but I had planned flesh out its functinality with more time.
-- Potion.java (Extends Item.java)
-    - Potions are simple items- they don't have much functionality for themselves (again, mostly due to time restraints) but must be viewable, pick-up-able, etc.
-- TextHeaders.java (Extends JLabel)
-    - TextHeaders really just my class of custom JLabels, so it must inherit JLabel's functionality.
-- ContentRow.java (Extends JPanel)
-    - ContentRow.java is a custom 'div' class for organising the displays in the PopUp menus when you right click on something. It extends JPanel for all of the drawing, displaying and content justification functionality and so on.
-- PopUp.java (Extends JFrame)
-    - PopUp.java is created everytime you right click on an item/character to display it's stats. It extends JFrame for the window functionality.
-*The following relationships existed in the project already*
-- Cell.java (Extends Rectangle)
-- Main.java (Extends JFrame)
-- Canvas.java (Extends JPanel)
+### Streams in the Program
+- Main.java
+    - In Main.java, there's an ArrayList called turnQueue. It manages which character's turn it is based on their initiative at the beginning. Streams were used to sort 
+    this list by Character initiative.
 
-### Abstract Classes & Methods
-- Item.java
-    -Item.java an abstract class that includes a ton of general functionality for Weapons, Potions and Armour, while those child classes implement some things on their own respecively. Item.java is extended by Weapon, Potion and Armour. Item.java itself doesn't make sense to be a stand alone instance, because an Item that doesn't have the additional functionality is ambiguous and useless.
-*The following relationships existed in the project already*
-- Actor.java
+### Lambdas in the Program
+- Main.java
+    - In Main.java, a special kind of PopUp is built to act as a loading screen while the program fetches the weather data. PopUp.java was originally designed to be called **EXCLUSIVELY** when the user right clicks on an item or player. By creating a new PopUp() constructor that includes a Consumer<T> interface, it's now possible to create PopUps for whatever unique purpose that may be required, as long as it's passed via a lambda. Without lambda support, any non-repeatable code (like the loading screen PopUp at the top of Main.java) would have to have been hard-coded into PopUp.java- which is inefficient.
 
-### Interfaces
-- MapEntity.java
-    - MapEntity.java is an interface that ensures anything drawn on the grid is held to a number of standards, like having a draw method. Everything that implements it also must have a displayWin() method to account for the scenario where it's right clicked, a getCurrentCell() method so that other functions/classes can get the cell the entity exists in, etc. MapEntity.java is implemented by Character and Item.
-
-
-### Generics
-- PopUp.java 
-    - PopUp.java is a generic class that can be made with any child of MapEntity.java (Character, Item, Item->Weapon, Item->Potion, Item->Armour), since all entities must have a PopUp to display when right clicked **but** they should have unique their own unique display functionality between them.
-- setRandomSpawn()
-    - The method setRandomSpawn() in Stage.java is an abstract method that takes any child of MapEntity.java as argument, and will place those entities on the grid randomly within different bounds depending on the type. For example, Items can be placed anywhere as long as a cell is empty, but Characters can't be placed between y=8 and y=12, and will be placed in either y=0 - y=8 or y=12 - y=20 depending on whether the character is a player or enemie.
+### Use of Weather Data
+- Character.java
+    - *(Not actually implemented yet, leaving this in the readme for my own formatting)*
 
 ## Storyboard
 ![Project Storyboard](doc/storyboards/draft-storyboard.jpg)
