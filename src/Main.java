@@ -120,8 +120,6 @@ public class Main extends JFrame {
       stage.addCharacter(en2);
       stage.addCharacter(en3);
 
-      ArrayList<Character> unsortedCharacters = new ArrayList<>();
-
       turnQueue.add(p1);
       turnQueue.add(p2);
       turnQueue.add(p3);
@@ -130,9 +128,8 @@ public class Main extends JFrame {
       turnQueue.add(en3);
 
       turnQueue = turnQueue.stream()
-        .sorted(Comparator.comparing(Character -> Character.initiative)) //Sorts characters based on their initiative (lowest to highest)
+        .sorted(Comparator.comparing((Character x) -> x.initiative).reversed()) //Sorts characters based on their initiative (Highest to lowest)
         .collect(Collectors.toCollection(ArrayList::new)); //All that to make it an Array list.... :sob:
-      
       turnQueue.forEach(Character -> System.out.println(Character.name + ":\t" + Character.initiative));
 
     }
