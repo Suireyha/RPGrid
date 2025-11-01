@@ -30,6 +30,8 @@ public class Main extends JFrame {
           System.out.println("Weather info: " + line);
       }
 
+      loadingWindow.dispose(); //Delete once the weather data has been retrieved
+
       Main window = new Main();
       window.setBounds(350, 50, 1000, 1000); //Window is being drawn at x=350 y=50, dimensions are 1000^2
       window.setBackground(new Color(47, 48, 49));
