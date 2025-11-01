@@ -11,11 +11,18 @@ import java.util.List;
 
 import javax.swing.SwingUtilities;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 
 public class Main extends JFrame {
     int winWidth = 1000;
     int winHeight = 1000;
     Stage stage = new Stage();
+
+    ArrayList<Character> turnQueue = new ArrayList<>(); //We'll store all characters (enemies and players) in here to manage turns
+
     public static void main(String[] args) throws Exception {
 
       PopUp<?> loadingScreen = new PopUp<>("LOADING", Color.CYAN, popup -> {
@@ -108,6 +115,16 @@ public class Main extends JFrame {
       stage.addCharacter(en1);
       stage.addCharacter(en2);
       stage.addCharacter(en3);
+
+      turnQueue.add(p1);
+      turnQueue.add(p2);
+      turnQueue.add(p3);
+
+      turnQueue.add(en1);
+      turnQueue.add(en2);
+      turnQueue.add(en3);
+
+      System.out.println(turnQueue);
 
     }
 
