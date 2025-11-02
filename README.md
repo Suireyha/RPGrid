@@ -63,14 +63,15 @@ Right clicking items or characters allows you to display their name, description
 - ~~Add Weapons (Child of items)~~
 
 ## Known Bugs:
-- Character's stay in turn queue after being killed
+- ~~Character's stay in turn queue after being killed~~
 - Players can hit themselves and/or each other (feature, not removing this one)
-
+- An enemy player resets the turn queue from original initiative stats
 ## Project Requirements:
 *If you're marking this submission, this area is for you!*
 ### Streams in the Program
 - Main.java
     - In Main.java, there's an ArrayList called turnQueue. It manages which character's turn it is based on their initiative at the beginning. Streams were used to sort this list by Character initiative.
+    - sortTQ()
 - Grid.java
     - The bulk of the streams in this program (as of writing this) exist at the end of Grid.java. (See following bullet points). Streams are used here largely to filter and collect objects and data about the relative distance between the origin cell or character (typically being called from enemy logic). In particular, the comparators in Stream.filter make this a far more efficient method of getting the data we're after compared to how I was previously handling (and still am for the player... you can see that hellscape in the rightClicked function in Grid.java). 
     - getCellsInRange(Cell origin, int range)
