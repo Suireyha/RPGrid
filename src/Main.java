@@ -7,18 +7,11 @@ import java.awt.Color;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.List;
 
 import javax.swing.SwingUtilities;
 
 import java.util.*;
 import java.util.stream.Collectors;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
-
 import java.lang.Thread;
 
 
@@ -114,7 +107,7 @@ public class Main extends JFrame {
     Character p2 = new Character("Glimbo", Character.RoleType.BARBARIAN, Character.RaceType.ORC, true);
     Character p3 = new Character("Emily", Character.RoleType.RANGER, Character.RaceType.DWARF, true);
     stage.addCharacter(p1);
-    //stage.addCharacter(p2);
+    stage.addCharacter(p2);
     //stage.addCharacter(p3);
 
     Character en1 = new Character("Wabbajack", Character.RoleType.MAGE, Character.RaceType.ELF, false);
@@ -125,7 +118,7 @@ public class Main extends JFrame {
     stage.addCharacter(en3);
 
     turnQueue.add(p1);
-    //turnQueue.add(p2);
+    turnQueue.add(p2);
     //turnQueue.add(p3);
     turnQueue.add(en1);
     turnQueue.add(en2);
@@ -170,6 +163,72 @@ public class Main extends JFrame {
     System.out.println("~~~~~~~");
   }
 
+  public void processTurn() { //Second least readable function in this project let's go !!!! (buckle tf in)
+    Character current = getInTurn(); //Get the character in turn
+
+    //DISCLOSURE!!! Large portions of this function were written by generative ai (Anthropic's Claude.ai)
+    //I have left my original processTurn() function commented out below, but under time constraints I needed this done so I had the functionality to 
+    //justify adding more relevant stuff (namely, using the weather data.) You needn't award me any marks for the use of lambdas or streams in this function.
+    
+    if (!current.player){
+        System.out.println(current.getName() + " makes a move...");
+        
+        // Check for attackable targets first
+        List<Character> targets = stage.grid.getAttackableTargets(current);
+        
+        if (!targets.isEmpty()){
+            Character target = targets.stream()
+                .min(Comparator.comparingDouble(c -> c.health))
+                .orElse(targets.get(0));
+            
+            current.attack(target, stage.grid);
+            
+            try { Thread.sleep(800); } 
+            catch (Exception e) { System.out.println(e); }
+            
+        } 
+        
+        else {
+            Optional<Character> closestPlayer = stage.grid.getClosestPlayer(current);
+            
+            if (closestPlayer.isPresent()) {
+                Optional<Cell> bestMove = stage.grid.getBestMoveTowards(current, closestPlayer.get().loc);
+                
+                if (bestMove.isPresent()) {
+                    Cell targetCell = bestMove.get();
+                    
+                    // Move the enemy
+                    current.loc.contentsChar = null;
+                    targetCell.contentsChar = current;
+                    current.setLocation(targetCell);
+                    
+                    int[] coords = stage.grid.getCellColRow(targetCell);
+                    stage.grid.changeMessage(
+                        current.getName() + " moved to x=" + coords[0] + " y=" + coords[1], 
+                        stage.grid.alert
+                    );
+                    
+                    try { Thread.sleep(500); } 
+                    catch (Exception e) { System.out.println(e); }
+                } else {
+                    try { Thread.sleep(500); } 
+                    catch (Exception e) { System.out.println(e); }
+                }
+            }
+        }
+        
+        cycleQueue();
+        
+        // Continue processing enemy turns or return control to player
+        if (getInTurn().player) {
+        } else {
+            processTurn(); // Continue with next enemy turn
+        }
+    }
+    // If it's a player's turn, do nothing - cycleQueue() will be called from Grid.java
+}
+
+/*
   public void processTurn() {
     Character current = getInTurn();
     
@@ -177,16 +236,16 @@ public class Main extends JFrame {
     if (!current.player) {
       //ENEMY AI WILL GO HERE!!!
       //current.attack();
-      stage.grid.messageCol = stage.grid.alert;
-      stage.grid.message = current.getName() + " makes a move...";
+      //stage.grid.messageCol = stage.grid.alert;
+      //stage.grid.message = current.getName() + " makes a move...";
       System.out.println(current.getName() + " makes a move...");
       try {Thread.sleep(300);} //Wait a second so that the user can actually see what happened
       catch (Exception e) { System.out.println(e); }
 
       cycleQueue();
       if(getInTurn().player){
-        stage.grid.messageCol = stage.grid.heroBlue;
-        stage.grid.message = "It's " + current.getName() + " turn!";
+        //stage.grid.messageCol = stage.grid.heroBlue;
+        //stage.grid.message = "It's " + current.getName() + " turn!";
       }
       else{
         processTurn(); //Will do nothing if it's the players turn, but will keep making enemy moves otherwise
@@ -195,6 +254,7 @@ public class Main extends JFrame {
   
     //If it's a player's turn, do nothing. The cycleQueue() call will eventually come from Grid.java
   }
+  */
 
   public void startGame(){
       if(!getInTurn().player){

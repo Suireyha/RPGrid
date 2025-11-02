@@ -2,11 +2,16 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.Point;
-
+import java.util.Comparator;
+import java.util.List;
 import java.util.Optional;
 
 import java.awt.Color;
 import java.awt.Font;
+
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 /*!!IMPORTANT NOTE FROM MARVIN:
 * Wherever we handle mouse position to meet some end, we need to remove the offset I've made
 * Take a look at the second variable in the class gridOffset- that's how the offset is calculated.
@@ -191,6 +196,64 @@ public class Grid {
     g2d.setColor(messageCol);
     g2d.setFont(new Font("Tahoma", Font.BOLD, 18)); //Changes the font to Tahoma, bold, 18px
     g2d.drawString(message, 400 - (5*message.length()), 1); //Draws the string further to the left the longer it is
+
+    //DISCLOSURE!!! THE FOLLOWING IF STATEMENT WRITTEN BY GENERATIVE AI (Anthropic's Claude.ai)
+    //Seeing as it's all unrelated to the assessment task and only helps me get through some display grunt work I don't imagine there will be any issues.
+    //I will dispute this if I am marked down for it :fire: 
+    if(mainInstance != null && mainInstance.getInTurn() != null)
+    {
+      Character currentTurn = mainInstance.getInTurn();
+      
+      // Save the original stroke
+      java.awt.Stroke originalStroke = g2d.getStroke();
+      
+      // Draw turn indicator box below the grid - smaller version
+      g2d.setColor(new Color(20, 20, 20, 200));
+      g2d.fillRoundRect(280, 820, 240, 60, 12, 12);
+      
+      // Draw border
+      g2d.setColor(currentTurn.player ? heroBlue : alert);
+      g2d.setStroke(new java.awt.BasicStroke(2));
+      g2d.drawRoundRect(280, 820, 240, 60, 12, 12);
+      
+      // Restore original stroke
+      g2d.setStroke(originalStroke);
+      
+      // Draw character name
+      g2d.setFont(new Font("Tahoma", Font.BOLD, 18));
+      g2d.setColor(currentTurn.player ? heroBlue : alert);
+      String turnText = currentTurn.player ? "YOUR TURN" : "ENEMY TURN";
+      g2d.drawString(turnText, 320, 840);
+      
+      // Draw character details
+      g2d.setFont(new Font("Tahoma", Font.PLAIN, 13));
+      g2d.setColor(Color.WHITE);
+      g2d.drawString(currentTurn.name + " the " + currentTurn.roleAsText, 290, 858);
+      
+      // Draw HP bar
+      g2d.setFont(new Font("Tahoma", Font.PLAIN, 11));
+      g2d.drawString("HP:", 290, 873);
+      
+      // HP bar background
+      g2d.setColor(new Color(60, 60, 60));
+      g2d.fillRect(315, 863, 190, 12);
+      
+      // HP bar fill
+      double hpPercent = currentTurn.health / currentTurn.maxHealth;
+      Color hpColor;
+      if(hpPercent > 0.6) hpColor = new Color(0, 255, 50);
+      else if(hpPercent > 0.3) hpColor = new Color(255, 200, 0);
+      else hpColor = new Color(255, 50, 50);
+      
+      g2d.setColor(hpColor);
+      g2d.fillRect(315, 863, (int)(190 * hpPercent), 12);
+      
+      // HP text
+      g2d.setColor(Color.WHITE);
+      String hpText = String.format("%.0f / %.0f", currentTurn.health, currentTurn.maxHealth);
+      g2d.drawString(hpText, 355, 873);
+    }
+
   }
 
   public Cell cellAtColRow(int c, int r) {
@@ -245,5 +308,54 @@ public class Grid {
     messageCol = col;
     message = text;
   }
+
+
+  //Enemy AI calculation stuff- LOADS OF STREAMS IN THIS SECTION!! :D
+
+  public List<Cell> getCellsInRange(Cell origin, int range) { //Range will usually be initiative
+    return IntStream.range(0, cells.length)
+        .boxed()
+        .flatMap(x -> IntStream.range(0, cells[x].length)
+            .mapToObj(y -> cells[x][y]))
+        .filter(cell -> getCellDistance(origin, cell) <= range && getCellDistance(origin, cell) > 0) //Filter for the ones actually in range but exclude the cell the character is already in
+        .collect(Collectors.toList());
+}
+
+//Returns a list of valid moves character can make (all inclusive)
+public List<Cell> getValidMoves(Character character) {
+    return getCellsInRange(character.loc, character.initiative)
+        .stream()
+        .filter(cell -> cell.contentsChar == null && cell.contentsItem == null)
+        .collect(Collectors.toList());
+}
+
+//Get all attackable targets (players within weapon reach)
+public List<Character> getAttackableTargets(Character attacker) {
+    return getCellsInRange(attacker.loc, attacker.equipedWeapon.range)
+        .stream()
+        .filter(cell -> cell.contentsChar != null) //Filter for cells with characters in them
+        .map(cell -> cell.contentsChar)
+        .filter(target -> target.player) //Only target players (so obv this function can't be used for Character logic)
+        .collect(Collectors.toList());
+}
+
+//Get the closest player to a given character
+public Optional<Character> getClosestPlayer(Character enemy) {
+    return IntStream.range(0, cells.length)
+        .boxed()
+        .flatMap(x -> IntStream.range(0, cells[x].length)
+            .mapToObj(y -> cells[x][y]))
+        .filter(cell -> cell.contentsChar != null && cell.contentsChar.player)
+        .map(cell -> cell.contentsChar)
+        .min(Comparator.comparingInt(player -> getCellDistance(enemy.loc, player.loc)));
+}
+
+//Find the best cell to move towards a target
+public Optional<Cell> getBestMoveTowards(Character mover, Cell target) {
+    return getValidMoves(mover)
+        .stream()
+        .min(Comparator.comparingInt(cell -> getCellDistance(cell, target)));
+}
+
 
 }
