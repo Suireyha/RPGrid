@@ -14,7 +14,7 @@ Credit for the Cient.java file also goes to Macquarie University, necessary as p
 
 ## Description
 RPGrid is a simple GUI based RPG combat game written in Java!
-You control the blue characters, and your objective is to defeat the red characters with your party. Due to time restrictions, enemies don't have combat logic, nor is there a propper turn queue- but you can left click on enemies and attack yourself with them if you wish to imerse yourself.
+You control the blue characters, and your objective is to defeat the red characters with your party. There isn't currently a larger objective to the game, nor any win/loss handling BUT at least the enemies attack you now!! Even if it isn't so clear...
 Pick up items, become stronger and slay your foe!
 *Be careful not to have your ranger pick up a sword...*
 
