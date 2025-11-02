@@ -31,10 +31,7 @@ public class Cell extends Rectangle{
     offsetMousePos.x -= gridOffset;
     offsetMousePos.y -= gridOffset;
     
-    if(weatherTint.getAlpha() > 0){ //Change grid colour based on weather data
-      g.setColor(weatherTint);
-      g.fillRect(x, y, size, size);
-    }
+    
 
     if(contains(offsetMousePos)) {
       g.setColor(highlighted);
@@ -43,8 +40,9 @@ public class Cell extends Rectangle{
       if(this.isSelected){
         g.setColor(new Color(119, 237, 160));
       }
-      else{
-        g.setColor(Color.WHITE);
+      else if(weatherTint.getAlpha() > 0){ //Change grid colour based on weather data
+      g.setColor(weatherTint);
+      g.fillRect(x, y, size, size);
       }
     }
 
