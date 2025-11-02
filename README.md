@@ -84,7 +84,8 @@ Right clicking items or characters allows you to display their name, description
 - Health potions can take character's over their max health threshold
 
 ## Project Requirements:
-*If you're marking this submission, this area is for you!*
+***If you're marking this submission, this area is for you!***
+*Streams and lambdas in this program have allowed for much more efficient and modular design of the features that were implemented post Assignment 1 compared to those written pre Assignment 1 (See the leftClick handling in Grid.java...). Generally, I prefer code to be as concise and modular as possible. "If it's reused, make it a function/method/subroutine". There are however, always use cases in code where you need to do unique but similar things that need to be hard coded, but at least this way it's more efficient. With lambdas and streams, methods needn't be so specific to the use case they were designed for, since you can add your own custom logic explicitly through lambda arguments. You may notice that originally (and still) enumerators are everywhere to handle logical flow for different classes, weapon types, item types, etc. The solution is extremely verbose, but had the whole project been refactored with the inclusion of lambdas specifically perhaps it needn't have been? Below is where everything exists in the source code.*
 ### Streams in the Program
 - Main.java
     - In Main.java, there's an ArrayList called turnQueue. It manages which character's turn it is based on their initiative at the beginning. Streams were used to sort this list by Character initiative.
