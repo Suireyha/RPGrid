@@ -66,6 +66,8 @@ Right clicking items or characters allows you to display their name, description
 - ~~Character's stay in turn queue after being killed~~
 - Players can hit themselves and/or each other (feature, not removing this one)
 - An enemy player resets the turn queue from original initiative stats
+- When it's one of the player character's turn, all of the player character's can take the turn instead of it being **THAT** character's turn.
+
 ## Project Requirements:
 *If you're marking this submission, this area is for you!*
 ### Streams in the Program
@@ -79,6 +81,7 @@ Right clicking items or characters allows you to display their name, description
     - getAttackableTargets(Character attacker)
     - getClosestPlayer(Character enemy)
     - getBestMoveTowards(Character mover, Cell target)
+
 ### Lambdas in the Program
 - Main.java
     - In Main.java, a special kind of PopUp is built to act as a loading screen while the program fetches the weather data. PopUp.java was originally designed to be called **EXCLUSIVELY** when the user right clicks on an item or player. By creating a new PopUp() constructor that includes a Consumer<T> interface, it's now possible to create PopUps for whatever unique purpose that may be required, as long as it's passed via a lambda. Without lambda support, any non-repeatable code (like the loading screen PopUp at the top of Main.java) would have to have been hard-coded into PopUp.java- which is inefficient.

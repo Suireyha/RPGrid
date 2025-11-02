@@ -5,7 +5,6 @@ import java.awt.Point;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
-
 import java.awt.Color;
 import java.awt.Font;
 
@@ -37,6 +36,8 @@ public class Grid {
   String message = "Right click characters/items to display, left click to move!";
   Color messageCol = lime; //Green by default
 
+  //Grid colour (gets changed based on decimal value in the weather stream)
+  private Color weatherTint = Color.WHITE; //default normal white colour
 
   public Grid() {
     int idCounter = 0;
@@ -150,7 +151,6 @@ public class Grid {
       }
 
       if(turnSuccess){
-        paint(lastGraphics, null);
         mainInstance.cycleQueue(); //THIS NEEDS TO GO AT THE END OF A VALID PLAYER TURN!!!
         mainInstance.processTurn();  
       }
@@ -183,7 +183,7 @@ public class Grid {
     offsetMousePos.y -= gridOffset;
     for(int i=0; i<cells.length; i++) {
       for(int j=0; j<cells[i].length; j++) {
-        cells[i][j].paint(g, mousePos);
+        cells[i][j].paint(g, mousePos, weatherTint);
         if(cells[i][j].contentsChar != null){
           cells[i][j].contentsChar.draw();
         }
@@ -359,6 +359,38 @@ public class Grid {
 
   public void callRemoveFromTQ(Character deadCharacter) {//This gets called from Character, and Grid passes the call up to Main. I know how fucked this is :sob:
       mainInstance.removeFromTQ(deadCharacter);
+  }
+
+  //!! FOR MARKERS!! WEATHER STUFF HERE!!!
+  public void initializeWeatherColors() {
+    List<String> weatherData = Client.getWeatherData();
+    
+    //Calculate the average temp !! Streams used here!!!
+    double averageTemp = weatherData.stream()
+        .map(line -> line.split(" ")) //Split each line up at the whitespaces (so 5 parts, index 0 through to 4)
+        .mapToDouble(parts -> Double.parseDouble(parts[4])) //Get the decimal at the end (part 5 = index 4 you get me)
+        .average() //Take the average of the decimals
+        .orElse(0.51); //Default to 0.51 (will be normal colour)
+    
+    System.out.println("Average weather decimal " + averageTemp); //Print average to console to verify it works
+    
+    // Set base cell color based on average intensity
+    if(averageTemp < 0.5) {
+      //Blue tint
+      weatherTint = new Color(200, 220, 255);
+    } 
+    else if(averageTemp >= 0.5 && averageTemp <= 0.55) {
+      //Normal/white
+      weatherTint = Color.WHITE;
+    } 
+    else {
+      //Warm/orange tint
+      weatherTint = new Color(255, 235, 210);
+    }
+  }
+
+  public Color getWeatherTint() { //Getter for Cell when painting blah blah blah
+      return weatherTint;
   }
 
 }

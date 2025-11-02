@@ -26,11 +26,16 @@ public class Cell extends Rectangle{
     super(x, y, size, size);
   }
 
-  public void paint(Graphics g, Point mousePos) {
+  public void paint(Graphics g, Point mousePos, Color weatherTint) {
     Point offsetMousePos = new Point(mousePos); //This is the ACTUAL mouse position obtained by removing the offset.
     offsetMousePos.x -= gridOffset;
     offsetMousePos.y -= gridOffset;
     
+    if(weatherTint.getAlpha() > 0){ //Change grid colour based on weather data
+      g.setColor(weatherTint);
+      g.fillRect(x, y, size, size);
+    }
+
     if(contains(offsetMousePos)) {
       g.setColor(highlighted);
     }

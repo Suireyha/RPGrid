@@ -92,6 +92,7 @@ public class Main extends JFrame {
     this.setVisible(true);
 
     stage.grid.mainInstance = this;
+    stage.grid.initializeWeatherColors();
 
     //Create items
     Weapon sword = new Weapon("Iron Sword", "A simple sword. Made from Iron.", "+2 STR", 2, 0, 0, 0, Weapon.Type.SWORD);
