@@ -72,18 +72,12 @@ Right clicking items or characters allows you to display their name, description
 - Main.java
     - In Main.java, there's an ArrayList called turnQueue. It manages which character's turn it is based on their initiative at the beginning. Streams were used to sort this list by Character initiative.
 - Grid.java
-    - The bulk of the streams in this program (as of writing this) exist at the end of Grid.java. The methods getCellsInRange(), getValidMoves(), getAttackableTargets(), getClosestPlayer() and getBestMoveTowards all utilise streams to some capacity, which I'll detail and explain in the following bullet points.
+    - The bulk of the streams in this program (as of writing this) exist at the end of Grid.java. (See following bullet points). Streams are used here largely to filter and collect objects and data about the relative distance between the origin cell or character (typically being called from enemy logic). In particular, the comparators in Stream.filter make this a far more efficient method of getting the data we're after compared to how I was previously handling (and still am for the player... you can see that hellscape in the rightClicked function in Grid.java). 
     - getCellsInRange(Cell origin, int range)
-        - a;sldkjf
     - getValidMoves(Character character)
-        - a;sldkjf
     - getAttackableTargets(Character attacker)
-        - a;sldkjf
     - getClosestPlayer(Character enemy)
-        - a;sldkjf
     - getBestMoveTowards(Character mover, Cell target)
-        - a;sldkjf
-
 ### Lambdas in the Program
 - Main.java
     - In Main.java, a special kind of PopUp is built to act as a loading screen while the program fetches the weather data. PopUp.java was originally designed to be called **EXCLUSIVELY** when the user right clicks on an item or player. By creating a new PopUp() constructor that includes a Consumer<T> interface, it's now possible to create PopUps for whatever unique purpose that may be required, as long as it's passed via a lambda. Without lambda support, any non-repeatable code (like the loading screen PopUp at the top of Main.java) would have to have been hard-coded into PopUp.java- which is inefficient.
