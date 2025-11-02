@@ -79,20 +79,23 @@ Right clicking items or characters allows you to display their name, description
     - sortTQ()
 - Grid.java
     - The bulk of the streams in this program (as of writing this) exist at the end of Grid.java. (See following bullet points). Streams are used here largely to filter and collect objects and data about the relative distance between the origin cell or character (typically being called from enemy logic). In particular, the comparators in Stream.filter make this a far more efficient method of getting the data we're after compared to how I was previously handling (and still am for the player... you can see that hellscape in the rightClicked function in Grid.java). 
-    - getCellsInRange(Cell origin, int range)
-    - getValidMoves(Character character)
-    - getAttackableTargets(Character attacker)
-    - getClosestPlayer(Character enemy)
-    - getBestMoveTowards(Character mover, Cell target)
+        - getCellsInRange(Cell origin, int range)
+        - getValidMoves(Character character)
+        - getAttackableTargets(Character attacker)
+        - getClosestPlayer(Character enemy)
+        - getBestMoveTowards(Character mover, Cell target)
+    - initializeWeatherColors() uses streams to split up the weather data from Client.java and then take the average of the decimal point on the end.
+
 
 ### Lambdas in the Program
 - Main.java
     - In Main.java, a special kind of PopUp is built to act as a loading screen while the program fetches the weather data. PopUp.java was originally designed to be called **EXCLUSIVELY** when the user right clicks on an item or player. By creating a new PopUp() constructor that includes a Consumer<T> interface, it's now possible to create PopUps for whatever unique purpose that may be required, as long as it's passed via a lambda. Without lambda support, any non-repeatable code (like the loading screen PopUp at the top of Main.java) would have to have been hard-coded into PopUp.java- which is inefficient.
 
 ### Use of Weather Data
-- Character.java
-    - *(Not actually implemented yet, leaving this in the readme for my own formatting)*
-    - Will PROBABLY use the weather data to seed random or dictate enemy behaviours. Not very interested in using the data in a meaningful fashion really.
+- Grid.java
+    - The weather data from Client.java is fetched by initializeWeatherColors() in Grid.java, this same method then uses a stream to split it up into parts between the whitespaces (so 5 parts in total, index 0 - 4). Then, in the same stream, the average of the last bit of each line (the decimal point number) is taken. If the average is less than .5, the grid for the game is drawn with a blue tint (for cold), if it's between .5 and .55 it's just the regular white board, and if it's greater than .55 the board is tinted orange. Local variable weatherTint stores the colour which Cell can get via the getter function getWeatherTint() during painting in Cell.java
+- Cell.java
+    - While painting, paint() in Cell.java makes a call to getWeatherTint in Grid.java, which returns the colour determined to be used for painting the grid based on the average of the last decimal point numbers from the list of lines. (Read the paragraph before this)
 
 ## Storyboard
 ![Project Storyboard](doc/storyboards/draft-storyboard.jpg)
