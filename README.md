@@ -66,8 +66,19 @@ Right clicking items or characters allows you to display their name, description
 *If you're marking this submission, this area is for you!*
 ### Streams in the Program
 - Main.java
-    - In Main.java, there's an ArrayList called turnQueue. It manages which character's turn it is based on their initiative at the beginning. Streams were used to sort 
-    this list by Character initiative.
+    - In Main.java, there's an ArrayList called turnQueue. It manages which character's turn it is based on their initiative at the beginning. Streams were used to sort this list by Character initiative.
+- Grid.java
+    - The bulk of the streams in this program (as of writing this) exist at the end of Grid.java. The methods getCellsInRange(), getValidMoves(), getAttackableTargets(), getClosestPlayer() and getBestMoveTowards all utilise streams to some capacity, which I'll detail and explain in the following bullet points.
+    - getCellsInRange(Cell origin, int range)
+        - a;sldkjf
+    - getValidMoves(Character character)
+        - a;sldkjf
+    - getAttackableTargets(Character attacker)
+        - a;sldkjf
+    - getClosestPlayer(Character enemy)
+        - a;sldkjf
+    - getBestMoveTowards(Character mover, Cell target)
+        - a;sldkjf
 
 ### Lambdas in the Program
 - Main.java
@@ -83,6 +94,8 @@ Right clicking items or characters allows you to display their name, description
 
 ## Discolsure of the use of Generative AI
 Generative AI was used to a miniscule extent in this project.
-Weapon.java, Item.java, Armour.java and Character.java **ALL* contain a draw() method. The logic for the switch/case and the shape.clear statements were written by me, but since I did not intend to burn hours of my time writing the Polygon.addPoint() maths to draw a few crude images of weapons, characters and other items- I employed AI to generate those sections. 
-I have left a comment in each of these functions outlining the use of AI too.
-The polygons were drawn by [Anthropic's Claude AI](https://claude.ai)
+Weapon.java, Item.java, Armour.java and Character.java **ALL* contain a draw() method. The logic for the switch/case and the shape.clear statements were written by me, but since I did not intend to burn hours of my time writing the Polygon.addPoint() maths to draw a few crude images of weapons, characters and other items- I employed AI to generate those sections.
+*(The following additions were made during Assignment 2)*
+Additionally, AI was used to generate the if statement at the bottom paint() in Grid.java that creates the display for the character's HP and was also used to clean up processTurn() in Main.java.
+I have left a comment everywhere AI was used outlining the use of AI.
+AI used was [Anthropic's Claude AI.](https://claude.ai)
