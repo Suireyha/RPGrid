@@ -67,6 +67,9 @@ Right clicking items or characters allows you to display their name, description
 - Players can hit themselves and/or each other (feature, not removing this one)
 - An enemy player resets the turn queue from original initiative stats
 - When it's one of the player character's turn, all of the player character's can take the turn instead of it being **THAT** character's turn.
+- Screen may briefly white out during oponents first turn
+- Game doesn't display new character location or splash text immediately after making a move (program is halted before it can redraw everything, my bug fixes failed ;~;)
+- Health potions can take character's over their max health threshold
 
 ## Project Requirements:
 *If you're marking this submission, this area is for you!*

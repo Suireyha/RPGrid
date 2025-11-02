@@ -175,7 +175,7 @@ public class Main extends JFrame {
             
             current.attack(target, stage.grid);
             
-            try { Thread.sleep(800); } 
+            try { Thread.sleep(500); } 
             catch (Exception e) { System.out.println(e); }
             
         } 
@@ -200,10 +200,10 @@ public class Main extends JFrame {
                         stage.grid.alert
                     );
                     
-                    try { Thread.sleep(500); } 
+                    try { Thread.sleep(200); } 
                     catch (Exception e) { System.out.println(e); }
                 } else {
-                    try { Thread.sleep(500); } 
+                    try { Thread.sleep(200); } 
                     catch (Exception e) { System.out.println(e); }
                 }
             }
