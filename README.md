@@ -20,7 +20,19 @@ Pick up items, become stronger and slay your foe!
 
 ## Instructions
 
-### **Left Click**
+### How To Compile/Run
+**Command Line**
+1. Navigate to the projects root folder on your machine
+2. Compile all the source files with a java compiler of your choice
+3. Run the program
+
+**GUI**
+1. Open the project folder in VS Code
+2. Ensure you have installed Java, Language Support for Java, Maven for Java and Debugger for Java (all of these are extensions for VS-C)
+3. Open Main.java and hit the arrow button to compile or right click somewhere and select "Run Java"
+
+### How To Play
+#### **Left Click**
 Left clicking allows you to select characters, items or empty cells. By clicking on a **blue** character first, your next left click will be a context action performed by the selected character! Once you have a character selected, clicking on an item, cell or character will do the following:
 - **Character**
     - If the clicked character is in range, your selected character will a ttack (you can make red characters attack you, and you can hit members of your party too!)
@@ -32,7 +44,7 @@ Left clicking allows you to select characters, items or empty cells. By clicking
     - If your character is within range of the item, they pick it up and automatically equip it! You can see each character's items by right clicking them. Be careful to check what items do before picking them up, the Ranger is *really* bad with a sword...
     - If your character is outside of the item's reach, an error message will be displayed and your character will be deselected
 
-### **Right Click**
+#### **Right Click**
 Right clicking items or characters allows you to display their name, description, stats and inventory (where applicable)! Items, players and enemies each display their own information, so feel free to check things out yourself.
 
 ## To Do:
