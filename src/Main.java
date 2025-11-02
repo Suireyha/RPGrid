@@ -106,10 +106,10 @@ public class Main extends JFrame {
     //Create characters
     Character p1 = new Character("John Snow", Character.RoleType.FIGHTER, Character.RaceType.HUMAN, true);
     Character p2 = new Character("Glimbo", Character.RoleType.BARBARIAN, Character.RaceType.ORC, true);
-    Character p3 = new Character("Emily", Character.RoleType.RANGER, Character.RaceType.DWARF, true);
+    Character p3 = new Character("Hanzo", Character.RoleType.RANGER, Character.RaceType.DWARF, true);
     stage.addCharacter(p1);
     stage.addCharacter(p2);
-    //stage.addCharacter(p3);
+    stage.addCharacter(p3);
 
     Character en1 = new Character("Wabbajack", Character.RoleType.MAGE, Character.RaceType.ELF, false);
     Character en2 = new Character("Aloy", Character.RoleType.RANGER, Character.RaceType.HUMAN, false);
@@ -120,7 +120,7 @@ public class Main extends JFrame {
 
     turnQueue.add(p1);
     turnQueue.add(p2);
-    //turnQueue.add(p3);
+    turnQueue.add(p3);
     turnQueue.add(en1);
     turnQueue.add(en2);
     turnQueue.add(en3);
