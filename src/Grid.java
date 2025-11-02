@@ -319,43 +319,43 @@ public class Grid {
             .mapToObj(y -> cells[x][y]))
         .filter(cell -> getCellDistance(origin, cell) <= range && getCellDistance(origin, cell) > 0) //Filter for the ones actually in range but exclude the cell the character is already in
         .collect(Collectors.toList());
-}
+  }
 
-//Returns a list of valid moves character can make (all inclusive)
-public List<Cell> getValidMoves(Character character) {
-    return getCellsInRange(character.loc, character.initiative)
-        .stream()
-        .filter(cell -> cell.contentsChar == null && cell.contentsItem == null)
-        .collect(Collectors.toList());
-}
+  //Returns a list of valid moves character can make (all inclusive)
+  public List<Cell> getValidMoves(Character character) {
+      return getCellsInRange(character.loc, character.initiative)
+          .stream()
+          .filter(cell -> cell.contentsChar == null && cell.contentsItem == null)
+          .collect(Collectors.toList());
+  }
 
-//Get all attackable targets (players within weapon reach)
-public List<Character> getAttackableTargets(Character attacker) {
-    return getCellsInRange(attacker.loc, attacker.equipedWeapon.range)
-        .stream()
-        .filter(cell -> cell.contentsChar != null) //Filter for cells with characters in them
-        .map(cell -> cell.contentsChar)
-        .filter(target -> target.player) //Only target players (so obv this function can't be used for Character logic)
-        .collect(Collectors.toList());
-}
+  //Get all attackable targets (players within weapon reach)
+  public List<Character> getAttackableTargets(Character attacker) {
+      return getCellsInRange(attacker.loc, attacker.equipedWeapon.range)
+          .stream()
+          .filter(cell -> cell.contentsChar != null) //Filter for cells with characters in them
+          .map(cell -> cell.contentsChar)
+          .filter(target -> target.player) //Only target players (so obv this function can't be used for Character logic)
+          .collect(Collectors.toList());
+  }
 
-//Get the closest player to a given character
-public Optional<Character> getClosestPlayer(Character enemy) {
-    return IntStream.range(0, cells.length)
-        .boxed()
-        .flatMap(x -> IntStream.range(0, cells[x].length)
-            .mapToObj(y -> cells[x][y]))
-        .filter(cell -> cell.contentsChar != null && cell.contentsChar.player)
-        .map(cell -> cell.contentsChar)
-        .min(Comparator.comparingInt(player -> getCellDistance(enemy.loc, player.loc)));
-}
+  //Get the closest player to a given character
+  public Optional<Character> getClosestPlayer(Character enemy) {
+      return IntStream.range(0, cells.length)
+          .boxed()
+          .flatMap(x -> IntStream.range(0, cells[x].length)
+              .mapToObj(y -> cells[x][y]))
+          .filter(cell -> cell.contentsChar != null && cell.contentsChar.player)
+          .map(cell -> cell.contentsChar)
+          .min(Comparator.comparingInt(player -> getCellDistance(enemy.loc, player.loc)));
+  }
 
-//Find the best cell to move towards a target
-public Optional<Cell> getBestMoveTowards(Character mover, Cell target) {
-    return getValidMoves(mover)
-        .stream()
-        .min(Comparator.comparingInt(cell -> getCellDistance(cell, target)));
-}
+  //Find the best cell to move towards a target
+  public Optional<Cell> getBestMoveTowards(Character mover, Cell target) {
+      return getValidMoves(mover)
+          .stream()
+          .min(Comparator.comparingInt(cell -> getCellDistance(cell, target)));
+  }
 
 
 }

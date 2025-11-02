@@ -62,6 +62,10 @@ Right clicking items or characters allows you to display their name, description
 - ~~Add Items (Potions)~~
 - ~~Add Weapons (Child of items)~~
 
+## Known Bugs:
+- Character's stay in turn queue after being killed
+- Players can hit themselves and/or each other (feature, not removing this one)
+
 ## Project Requirements:
 *If you're marking this submission, this area is for you!*
 ### Streams in the Program
