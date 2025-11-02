@@ -124,16 +124,7 @@ public class Main extends JFrame {
     turnQueue.add(en2);
     turnQueue.add(en3);
 
-    //STREAM USED HERE!!!!!!
-    turnQueue = turnQueue.stream()
-      .sorted(Comparator.comparing((Character x) -> x.initiative).reversed()) //Sorts characters based on their initiative (Highest to lowest)
-      .collect(Collectors.toCollection(ArrayList::new)); //All that to make it an Array list.... :sob:
-    printQueue();
-
-    //cycleQueue(); //These lines are for testing
-    //cycleQueue();
-    //printQueue();
-
+    sortTQ(); //Sort the turn queue
   }
 
   public void run() {
@@ -228,7 +219,7 @@ public class Main extends JFrame {
     // If it's a player's turn, do nothing - cycleQueue() will be called from Grid.java
 }
 
-/*
+/* Old processTurn without AI assistance. Leaving here for marker's reference =]
   public void processTurn() {
     Character current = getInTurn();
     
@@ -260,6 +251,18 @@ public class Main extends JFrame {
       if(!getInTurn().player){
       processTurn();
     }
+  }
+
+  public void sortTQ(){ //Streams used here!!!
+      turnQueue = turnQueue.stream()
+      .sorted(Comparator.comparing((Character x) -> x.initiative).reversed()) //Sorts characters based on their initiative (Highest to lowest)
+      .collect(Collectors.toCollection(ArrayList::new)); //All that to make it an Array list.... :sob:
+    printQueue();//For testing
+  }
+
+  public void removeFromTQ(Character deadCharacter){ //Character can call this via grid in checkIsDead() after an attack. Crazy work, I know
+    turnQueue.removeIf(c -> c.equals(deadCharacter)); //Remove instance of deadCharacter
+    sortTQ(); //Resort the TQ so that there isn't just a hole in the queue
   }
 
 }

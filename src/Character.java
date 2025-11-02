@@ -270,13 +270,14 @@ public class Character extends Actor implements MapEntity{ //Child of Actor sinc
         }
         defender.health -= damage;
         caller.changeMessage(this.name + " the " + this.roleAsText + " hit " + defender.name + " with their " + equipedWeapon.name + " for " + damage + " damage!", messageCol);
-        if(defender.checkIsDead()){
+        if(defender.checkIsDead(caller)){
             caller.changeMessage(this.name + " the " + this.roleAsText + " KILLED " + defender.name + " with their " + equipedWeapon.name + "!!!!", Color.RED);
         }
     }
 
-    public boolean checkIsDead(){
+    public boolean checkIsDead(Grid caller){
         if(health <= 0){
+            caller.callRemoveFromTQ(this);
             loc.contentsChar = null;
             this.loc = null;
             shape.clear();

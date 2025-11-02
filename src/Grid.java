@@ -357,5 +357,8 @@ public class Grid {
           .min(Comparator.comparingInt(cell -> getCellDistance(cell, target)));
   }
 
+  public void callRemoveFromTQ(Character deadCharacter) {//This gets called from Character, and Grid passes the call up to Main. I know how fucked this is :sob:
+      mainInstance.removeFromTQ(deadCharacter);
+  }
 
 }
