@@ -102,6 +102,17 @@ Right clicking items or characters allows you to display their name, description
 ### Lambdas in the Program
 - Main.java
     - In Main.java, a special kind of PopUp is built to act as a loading screen while the program fetches the weather data. PopUp.java was originally designed to be called **EXCLUSIVELY** when the user right clicks on an item or player. By creating a new PopUp() constructor that includes a Consumer<T> interface, it's now possible to create PopUps for whatever unique purpose that may be required, as long as it's passed via a lambda. Without lambda support, any non-repeatable code (like the loading screen PopUp at the top of Main.java) would have to have been hard-coded into PopUp.java- which is inefficient.
+    - Lambdas are used to a far more predictable extend during the stream operations in sortTQ() for passing rules to the comparator
+    - Lambdas appear in removeFromTQ to provide rules to .removeIf
+    - Lambdas appear in printQueue(), giving forEach its logic
+    - Lambdas appear in processTurn() to give the Comparator its logic for character comparing health
+- Grid.java
+    - Lambdas in initializeWeatherColors() stream for string operation logic and maths
+    - Lambdas in getCellsInRange(Cell origin, int range) stream for filter, mapping and mapToObj logic
+    - Lambdas in getValidMoves(Character character) stream for filtering
+    - Lambdas in getAttackableTargets(Character attacker) stream for
+    - Lambdas in getClosestPlayer(Character enemy) stream for filtering, mapping and comparator
+    - Lambdas in getBestMoveTowards(Character mover, Cell target) stream for comparison
 
 ### Use of Weather Data
 - Grid.java
